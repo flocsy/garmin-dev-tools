@@ -5,6 +5,8 @@ A collection of shell scripts for Garmin ConnectIQ and Monkey C developers.
 
 I'll try to update the files in csv/ folder to the latest possible data. You can open an issue if I forgot to upload the latest, up-to-date files.
 
+An empty value means there's no data, i.e there's no datafield on fr45.
+
 ## Installation
 All scripts use bash and the "usual" cli tools.
 

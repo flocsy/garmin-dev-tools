@@ -26,9 +26,10 @@ edge830:3.3.1
 edge_1000:2.4.2
 edge_520:2.4.4
 edgeexplore:3.1.3
+edgeexplore2:4.1.2
 enduro:3.3.1
 epix:1.2.1
-epix2:4.0.0
+epix2:4.1.2
 fenix3:1.4.4
 fenix3_hr:1.4.4
 fenix5:3.1.6
@@ -43,9 +44,9 @@ fenix6prosystem5preview:3.3.0
 fenix6s:3.3.1
 fenix6spro:3.3.1
 fenix6xpro:3.3.1
-fenix7:4.0.4
-fenix7s:4.0.4
-fenix7x:4.0.4
+fenix7:4.1.2
+fenix7s:4.1.2
+fenix7x:4.1.2
 fenixchronos:3.1.6
 fr230:1.4.4
 fr235:1.4.4
@@ -70,8 +71,8 @@ fr955:4.1.2
 garminswim2:1.4.5
 gpsmap66:3.0.8
 gpsmap86:3.0.8
-instinct2:3.3.1
-instinct2s:3.3.1
+instinct2:3.3.4
+instinct2s:3.3.4
 legacyherocaptainmarvel:3.2.6
 legacyherofirstavenger:3.2.6
 legacysagadarthvader:3.2.6
@@ -94,6 +95,8 @@ venu2s:4.1.1
 venu2system5preview:4.1.0
 venud:3.2.6
 venusq:3.3.1
+venusq2:4.1.5
+venusq2m:4.1.5
 venusqm:3.3.1
 vivoactive:1.4.2
 vivoactive3:3.1.6
