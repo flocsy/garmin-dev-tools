@@ -11,8 +11,8 @@ d2deltas:3.1.8
 d2mach1:4.0.6
 descentg1:3.2.7
 descentmk1:3.0.1
-descentmk2:3.1.7,3.2.4
-descentmk2s:3.2.0
+descentmk2:3.1.7,3.3.1
+descentmk2s:3.2.0,3.3.1
 edge1030:3.2.5,3.3.1
 edge1030bontrager:3.3.1
 edge1030plus:3.2.5,3.3.1
@@ -46,6 +46,7 @@ fenix6spro:3.2.6,3.3.1
 fenix6xpro:3.2.6,3.3.1
 fenix7:4.1.2
 fenix7s:4.1.2
+fenix7system6preview:4.2.0
 fenix7x:4.0.4,4.1.2
 fenixchronos:3.1.6
 fr230:1.3.1,1.4.4
@@ -73,10 +74,13 @@ gpsmap66:3.0.8
 gpsmap86:3.0.8
 instinct2:3.2.7,3.3.4
 instinct2s:3.2.7,3.3.4
+instinctcrossover:3.3.6
 legacyherocaptainmarvel:3.2.6
 legacyherofirstavenger:3.2.6
 legacysagadarthvader:3.2.6
 legacysagarey:3.2.6
+marq2:4.1.2
+marq2aviator:4.1.2
 marqadventurer:3.2.6,3.3.1
 marqathlete:3.2.6,3.3.1
 marqaviator:3.2.6,3.3.1
@@ -93,6 +97,7 @@ venu2:4.0.0,4.0.5 4.1.1
 venu2plus:4.0.0,4.1.1
 venu2s:4.0.0,4.0.5 4.1.1
 venu2system5preview:4.1.0
+venu2system6preview:4.2.0
 venud:3.2.6
 venusq:3.2.5,3.2.7 3.3.1
 venusq2:4.1.5

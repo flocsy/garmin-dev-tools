@@ -46,6 +46,7 @@ fenix6spro:98304
 fenix6xpro:131072
 fenix7:131072
 fenix7s:131072
+fenix7system6preview:131072
 fenix7x:131072
 fenixchronos:98304
 fr230:65536
@@ -73,10 +74,13 @@ gpsmap66:
 gpsmap86:
 instinct2:65536
 instinct2s:65536
+instinctcrossover:65536
 legacyherocaptainmarvel:524288
 legacyherofirstavenger:524288
 legacysagadarthvader:524288
 legacysagarey:524288
+marq2:131072
+marq2aviator:131072
 marqadventurer:98304
 marqathlete:98304
 marqaviator:98304
@@ -93,6 +97,7 @@ venu2:131072
 venu2plus:131072
 venu2s:131072
 venu2system5preview:131072
+venu2system6preview:131072
 venud:524288
 venusq:98304
 venusq2:131072
