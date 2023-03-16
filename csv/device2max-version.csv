@@ -33,11 +33,11 @@ epix2:4.2.0
 fenix3:1.4.4
 fenix3_hr:1.4.4
 fenix5:3.1.6
-fenix5plus:3.2.3
+fenix5plus:3.3.3
 fenix5s:3.1.6
-fenix5splus:3.2.3
+fenix5splus:3.3.3
 fenix5x:3.1.6
-fenix5xplus:3.2.3
+fenix5xplus:3.3.3
 fenix6:3.4.0
 fenix6pro:3.4.0
 fenix6s:3.4.0
@@ -73,6 +73,7 @@ fr955:4.2.0
 fr965:4.2.0
 garminswim2:1.4.5
 gpsmap66:3.0.8
+gpsmap67:3.2.0
 gpsmap86:3.0.8
 instinct2:3.4.0
 instinct2s:3.4.0
