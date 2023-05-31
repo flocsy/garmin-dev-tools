@@ -1,5 +1,7 @@
 approachs60:2.4.1
 approachs62:3.0.12
+approachs7042mm:4.2.1
+approachs7047mm:4.2.1
 d2air:3.2.1
 d2airx10:4.0.1
 d2bravo:1.4.4
@@ -9,7 +11,7 @@ d2delta:3.1.8
 d2deltapx:3.1.8
 d2deltas:3.1.8
 d2mach1:4.2.0
-descentg1:3.2.7
+descentg1:3.4.0
 descentmk1:3.0.1
 descentmk2:3.3.1
 descentmk2s:3.3.1
@@ -21,8 +23,10 @@ edge130:3.1.1
 edge130plus:3.2.0
 edge520plus:3.1.3
 edge530:3.3.1
+edge540:4.2.0
 edge820:3.1.3
 edge830:3.3.1
+edge840:4.2.0
 edge_1000:2.4.2
 edge_520:2.4.4
 edgeexplore:3.1.3
@@ -77,6 +81,7 @@ gpsmap67:3.2.0
 gpsmap86:3.0.8
 instinct2:3.4.0
 instinct2s:3.4.0
+instinct2x:3.4.0
 instinctcrossover:3.4.0
 legacyherocaptainmarvel:3.3.1
 legacyherofirstavenger:3.3.1

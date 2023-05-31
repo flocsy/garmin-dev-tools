@@ -1,5 +1,7 @@
 approachs60:
 approachs62:
+approachs7042mm:65536
+approachs7047mm:65536
 d2air:
 d2airx10:65536
 d2bravo:
@@ -21,8 +23,10 @@ edge130:
 edge130plus:
 edge520plus:
 edge530:
+edge540:32768
 edge820:
 edge830:
+edge840:32768
 edge_1000:
 edge_520:
 edgeexplore:
@@ -77,6 +81,7 @@ gpsmap67:
 gpsmap86:
 instinct2:32768
 instinct2s:32768
+instinct2x:32768
 instinctcrossover:32768
 legacyherocaptainmarvel:
 legacyherofirstavenger:
