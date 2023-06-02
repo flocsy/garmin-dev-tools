@@ -34,6 +34,9 @@ edgeexplore2:
 enduro:114688
 epix:1048576
 epix2:131072
+epix2pro42mm:131072
+epix2pro47mm:131072
+epix2pro51mm:131072
 fenix3:65536
 fenix3_hr:65536
 fenix5:98304
@@ -48,9 +51,12 @@ fenix6s:98304
 fenix6spro:98304
 fenix6xpro:131072
 fenix7:131072
+fenix7pro:131072
 fenix7s:131072
+fenix7spro:131072
 fenix7system6preview:131072
 fenix7x:131072
+fenix7xpro:131072
 fenixchronos:98304
 fr230:65536
 fr235:65536
