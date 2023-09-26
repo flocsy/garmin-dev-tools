@@ -125,6 +125,14 @@ def camel_case(s):
     return ''.join([s[0].lower(), s[1:]])
 
 
+def device_has_app_type(device, app_type):
+    dev = DEVICES[device]
+    for app_type_obj in dev['compiler']['appTypes']:
+        if app_type_obj['type'] == app_type:
+            return True
+    return False
+
+
 def parse_manifest(manifest):
     global APP_TYPE, MIN_API_LEVEL, MANIFEST_DEVICES, MANIFEST_LANGS, IS_BETA
     IS_BETA = '-prod' not in manifest
@@ -134,18 +142,24 @@ def parse_manifest(manifest):
     application = tree.find('./iq:application', NS)
 
     APP_TYPE = camel_case(application.get('type'))
-    print(f"app-type: {APP_TYPE}")
+    print(f"APP_TYPE: {APP_TYPE}")
     MIN_API_LEVEL = application.get('minApiLevel') or application.get('minSdkVersion')
     print(f"MIN_API_LEVEL: {MIN_API_LEVEL}")
 
     devices = []
-    # for product in tree.findall('./iq:application/iq:products/iq:product', NS):
     for product in application.findall('./iq:products/iq:product', NS):
         device = product.get('id')
         if device in ALL_DEVICES:
             devices.append(device)
+        else:
+            print_error(f"unknown device: {device}")
     print(f"MANIFEST_DEVICES: {devices}")
     MANIFEST_DEVICES = devices
+
+    devices_set = set(devices)
+    missing_devices = [d for d in ALL_DEVICES if d not in devices_set and device_has_app_type(d, APP_TYPE) and not d.endswith('preview')]
+    if len(missing_devices) > 0:
+        print_error(f"MISSING_DEVICES: {missing_devices}")
 
     langs = []
     for lang in application.findall('./iq:languages/iq:language', NS):
@@ -178,8 +192,6 @@ def add(sourcePathArr, resourcePathArr, excludeAnnotationsArr, langsDict, featur
 def usage():
     print("Usage: monkey-generator.py [-h | --help] [-j <monkey.jungle> | --jungle=<monkey.jungle>] [-t <template> | --template=<template>] [-c | --clean] [-a | --all-devices]")
 
-
-# monkey_generator_features_memory16K
 
 MEMORY_SIZES = {16384, 32768, 49152, 65536, 98304, 114688, 131072, 135168, 262144, 524288, 786432, 1048576, 1310720, 2359296}
 # MEMORY_2_K = {16384: '16K', 32768: '32K', 65536: '64K', 131072: '128K', 262144: '256K'}
@@ -238,6 +250,10 @@ def main(argv):
                 if line.startswith('project.manifest'):
                     MANIFEST = line.split('=', 2)[1].strip().split(' ', 1)[0]
                     print("MANIFEST: " + MANIFEST)
+                elif line.startswith('monkey_generator_features_memoryCommon'):
+                    memory_str, features_str = line.split('=', 2)
+                    features = features_str.strip().split(';')
+                    FEATURES_BY_MEMORY['common'] = features
                 elif line.startswith('monkey_generator_features_memory'):
                     memory_str, features_str = line.split('=', 2)
                     memory = memory_str.replace('monkey_generator_features_memory', '').strip()
@@ -278,7 +294,7 @@ def main(argv):
         # print(f"{MONKEY_JUNGLE}")
         devices = ALL_DEVICES if generate_devices == 'all' else MANIFEST_DEVICES
         devices.insert(0, 'base')
-        print(f"devices: {devices}")
+        print(f"devices ({generate_devices}): {devices}")
         for dev in devices:
             # sourcePathArr = ['source']
             sourcePathArr = []
@@ -315,7 +331,7 @@ def languages(dev):
     return ['', '', hebrewExcludeAnnotation]
 pre_register(languages)
 
-NO_SPACE_IN_NUMBER_FONT=['edge130','edge130plus','edge_520','edge520plus','edge530','edge820','edge830','edge_1000','edge1030','edge1030bontrager','edge1030plus','edgeexplore', 'fr735xt']
+NO_SPACE_IN_NUMBER_FONT=['edge130','edge130plus','edge_520','edge520plus','edge530','edge820','edge830','edge_1000','edge1030','edge1030bontrager','edge1030plus','edgeexplore', 'fr735xt', 'oregon7xx', 'vivoactive_hr']
 def number_font(dev):
     return [has_directory('source-features/number_font/' + ('no_space' if dev in NO_SPACE_IN_NUMBER_FONT else 'has_space')), '', ''] if dev != 'base' else ['', '', '']
 pre_register(number_font)
@@ -334,7 +350,7 @@ pre_register(color_depth)
 def device_field2hash(device, field):
     display_location = device['simulator']['display']['location']
     # width_bits = math.ceil(math.log2(display_location['width']))
-    height_bits = math.ceil(math.log2(display_location['height']))
+    # height_bits = math.ceil(math.log2(display_location['height']))
 
     # field_name = f"\"{layout_name}\"[{field_idx}]"
     l = field['location']
@@ -344,6 +360,8 @@ def device_field2hash(device, field):
     for side in obs:
         # o += side[0]
         obscurity_flags |= OBSCURITY_TO_NUMBER[side]
+    if l['height'] >= 1000:
+        sys.exit(f"{dev}: need to fix the hash, because 1000 <= height = {l['height']}")
     # hash = (((l['width'] << height_bits) | l['height']) << 4) | obscurity_flags
     hash = (l['width'] * 1000 + l['height']) * 100 + obscurity_flags
     # key = f"{hash}:{l['width']}:{l['height']}:{obscurity_flags}:{o}"
@@ -441,7 +459,8 @@ FONT_TO_MC_FONT = {'-': '', 'xtiny': 'XTINY', 'tiny': 'TINY', 'small': 'SMALL', 
         'simExtNumber1': {'edgeexplore2': 'MEDIUM', 'venusq2': 'XTINY', 'venusq2m': 'XTINY'},
         'simExtNumber2': {'legacyherocaptainmarvel': 'TINY', 'legacyherofirstavenger': 'TINY', 'legacysagadarthvader': 'TINY', 'legacysagarey': 'TINY',
                 'vivoactive4': 'TINY', 'vivoactive4s': 'TINY'},
-        'simExtNumber6': {'approachs62': 'XTINY'}
+        'simExtNumber5': {'edge540': 'MEDIUM', 'edge840': 'MEDIUM'},
+        'simExtNumber6': {'approachs62': 'XTINY', 'edge540': 'SMALL', 'edge840': 'SMALL'}
 }
 def font2mc_font(font, dev):
     # return f"Graphics.FONT_{font.upper()}" if font not in FONT_TO_MC_FONT else\
@@ -592,7 +611,7 @@ def label_font(dev):
                         if key2fonts[key][0] == label_font:
                             key2fonts[key][1].append(field_name)
                         else:
-                            print_error(f"{dev}: conflicting key: {key}: {key2fonts[key]} vs [{label_font}] ({field_name})")
+                            print_warn(f"{dev}: conflicting key: {key}: {key2fonts[key]} vs [{label_font}] ({field_name})")
                     else:
                         key2fonts[key] = [label_font, [field_name]]
                     # print(f"{dev}:{key}:{label_font} ({field_name})")
@@ -653,7 +672,9 @@ def label_font(dev):
             output.write(f"(:datafield, :hebrew) const INCREASE_HEBREW_LABEL_FONT_SIZE = {'true' if increase_hebrew_label_font else 'false'};\n")
         output.write(f"(:datafield) const DEFAULT_LABEL_FONT = {font2mc_font(default_label_font, dev)};\n")
         output.write("(:datafield, :datafield_hash, :datafield_label_font) const DATAFIELD_HASH_2_LABEL_FONT = {\n")
-        for hash, label_font in hash2label_font.items():
+        # for hash, label_font in hash2label_font.items():
+        for hash in sorted(hash2label_font):
+            label_font = hash2label_font[hash]
             if label_font != default_label_font:
                 output.write(f"  {hash} /*{hash2comment[hash]}*/ => {font2mc_font(label_font, dev)},\n")
         output.write("} as Dictionary<Number, Graphics.FontDefinition?>;\n\n")
@@ -667,7 +688,9 @@ def label_font(dev):
             default_x = loc[f"default_{field_part}_x"]
             output.write(f"(:datafield, :datafield_hash, :datafield_{field_part}_x) const DEFAULT_{CAPITAL}_X = {default_x};\n")
             output.write(f"(:datafield, :datafield_hash, :datafield_{field_part}_x) const DATAFIELD_HASH_2_{CAPITAL}_X = {{\n")
-            for hash, x in loc[f"hash2{field_part}_x"].items():
+            # for hash, x in loc[f"hash2{field_part}_x"].items():
+            for hash in sorted(loc[f"hash2{field_part}_x"]):
+                x = loc[f"hash2{field_part}_x"][hash]
                 if x != loc[f"default_{field_part}_x"]:
                     output.write(f"  {hash} /*{hash2comment[hash]}*/ => {x},\n")
             output.write("} as Dictionary<Number, Number>;\n\n")
@@ -675,7 +698,9 @@ def label_font(dev):
             default_y = loc[f"default_{field_part}_y"]
             output.write(f"(:datafield, :datafield_hash, :datafield_{field_part}_y) const DEFAULT_{CAPITAL}_Y = {default_y};\n")
             output.write(f"(:datafield, :datafield_hash, :datafield_{field_part}_y) const DATAFIELD_HASH_2_{CAPITAL}_Y = {{\n")
-            for hash, y in loc[f"hash2{field_part}_y"].items():
+            # for hash, y in loc[f"hash2{field_part}_y"].items():
+            for hash in sorted(loc[f"hash2{field_part}_y"]):
+                y = loc[f"hash2{field_part}_y"][hash]
                 if y != loc[f"default_{field_part}_y"]:
                     output.write(f"  {hash} /*{hash2comment[hash]}*/ => {y},\n")
             output.write("} as Dictionary<Number, Number>;\n\n")
@@ -684,7 +709,9 @@ def label_font(dev):
             if get_only_value(loc[f"hash2{field_part}_justification"]) is None:
                 # print(f"{dev}: DATAFIELD_HASH_2_LABEL_JUSTIFICATION")
                 output.write(f"(:datafield, :datafield_hash, :datafield_{field_part}_justification) const DATAFIELD_HASH_2_{CAPITAL}_JUSTIFICATION = {{\n")
-                for hash, j in loc[f"hash2{field_part}_justification"].items():
+                # for hash, j in loc[f"hash2{field_part}_justification"].items():
+                for hash in sorted(loc[f"hash2{field_part}_justification"]):
+                    j = loc[f"hash2{field_part}_justification"][hash]
                     if j != loc[f"default_{field_part}_justification"]:
                         output.write(f"  {hash} /*{hash2comment[hash]}*/ => {justification2mc(j)},\n")
                 output.write("} as Dictionary<Number, Number>;\n\n")
@@ -773,8 +800,9 @@ def features_by_memory(memory_limit):
             break
         memory_idx -= 1
     # print(f"MEMORY_ORDER: {MEMORY_ORDER}, MEMORY_2_K: {MEMORY_2_K}, FEATURES_BY_MEMORY: {FEATURES_BY_MEMORY}, memory_k: {memory_k}")
-    features = FEATURES_BY_MEMORY[memory_k] if memory_k in FEATURES_BY_MEMORY else []
-    return features
+    common_features = FEATURES_BY_MEMORY['common'] if 'common' in FEATURES_BY_MEMORY else []
+    memory_features = FEATURES_BY_MEMORY[memory_k] if memory_k in FEATURES_BY_MEMORY else []
+    return common_features + memory_features
 
 def has_directory(dir):
     return dir if os.path.isdir(dir) else ''
@@ -825,7 +853,7 @@ def get_multi_feature_dirs(dev, features_dir, base_dir, features):
             multi_dirs.append(f"{feature}{MULTI_FEATURE_DIR_SEPARATOR}")
         # else:
         #     print(f"{dev}: not adding directory: {feature}{MULTI_FEATURE_DIR_SEPARATOR}")
-    print(f"{dev}: multi_dirs in {base_dir}: {multi_dirs}")
+    # print(f"{dev}: multi_dirs in {base_dir}: {multi_dirs}")
     return multi_dirs
 
 
@@ -852,8 +880,8 @@ def add_set(dev, features_dir, set_dir, features):
                 if len(dir_features_set - potential_dir_features_set) > 0 and len(potential_dir_features_set - dir_features_set) == 0:
                     include_potential_dir = False
         if include_potential_dir:
-            # print(f"{dev}: including: {set_dir}/{potential_dir}")
-            features.append(f"{set_dir}/{potential_dir}")
+            # print(f"{dev}: including: {set_dir}{potential_dir}")
+            features.append(f"{set_dir}{potential_dir}")
         # else:
         #     print(f"{dev}: not including: {potential_dir}")
 
@@ -863,11 +891,12 @@ def add_sets(dev, features_dir, base_dir, features):
     if os.path.isdir(dir_path):
         set_dirs = sorted(os.listdir(dir_path))
         for set_dir in set_dirs:
-            add_set(dev, features_dir, f"{base_dir}/{set_dir}", features)
+            add_set(dev, features_dir, f"{base_dir}{set_dir}/", features)
             # dirs = sorted(filter(lambda dir: MULTI_FEATURE_DIR_SEPARATOR in dir, os.listdir(f"{base_dir}/{set_dir}")))
             # print(f"{base_dir}/{set_dir}: dirs: {dirs}")
             # for dir in dirs:
             #     set_features = get_multi_dir_features(f"{base_dir}/{set_dir}/{dir}", features)
+
 
 def features(dev):
     if dev == 'base':
