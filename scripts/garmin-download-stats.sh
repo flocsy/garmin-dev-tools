@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# source: https://github.com/flocsy/garmin-dev-tools/tree/main/scripts/garmin-download-stats.sh ©2023-2024 by flocsy
+# source: https://github.com/flocsy/garmin-dev-tools/blob/main/scripts/garmin-download-stats.sh ©2023-2024 by flocsy
 
 
 
