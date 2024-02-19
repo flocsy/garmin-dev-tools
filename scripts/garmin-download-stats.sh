@@ -15,7 +15,7 @@ APP_IDS=(
     "F42FBBA2-F65B-4533-B25D-589E6D02D3B9"
 )
 
-STATS_DIR="${HOME}/stats/garmin/download"
+STATS_DIR="${HOME}/garmin/stats"
 ########################################################################################
 
 
@@ -33,27 +33,33 @@ if [ ! -f "${CONF_FILE}" ]; then
         exit 1
     fi
 fi
-source "${DIR}/garmin-download-stats.conf"
+source "${CONF_FILE}"
 
 fetch_stats() {
     APP_ID="${1}"
     DOMAIN="${2}"
 
-    CSV="${HOME}/stats/garmin/download/${APP_ID}.${DOMAIN}.csv"
-    # CSV=/tmp/${APP_ID}.${DOMAIN}.csv
+    CSV="${STATS_DIR}/${APP_ID}.${DOMAIN}.csv"
 
+    if [ ! -f "${CSV}" ]; then
+        echo "date,installs,rate,reviews" > "${CSV}"
+    fi
 
-    # the old data was in the html:
-    # HTML="/tmp/garmin-app-${APP_ID}.${DOMAIN}.html"
-    # curl -s "https://apps.garmin.${DOMAIN}/en-US/apps/${APP_ID}" > "${HTML}"
-    # DOWNLOADS=$(pup "span.stat-adds span:last-child text{}" < "${HTML}")
-    # RATING=$(pup ".app-detail span.stat-rating .rating attr{title}" < "${HTML}")
-    # REVIEWS=$(pup "span.stat-rating .badge text{}" < "${HTML}")
-    # NEW_DATA="${DOWNLOADS},${RATING},${REVIEWS}"
-
+    # the new data is in the json:
     JSON="/tmp/garmin-app-${APP_ID}.${DOMAIN}.json"
-    curl -s "https://apps.garmin.com/api/appsLibraryExternalServices/api/asw/apps/${APP_ID}" > "${JSON}"
-    NEW_DATA=$(jq -r '(.downloadCount|tostring) + "," + (.averageRating|tostring) + "," + (.reviewCount|tostring)' < "${JSON}")
+    curl -s "https://apps.garmin.${DOMAIN}/api/appsLibraryExternalServices/api/asw/apps/${APP_ID}" > "${JSON}"
+    STATUS=$(jq -r '.status' < "${JSON}")
+    if [ x"$STATUS" == x"404" ]; then
+        # the old data was in the html:
+        HTML="/tmp/garmin-app-${APP_ID}.${DOMAIN}.html"
+        curl -s "https://apps.garmin.${DOMAIN}/en-US/apps/${APP_ID}" > "${HTML}"
+        DOWNLOADS=$(pup "span.stat-adds span:last-child text{}" < "${HTML}")
+        RATING=$(pup ".app-detail span.stat-rating .rating attr{title}" < "${HTML}")
+        REVIEWS=$(pup "span.stat-rating .badge text{}" < "${HTML}")
+        NEW_DATA="${DOWNLOADS},${RATING},${REVIEWS}"
+    else
+        NEW_DATA=$(jq -r '(.downloadCount|tostring) + "," + (.averageRating|tostring) + "," + (.reviewCount|tostring)' < "${JSON}")
+    fi
 
     LAST_DATA=$(tail -n 1 "${CSV}" | sed -e 's#^[^,]*,##')
     #echo "last: $LAST_DATA, current: ${DOWNLOADS},${RATING},${REVIEWS}" >> /tmp/debug
