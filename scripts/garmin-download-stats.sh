@@ -19,7 +19,6 @@ STATS_DIR="${HOME}/garmin/stats"
 ########################################################################################
 
 
-# set -x
 
 # Different regions have their own garmin servers and we need to scan them all. i.e: garmin.com, garmin.cn
 DOMAINS=("com" "cn")
@@ -63,13 +62,6 @@ fetch_stats() {
         EXT_VER=$(pup "ul.list-unstyled div li text{}" < "${HTML}" | sed -e 's#Version:*##' | sed -e 's#^ *##' | grep -v '^$')
         NEW_DATA="${DOWNLOADS},${RATING},${REVIEWS},,${EXT_VER}"
     else
-        #   "latestInternalVersion": 11,
-        #   "latestExternalVersion": "1.3",
-        #   "firstApprovalDate": 1654272950000,
-        #   "lastApprovalDate": 1654272950000,
-        #   "creationDate": 1654249648000,
-        #   "releaseDate": 1707806778000,
-# TODO: read releaseDate and add the missing data for the last n lines
         NEW_DATA=$(jq -r '(.downloadCount|tostring) + "," + (.averageRating|tostring) + "," + (.reviewCount|tostring) + "," + (.latestInternalVersion|tostring) + "," + .latestExternalVersion' < "${JSON}")
     fi
 
