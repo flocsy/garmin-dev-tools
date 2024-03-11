@@ -76,7 +76,11 @@ fetch_stats() {
     #echo "last: $LAST_DATA, current: ${DOWNLOADS},${RATING},${REVIEWS}" >> /tmp/debug
     if [[ x"${LAST_DATA}" != x"${NEW_DATA}" ]] && [[ x"${NEW_DATA}" != x"${EMPTY_LINE}" ]] && [[ x"${NEW_DATA}" != x"" ]]; then
         DATE=$(date +%Y-%m-%d)
-        echo "${DATE},${NEW_DATA}" >> "${CSV}"
+        if grep "^${DATE}," "${CSV}" > /dev/null ; then
+            sed -i.bak "s#^${DATE},.*#${DATE},${NEW_DATA}#" "${CSV}"
+        else
+            echo "${DATE},${NEW_DATA}" >> "${CSV}"
+        fi
     fi
 }
 
