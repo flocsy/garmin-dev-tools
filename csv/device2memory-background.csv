@@ -35,6 +35,7 @@ edge_520:32768
 edgeexplore:32768
 edgeexplore2:32768
 enduro:32768
+enduro3:65536
 epix:
 epix2:65536
 epix2pro42mm:65536
@@ -63,7 +64,12 @@ fenix7system6preview:65536
 fenix7x:65536
 fenix7xpro:65536
 fenix7xpronowifi:65536
+fenix843mm:65536
+fenix847mm:65536
+fenix8solar47mm:65536
+fenix8solar51mm:65536
 fenixchronos:32768
+fenixe:65536
 fr165:65536
 fr165m:65536
 fr230:
