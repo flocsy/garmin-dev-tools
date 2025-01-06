@@ -4,7 +4,9 @@
 TYPE=${1:-datafield}
 OUTPUT=${2:-device2memory-${TYPE}.csv}
 
-DEVICES_DIR="${CIQ_SDK_HOME}/Devices"
+DIR=$(dirname "$(readlink -f "$0")")
+. "${DIR}/_sdk.sh"
+
 for DIR in "${DEVICES_DIR}"/* ; do
     DEVICE=$(echo "${DIR}" | sed -e "s#.*/##")
     echo "${DEVICE}:$(jq '.appTypes[] | select(.type | contains("'${TYPE}'")).memoryLimit' "${DIR}/compiler.json")"

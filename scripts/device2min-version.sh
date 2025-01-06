@@ -3,7 +3,9 @@
 
 OUTPUT=${1:-device2min-version.csv}
 
-DEVICES_DIR="${CIQ_SDK_HOME}/Devices"
+DIR=$(dirname "$(readlink -f "$0")")
+. "${DIR}/_sdk.sh"
+
 for DIR in "${DEVICES_DIR}"/* ; do
     DEVICE=$(echo "${DIR}" | sed -e "s#.*/##")
     OLD=""
