@@ -40,7 +40,6 @@ epix:1.2.1
 epix2:5.0.0
 epix2pro42mm:5.0.0
 epix2pro47mm:5.0.0
-epix2pro47mmsystem7preview:5.0.0
 epix2pro51mm:5.0.0
 fenix3:1.4.4
 fenix3_hr:1.4.4
@@ -60,7 +59,6 @@ fenix7pro:5.0.0
 fenix7pronowifi:5.0.0
 fenix7s:5.0.0
 fenix7spro:5.0.0
-fenix7system6preview:4.2.0
 fenix7x:5.0.0
 fenix7xpro:5.0.0
 fenix7xpronowifi:5.0.0
@@ -102,7 +100,12 @@ gpsmap86:3.0.8
 instinct2:3.4.2
 instinct2s:3.4.2
 instinct2x:3.4.3
+instinct3amoled45mm:5.0.1
+instinct3amoled50mm:5.0.1
+instinct3solar45mm:5.0.1
 instinctcrossover:3.4.2
+instincte40mm:5.0.1
+instincte45mm:5.0.1
 legacyherocaptainmarvel:3.3.1
 legacyherofirstavenger:3.3.1
 legacysagadarthvader:3.3.1
@@ -124,7 +127,6 @@ venu:3.3.1
 venu2:5.0.0
 venu2plus:5.0.0
 venu2s:5.0.0
-venu2system6preview:4.2.0
 venu3:5.0.0
 venu3s:5.0.0
 venud:3.2.6
