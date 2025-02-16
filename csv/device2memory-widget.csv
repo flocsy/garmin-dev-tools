@@ -13,6 +13,7 @@ d2deltapx:1048576
 d2deltas:1048576
 d2mach1:
 descentg1:65536
+descentg2:
 descentmk1:1048576
 descentmk2:1048576
 descentmk2s:1048576
