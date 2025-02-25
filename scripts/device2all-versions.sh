@@ -5,6 +5,7 @@ OUTPUT=${1:-device2all-versions.csv}
 
 DIR=$(dirname "$(readlink -f "$0")")
 . "${DIR}/_sdk.sh"
+echo "$0"
 
 for DIR in "${DEVICES_DIR}"/* ; do
     DEVICE=$(echo "${DIR}" | sed -e "s#.*/##")

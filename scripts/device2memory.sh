@@ -6,6 +6,7 @@ OUTPUT=${2:-device2memory-${TYPE}.csv}
 
 DIR=$(dirname "$(readlink -f "$0")")
 . "${DIR}/_sdk.sh"
+echo "$0" "${TYPE}"
 
 for DIR in "${DEVICES_DIR}"/* ; do
     DEVICE=$(echo "${DIR}" | sed -e "s#.*/##")

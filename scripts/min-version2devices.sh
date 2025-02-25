@@ -4,6 +4,8 @@
 OUTPUT=${1:-min-version2devices.csv}
 INPUT=${2:-device2min-version.csv}
 
+echo "$0"
+
 #DEVICES_DIR="${CIQ_SDK_HOME}/Devices"
 #for DIR in "${DEVICES_DIR}"/* ; do
 #    DEVICE=$(echo "${DIR}" | sed -e "s#.*/##")
