@@ -1,0 +1,76 @@
+{
+  "fonts": {
+    "FNT_FR945_CDPG_ROBOTO_13B": " !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~ ¡¢£¤¥¦§¨©ª«¬­®¯°±²³´µ¶·¸¹º»¼½¾¿ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõö÷øùúûüýþÿĀāĂăĄąĆćČčĎďĐđĒēĖėĘęĚěĞğĢģĪīĮįİıĶķĹĺĻļĽľŁłŃńŅņŇňŐőŒœŔŕŘřŚśŞşŠšŢţŤťŪūŮůŰűŲųŸŹźŻżŽžƒȘșȚțˆˇ˘˙˛˜˝΄΅ΆΈΉΊΌΎΏΐΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩΪΫάέήίΰαβγδεζηθικλμνξοπρςστυφχψωϊϋόύώЁЂЃЄЅІЇЈЉЊЋЌЎЏАБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдежзийклмнопрстуфхцчшщъыьэюяёђѓєѕіїјљњћќўџҐґ–—―‘’‚“”„†‡•…‰‹›€№™￼�",
+    "FNT_FR945_CDPG_ROBOTO_15B": " !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~ ¡¢£¤¥¦§¨©ª«¬­®¯°±²³´µ¶·¸¹º»¼½¾¿ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõö÷øùúûüýþÿĀāĂăĄąĆćČčĎďĐđĒēĖėĘęĚěĞğĢģĪīĮįİıĶķĹĺĻļĽľŁłŃńŅņŇňŐőŒœŔŕŘřŚśŞşŠšŢţŤťŪūŮůŰűŲųŸŹźŻżŽžƒȘșȚțˆˇ˘˙˛˜˝΄΅ΆΈΉΊΌΎΏΐΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩΪΫάέήίΰαβγδεζηθικλμνξοπρςστυφχψωϊϋόύώЁЂЃЄЅІЇЈЉЊЋЌЎЏАБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдежзийклмнопрстуфхцчшщъыьэюяёђѓєѕіїјљњћќўџҐґ–—―‘’‚“”„†‡•…‰‹›€№™￼�",
+    "FNT_FR945_CDPG_ROBOTO_17B": " !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~ ¡¢£¤¥¦§¨©ª«¬­®¯°±²³´µ¶·¸¹º»¼½¾¿ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõö÷øùúûüýþÿĀāĂăĄąĆćČčĎďĐđĒēĖėĘęĚěĞğĢģĪīĮįİıĶķĹĺĻļĽľŁłŃńŅņŇňŐőŒœŔŕŘřŚśŞşŠšŢţŤťŪūŮůŰűŲųŸŹźŻżŽžƒȘșȚțˆˇ˘˙˛˜˝΄΅ΆΈΉΊΌΎΏΐΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩΪΫάέήίΰαβγδεζηθικλμνξοπρςστυφχψωϊϋόύώЁЂЃЄЅІЇЈЉЊЋЌЎЏАБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдежзийклмнопрстуфхцчшщъыьэюяёђѓєѕіїјљњћќўџҐґ–—―‘’‚“”„†‡•…‰‹›€№™￼�",
+    "FNT_FR945_CDPG_ROBOTO_19B": " !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~ ¡¢£¤¥¦§¨©ª«¬­®¯°±²³´µ¶·¸¹º»¼½¾¿ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõö÷øùúûüýþÿĀāĂăĄąĆćČčĎďĐđĒēĖėĘęĚěĞğĢģĪīĮįİıĶķĹĺĻļĽľŁłŃńŅņŇňŐőŒœŔŕŘřŚśŞşŠšŢţŤťŪūŮůŰűŲųŸŹźŻżŽžƒȘșȚțˆˇ˘˙˛˜˝΄΅ΆΈΉΊΌΎΏΐΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩΪΫάέήίΰαβγδεζηθικλμνξοπρςστυφχψωϊϋόύώЁЂЃЄЅІЇЈЉЊЋЌЎЏАБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдежзийклмнопрстуфхцчшщъыьэюяёђѓєѕіїјљњћќўџҐґ–—―‘’‚“”„†‡•…‰‹›€№™￼�",
+    "FNT_FR945_CDPG_ROBOTO_22B": " !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~ ¡¢£¤¥¦§¨©ª«¬­®¯°±²³´µ¶·¸¹º»¼½¾¿ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõö÷øùúûüýþÿĀāĂăĄąĆćČčĎďĐđĒēĖėĘęĚěĞğĢģĪīĮįİıĶķĹĺĻļĽľŁłŃńŅņŇňŐőŒœŔŕŘřŚśŞşŠšŢţŤťŪūŮůŰűŲųŸŹźŻżŽžƒȘșȚțˆˇ˘˙˛˜˝΄΅ΆΈΉΊΌΎΏΐΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩΪΫάέήίΰαβγδεζηθικλμνξοπρςστυφχψωϊϋόύώЁЂЃЄЅІЇЈЉЊЋЌЎЏАБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдежзийклмнопрстуфхцчшщъыьэюяёђѓєѕіїјљњћќўџҐґ–—―‘’‚“”„†‡•…‰‹›€№™￼�",
+    "FNT_FR945_CDPG_ROBOTO_24B": " !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~ ¡¢£¤¥¦§¨©ª«¬­®¯°±²³´µ¶·¸¹º»¼½¾¿ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõö÷øùúûüýþÿĀāĂăĄąĆćČčĎďĐđĒēĖėĘęĚěĞğĢģĪīĮįİıĶķĹĺĻļĽľŁłŃńŅņŇňŐőŒœŔŕŘřŚśŞşŠšŢţŤťŪūŮůŰűŲųŸŹźŻżŽžƒȘșȚțˆˇ˘˙˛˜˝΄΅ΆΈΉΊΌΎΏΐΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩΪΫάέήίΰαβγδεζηθικλμνξοπρςστυφχψωϊϋόύώЁЂЃЄЅІЇЈЉЊЋЌЎЏАБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдежзийклмнопрстуфхцчшщъыьэюяёђѓєѕіїјљњћќўџҐґ–—―‘’‚“”„†‡•…‰‹›€№™￼�",
+    "FNT_FR945_ROBOTO_BC_NUMBER_FONT_28": " #%+-./0123456789:°",
+    "FNT_FR945_ROBOTO_BC_NUMBER_FONT_31": " #%+-./0123456789:°",
+    "FNT_FR945_ROBOTO_BC_NUMBER_FONT_34": " #%+-./0123456789:°",
+    "FNT_FR945_ROBOTO_BC_NUMBER_FONT_42": " #%+-./0123456789:°",
+    "FNT_FR945_ROBOTO_BLACK_NUMBER_FONT_46": " #%+-./0123456789:°",
+    "FNT_FR945_ROBOTO_BLACK_NUMBER_FONT_53": " #%+-./0123456789:°",
+    "FNT_FR945_ROBOTO_BLACK_NUMBER_FONT_59": " #%+-./0123456789:°"
+  },
+  "devices": {
+    "fr945lte": {
+      "fontSets": {
+        "ww": {
+          "FONT_XTINY": "FNT_FR945_CDPG_ROBOTO_13B",
+          "FONT_TINY": "FNT_FR945_CDPG_ROBOTO_17B",
+          "FONT_SMALL": "FNT_FR945_CDPG_ROBOTO_19B",
+          "FONT_MEDIUM": "FNT_FR945_CDPG_ROBOTO_22B",
+          "FONT_LARGE": "FNT_FR945_CDPG_ROBOTO_24B",
+          "FONT_NUMBER_MILD": "FNT_FR945_ROBOTO_BC_NUMBER_FONT_28",
+          "FONT_NUMBER_MEDIUM": "FNT_FR945_ROBOTO_BC_NUMBER_FONT_34",
+          "FONT_NUMBER_HOT": "FNT_FR945_ROBOTO_BLACK_NUMBER_FONT_46",
+          "FONT_NUMBER_THAI_HOT": "FNT_FR945_ROBOTO_BLACK_NUMBER_FONT_53",
+          "FONT_SYSTEM_XTINY": "FNT_FR945_CDPG_ROBOTO_13B",
+          "FONT_SYSTEM_TINY": "FNT_FR945_CDPG_ROBOTO_17B",
+          "FONT_SYSTEM_SMALL": "FNT_FR945_CDPG_ROBOTO_19B",
+          "FONT_SYSTEM_MEDIUM": "FNT_FR945_CDPG_ROBOTO_22B",
+          "FONT_SYSTEM_LARGE": "FNT_FR945_CDPG_ROBOTO_24B",
+          "FONT_SYSTEM_NUMBER_MILD": "FNT_FR945_ROBOTO_BC_NUMBER_FONT_28",
+          "FONT_SYSTEM_NUMBER_MEDIUM": "FNT_FR945_ROBOTO_BC_NUMBER_FONT_34",
+          "FONT_SYSTEM_NUMBER_HOT": "FNT_FR945_ROBOTO_BLACK_NUMBER_FONT_46",
+          "FONT_SYSTEM_NUMBER_THAI_HOT": "FNT_FR945_ROBOTO_BLACK_NUMBER_FONT_53",
+          "FONT_GLANCE_FONT": "FNT_FR945_CDPG_ROBOTO_15B",
+          "FONT_GLANCE_NUMBER_FONT": "FNT_FR945_CDPG_ROBOTO_19B",
+          "FONT_SIM_EXT_NUMBER1": "FNT_FR945_ROBOTO_BC_NUMBER_FONT_31",
+          "FONT_SIM_EXT_NUMBER2": "FNT_FR945_ROBOTO_BC_NUMBER_FONT_42",
+          "FONT_SIM_EXT_NUMBER3": "FNT_FR945_ROBOTO_BLACK_NUMBER_FONT_59"
+        }
+      },
+      "langMap": {
+        "ara": "ww",
+        "ces": "ww",
+        "dan": "ww",
+        "deu": "ww",
+        "dut": "ww",
+        "eng": "ww",
+        "est": "ww",
+        "fin": "ww",
+        "fre": "ww",
+        "gre": "ww",
+        "heb": "ww",
+        "hrv": "ww",
+        "hun": "ww",
+        "ita": "ww",
+        "lav": "ww",
+        "lit": "ww",
+        "nob": "ww",
+        "pol": "ww",
+        "por": "ww",
+        "ron": "ww",
+        "rus": "ww",
+        "slo": "ww",
+        "slv": "ww",
+        "spa": "ww",
+        "swe": "ww",
+        "tur": "ww"
+      }
+    }
+  }
+}

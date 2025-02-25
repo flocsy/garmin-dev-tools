@@ -1,0 +1,64 @@
+{
+  "fonts": {
+    "FNT_FENIX5_CHRONOSSEMIBOLDCONDENSED_26PX": " #%+-./0123456789:°",
+    "FNT_FENIX5_CHRONOSSEMIBOLDCONDENSED_36PX": " #%+-./0123456789:°",
+    "FNT_FENIX5_CHRONOSSEMIBOLDCONDENSED_52PX": " #%+-./0123456789:°",
+    "FNT_FENIX5_CHRONOSSEMIBOLDCONDENSED_58PX": " #%+-./0123456789:°",
+    "FNT_FENIX5_ROBOTOCONDENSEDBOLD_26PX": " !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~ ¡¢£¤¥¦§¨©ª«¬­®¯°±²³´µ¶·¸¹º»¼½¾¿ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõö÷øùúûüýþÿĂăĄąĆćČčĎďĐđĒēĘęĚěĹĺĽľŁłŃńŇňŐőŒœŔŕŘřŚśŞşŠšŢţŤťŮůŰűŸŹźŻżŽžƒˆˇ˘˙˛˜˝΄΅ΆΈΉΊΌΎΏΐΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩΪΫάέήίΰαβγδεζηθικλμνξοπρςστυφχψωϊϋόύώЁЂЃЄЅІЇЈЉЊЋЌЎЏАБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдежзийклмнопрстуфхцчшщъыьэюяёђѓєѕіїјљњћќўџҐґ–—―‘’‚“”„†‡•…‰‹›€№™⏶⏷￼�",
+    "FNT_FENIX5_ROBOTOCONDENSEDBOLD_29PX": " !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~ ¡¢£¤¥¦§¨©ª«¬­®¯°±²³´µ¶·¸¹º»¼½¾¿ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõö÷øùúûüýþÿĂăĄąĆćČčĎďĐđĒēĘęĚěĹĺĽľŁłŃńŇňŐőŒœŔŕŘřŚśŞşŠšŢţŤťŮůŰűŸŹźŻżŽžƒˆˇ˘˙˛˜˝΄΅ΆΈΉΊΌΎΏΐΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩΪΫάέήίΰαβγδεζηθικλμνξοπρςστυφχψωϊϋόύώЁЂЃЄЅІЇЈЉЊЋЌЎЏАБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдежзийклмнопрстуфхцчшщъыьэюяёђѓєѕіїјљњћќўџҐґ–—―‘’‚“”„†‡•…‰‹›€№™⏶⏷￼�",
+    "FNT_FENIX5_ROBOTOCONDENSEDBOLD_34PX": " !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~ ¡¢£¤¥¦§¨©ª«¬­®¯°±²³´µ¶·¸¹º»¼½¾¿ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõö÷øùúûüýþÿĂăĄąĆćČčĎďĐđĒēĘęĚěĹĺĽľŁłŃńŇňŐőŒœŔŕŘřŚśŞşŠšŢţŤťŮůŰűŸŹźŻżŽžƒˆˇ˘˙˛˜˝΄΅ΆΈΉΊΌΎΏΐΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩΪΫάέήίΰαβγδεζηθικλμνξοπρςστυφχψωϊϋόύώЁЂЃЄЅІЇЈЉЊЋЌЎЏАБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдежзийклмнопрстуфхцчшщъыьэюяёђѓєѕіїјљњћќўџҐґ–—―‘’‚“”„†‡•…‰‹›€№™⏶⏷￼�",
+    "FNT_FENIX5_ROBOTOCONDENSEDBOLD_37PX": " !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~ ¡¢£¤¥¦§¨©ª«¬­®¯°±²³´µ¶·¸¹º»¼½¾¿ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõö÷øùúûüýþÿĂăĄąĆćČčĎďĐđĒēĘęĚěĹĺĽľŁłŃńŇňŐőŒœŔŕŘřŚśŞşŠšŢţŤťŮůŰűŸŹźŻżŽžƒˆˇ˘˙˛˜˝΄΅ΆΈΉΊΌΎΏΐΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩΪΫάέήίΰαβγδεζηθικλμνξοπρςστυφχψωϊϋόύώЁЂЃЄЅІЇЈЉЊЋЌЎЏАБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдежзийклмнопрстуфхцчшщъыьэюяёђѓєѕіїјљњћќўџҐґ–—―‘’‚“”„†‡•…‰‹›€№™⏶⏷￼�",
+    "FNT_FENIX5_ROBOTOCONDENSEDREGULAR_26PX": " !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~ ¡¢£¤¥¦§¨©ª«¬­®¯°±²³´µ¶·¸¹º»¼½¾¿ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõö÷øùúûüýþÿĂăĄąĆćČčĎďĐđĒēĘęĚěĹĺĽľŁłŃńŇňŐőŒœŔŕŘřŚśŞşŠšŢţŤťŮůŰűŸŹźŻżŽžƒˆˇ˘˙˛˜˝΄΅ΆΈΉΊΌΎΏΐΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩΪΫάέήίΰαβγδεζηθικλμνξοπρςστυφχψωϊϋόύώЁЂЃЄЅІЇЈЉЊЋЌЎЏАБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдежзийклмнопрстуфхцчшщъыьэюяёђѓєѕіїјљњћќўџҐґ–—―‘’‚“”„†‡•…‰‹›€№™⏶⏷￼�"
+  },
+  "devices": {
+    "d2delta": {
+      "fontSets": {
+        "ww": {
+          "FONT_XTINY": "FNT_FENIX5_ROBOTOCONDENSEDREGULAR_26PX",
+          "FONT_TINY": "FNT_FENIX5_ROBOTOCONDENSEDBOLD_26PX",
+          "FONT_SMALL": "FNT_FENIX5_ROBOTOCONDENSEDBOLD_29PX",
+          "FONT_MEDIUM": "FNT_FENIX5_ROBOTOCONDENSEDBOLD_34PX",
+          "FONT_LARGE": "FNT_FENIX5_ROBOTOCONDENSEDBOLD_37PX",
+          "FONT_NUMBER_MILD": "FNT_FENIX5_CHRONOSSEMIBOLDCONDENSED_26PX",
+          "FONT_NUMBER_MEDIUM": "FNT_FENIX5_CHRONOSSEMIBOLDCONDENSED_36PX",
+          "FONT_NUMBER_HOT": "FNT_FENIX5_CHRONOSSEMIBOLDCONDENSED_52PX",
+          "FONT_NUMBER_THAI_HOT": "FNT_FENIX5_CHRONOSSEMIBOLDCONDENSED_58PX",
+          "FONT_SYSTEM_XTINY": "FNT_FENIX5_ROBOTOCONDENSEDREGULAR_26PX",
+          "FONT_SYSTEM_TINY": "FNT_FENIX5_ROBOTOCONDENSEDBOLD_26PX",
+          "FONT_SYSTEM_SMALL": "FNT_FENIX5_ROBOTOCONDENSEDBOLD_29PX",
+          "FONT_SYSTEM_MEDIUM": "FNT_FENIX5_ROBOTOCONDENSEDBOLD_34PX",
+          "FONT_SYSTEM_LARGE": "FNT_FENIX5_ROBOTOCONDENSEDBOLD_37PX",
+          "FONT_SYSTEM_NUMBER_MILD": "FNT_FENIX5_CHRONOSSEMIBOLDCONDENSED_26PX",
+          "FONT_SYSTEM_NUMBER_MEDIUM": "FNT_FENIX5_CHRONOSSEMIBOLDCONDENSED_36PX",
+          "FONT_SYSTEM_NUMBER_HOT": "FNT_FENIX5_CHRONOSSEMIBOLDCONDENSED_52PX",
+          "FONT_SYSTEM_NUMBER_THAI_HOT": "FNT_FENIX5_CHRONOSSEMIBOLDCONDENSED_58PX"
+        }
+      },
+      "langMap": {
+        "ara": "ww",
+        "ces": "ww",
+        "dan": "ww",
+        "deu": "ww",
+        "dut": "ww",
+        "eng": "ww",
+        "fin": "ww",
+        "fre": "ww",
+        "gre": "ww",
+        "heb": "ww",
+        "hrv": "ww",
+        "hun": "ww",
+        "ind": "ww",
+        "ita": "ww",
+        "nob": "ww",
+        "pol": "ww",
+        "por": "ww",
+        "rus": "ww",
+        "slo": "ww",
+        "slv": "ww",
+        "spa": "ww",
+        "swe": "ww",
+        "zsm": "ww"
+      }
+    }
+  }
+}
