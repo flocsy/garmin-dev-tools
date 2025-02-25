@@ -1,0 +1,5 @@
+{
+  "devDependencies": {
+    "@markw65/monkeyc-optimizer": "^1.1.44"
+  }
+}

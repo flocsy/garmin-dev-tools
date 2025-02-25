@@ -15,3 +15,7 @@ DIR=$(dirname "$(readlink -f "$0")")
     done
 )
 
+(
+    cd "${DIR}/../font-analyzer"
+    "./device2chars.sh"
+)
