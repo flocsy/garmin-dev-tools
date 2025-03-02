@@ -788,7 +788,7 @@ pre_register(languages)
 # npx cft-font-info fr230 | jq '{devices: .devices, chars: (.fonts | map_values([.charInfo[].char]|join("")))}'
 # npx cft-font-info fr230 | jq '{devices: .devices, chars: (.fonts[] |= ([.charInfo[].char]|add))}'
 
-FONTS_JSON_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__)))) + '/font-analyzer/json'
+FONTS_JSON_DIR = os.path.dirname(os.path.dirname(os.path.realpath(__file__))) + '/font-analyzer/chars'
 def number_font(dev):
     if dev == 'base':
         return ['', '', '']
@@ -2213,10 +2213,6 @@ def merge_feature_result(a, b):
 
 def get_value_by_json_path(dev, feature, attr, json_path_str):
     device = DEVICES[dev]
-    op = True
-    if json_path_str[0] == '!':
-        op = False
-        json_path_str = json_path_str[1:]
     json_path = json_path_str.split('.')
     obj = device
     for key in json_path:
@@ -2245,7 +2241,16 @@ def get_value_by_json_path(dev, feature, attr, json_path_str):
     # print(f"{dev}: key: {key}, obj: {obj}, has_feature2: {has_feature}")
     # TODO: value = obj => need to set it somewhere in the jungle file or generate it into a const
     # print(f"{dev}: feature: {feature}, attr: {attr}, json_path_str: {json_path_str}, op: {op}, obj: {obj}")
-    return obj == op
+    return obj
+
+
+def get_bool_value_by_json_path(dev, feature, attr, json_path_str):
+    op = True
+    if json_path_str[0] == '!':
+        op = False
+        json_path_str = json_path_str[1:]
+    return get_value_by_json_path(dev, feature, attr, json_path_str) == op
+
 
 def has_feature_by_constraints(dev, constraints, feature = None):
     if dev == 'base':
@@ -2285,7 +2290,7 @@ def has_feature_by_constraints(dev, constraints, feature = None):
                 #     for json_path in val:
                 #         obj &= get_value_by_json_path(dev, feature, attr, json_path)
                 # else:
-                obj = get_value_by_json_path(dev, feature, attr, val)
+                obj = get_bool_value_by_json_path(dev, feature, attr, val)
                 # print(f"{dev}: feature: {feature}, attr: {attr}, val: {val}, obj: {obj}")
                 if not obj:
                     has_feature = False
@@ -2609,7 +2614,7 @@ def const_font(dev):
                     mc_font = font2mc_font(font, dev)
                     output.write(f"const {const_name} = {mc_font};\n")
                 else:
-                    print_error_log(LOG_LEVEL, LOG_LEVEL_ALWAYS, f"const_font: {dev}: font value in json")
+                    print_error_log(LOG_LEVEL, LOG_LEVEL_ALWAYS, f"{dev}: const_font: font value in json")
 
             if USE_MODULES:
                 output.write("\t}\n")
