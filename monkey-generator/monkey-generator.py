@@ -538,9 +538,11 @@ def main(argv):
                         print_error(f"unknown feature: {feature_str}")
                 elif line.startswith('monkey_generator_filter_device_'):
                     if '#' in line:
-                        line, comment = line.split('#', 1)
-                    line = line.strip()
-                    filter_str, value = line.split('=', 1)
+                        line2, comment = line.split('#', 1)
+                    else:
+                        line2 = line
+                    line2 = line2.strip()
+                    filter_str, value = line2.split('=', 1)
                     filter_data = filter_str.strip().replace('monkey_generator_filter_device_', '')
                     my_filter = None
                     for data in FEATURE_ATTRIBUTES:
