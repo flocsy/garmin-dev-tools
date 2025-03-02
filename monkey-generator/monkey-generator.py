@@ -15,6 +15,7 @@ from enum import IntEnum
 from inspect import getframeinfo, stack
 import uuid
 # from packaging import version
+import numbers
 
 LOG_LINE_NUMBER = False
 LOG_LEVEL = -1
@@ -1103,13 +1104,16 @@ def destring_arr_dict_values(arr):
 FONT_TO_MC_FONT = {#'-': '',
         'xtiny': 'XTINY', 'tiny': 'TINY', 'small': 'SMALL', 'medium': 'MEDIUM', 'large': 'LARGE',
         'numberMild': 'NUMBER_MILD', 'numberMedium': 'NUMBER_MEDIUM', 'numberHot': 'NUMBER_HOT', 'numberThaiHot': 'NUMBER_THAI_HOT',
-        'glanceFont': 'GLANCE', 'glanceNumberFont': 'GLANCE_NUMBER',
+        'glanceFont': 'GLANCE',
+        'glanceNumberFont': 'GLANCE_NUMBER',
         'auxiliaryFont1': 'AUX1', 'auxiliaryFont2': 'AUX2', 'auxiliaryFont3': 'AUX3', 'auxiliaryFont4': 'AUX4', 'auxiliaryFont5': 'AUX5',
         'auxiliaryFont6': 'AUX6', 'auxiliaryFont7': 'AUX7', 'auxiliaryFont8': 'AUX8', 'auxiliaryFont9': 'AUX9',
-        'simExtNumber1': {'edge1050': 'LARGE', 'edgeexplore2': 'MEDIUM', 'fenix843mm': 'XTINY', 'fenix847mm': 'XTINY', 'fenixe': 'XTINY', 'fr265': 'XTINY', 'venusq2': 'XTINY', 'venusq2m': 'XTINY'},
-        'simExtNumber2': {'fenix8solar47mm': 'XTINY', 'fr965': 'XTINY', 'legacyherocaptainmarvel': 'TINY', 'legacyherofirstavenger': 'TINY', 'legacysagadarthvader': 'TINY', 'legacysagarey': 'TINY',
+        'simExtNumber1': {'edge1050': 'LARGE', 'edgeexplore2': 'MEDIUM', 'fenix843mm': 'XTINY', 'fenix847mm': 'XTINY', 'fenixe': 'XTINY', 'fr265': 'XTINY',
+                'instinct3amoled45mm': 'XTINY', 'instinct3amoled50mm': 'XTINY', 'system8preview': 'XTINY', 'venusq2': 'XTINY', 'venusq2m': 'XTINY'},
+        'simExtNumber2': {'fenix8solar47mm': 'XTINY', 'fr965': 'XTINY', 'legacyherocaptainmarvel': 'TINY', 'legacyherofirstavenger': 'TINY', 'legacysagadarthvader': 'TINY', 'legacysagarey': 'TINY', 'system8preview': 'NUMBER_MILD',
                 'vivoactive4': 'TINY', 'vivoactive4s': 'TINY'},
-        'simExtNumber5': {'edge540': 'MEDIUM', 'edge840': 'MEDIUM', 'edge1050': 'MEDIUM'},
+        'simExtNumber4': {'system8preview': 'LARGE'},
+        'simExtNumber5': {'edge540': 'MEDIUM', 'edge840': 'MEDIUM', 'edge1050': 'MEDIUM', 'system8preview': 'NUMBER_MEDIUM'},
         'simExtNumber6': {'approachs62': 'XTINY', 'edge540': 'SMALL', 'edge840': 'SMALL'}
 }
 def font2mc_font(font, dev):
@@ -1447,6 +1451,7 @@ def calculate_bounding_boxes(dev):
                 # log(LOG_LEVEL, LOG_LEVEL_ALWAYS, f"calculate_bounding_boxes: {field['gen']['short_name']}: {gen}")
     # log(LOG_LEVEL, LOG_LEVEL_ALWAYS, f"calculate_bounding_boxes: {hash2bounding_box}")
 
+
 def datafield_layout(dev):
     if dev == 'base':
         return ['', '', '']
@@ -1459,21 +1464,22 @@ def datafield_layout(dev):
     calculate_bounding_boxes(dev)
 
     max_delta = 3
+    max_value = 65534
     log_level = LOG_LEVEL
     # log(LOG_LEVEL, LOG_LEVEL_ALWAYS, f"datafield_layout: {dev}")
     # log(log_level, LOG_LEVEL_OUTPUT, f"{dev}:")
     result = {
         'label_font': get_datafield_hash_data_font_values(dev, 'label_font', lambda field: field['label']['font'] if has_label(field) else False, log_level = log_level),
-        'label_x': get_datafield_hash_data_values(dev, 'label_x', 'min', lambda field: field['label']['x'] if has_label(field) else False, max_delta, log_level = log_level),
-        'label_y': get_datafield_hash_data_values(dev, 'label_y', 'min', lambda field: field['label']['y'] if has_label(field) else False, max_delta, log_level = log_level),
+        'label_x': get_datafield_hash_data_values(dev, 'label_x', 'min', lambda field: field['label']['x'] if has_label(field) else False, max_delta, max_value, log_level = log_level),
+        'label_y': get_datafield_hash_data_values(dev, 'label_y', 'min', lambda field: field['label']['y'] if has_label(field) else False, max_delta, max_value, log_level = log_level),
         'label_justification': get_datafield_hash_data_justification_values(dev, 'label_justification', lambda field: field['label']['justification'] if has_label(field) else False, log_level = log_level),
-        'data_x': get_datafield_hash_data_values(dev, 'data_x', 'min', lambda field: field['data']['x'], max_delta, log_level = log_level),
-        'data_y': get_datafield_hash_data_values(dev, 'data_y', 'min', lambda field: field['data']['y'], max_delta, log_level = log_level),
+        'data_x': get_datafield_hash_data_values(dev, 'data_x', 'min', lambda field: field['data']['x'], max_delta, max_value, log_level = log_level),
+        'data_y': get_datafield_hash_data_values(dev, 'data_y', 'min', lambda field: field['data']['y'], max_delta, max_value, log_level = log_level),
         'data_justification': get_datafield_hash_data_justification_values(dev, 'data_justification', lambda field: field['data']['justification'], log_level = log_level),
-        'bounding_box_x': get_datafield_hash_data_values(dev, 'bounding_box_x', 'max', lambda field: field['gen']['func']['bounding_box']['x'], max_delta = 1000, log_level = log_level),
-        'bounding_box_y': get_datafield_hash_data_values(dev, 'bounding_box_y', 'max', lambda field: field['gen']['func']['bounding_box']['y'], max_delta = 1000, log_level = log_level),
-        'bounding_box_width': get_datafield_hash_data_values(dev, 'bounding_box_width', 'min', lambda field: field['gen']['func']['bounding_box']['width'], max_delta = 1000, log_level = log_level),
-        'bounding_box_height': get_datafield_hash_data_values(dev, 'bounding_box_height', 'min', lambda field: field['gen']['func']['bounding_box']['height'], max_delta = 1000, log_level = log_level),
+        'bounding_box_x': get_datafield_hash_data_values(dev, 'bounding_box_x', 'max', lambda field: field['gen']['func']['bounding_box']['x'], max_delta = 1000, max_value = max_value, log_level = log_level),
+        'bounding_box_y': get_datafield_hash_data_values(dev, 'bounding_box_y', 'max', lambda field: field['gen']['func']['bounding_box']['y'], max_delta = 1000, max_value = max_value, log_level = log_level),
+        'bounding_box_width': get_datafield_hash_data_values(dev, 'bounding_box_width', 'min', lambda field: field['gen']['func']['bounding_box']['width'], max_delta = 1000, max_value = max_value, log_level = log_level),
+        'bounding_box_height': get_datafield_hash_data_values(dev, 'bounding_box_height', 'min', lambda field: field['gen']['func']['bounding_box']['height'], max_delta = 1000, max_value = max_value, log_level = log_level),
     }
 
     increase_hebrew_label_font = False
@@ -1745,7 +1751,7 @@ def is_numeric_array(arr):
         is_numeric &= type(o) == int
     return is_numeric
 
-def get_datafield_hash_data_values(dev, getter_func_name, multiple_values_aggregator, getter_func, max_delta = 0, log_level = LOG_LEVEL):
+def get_datafield_hash_data_values(dev, getter_func_name, multiple_values_aggregator, getter_func, max_delta = 0, max_value = None, log_level = LOG_LEVEL):
     # log(LOG_LEVEL, LOG_LEVEL_ALWAYS, f"get_datafield_hash_data_values(dev: {dev}, getter_func_name: {getter_func_name}, aggregator: {multiple_values_aggregator}, getter_func: {getter_func}, max_delta: {max_delta}, log_level: {log_level})")
     device = DEVICES[dev]
 
@@ -1778,6 +1784,8 @@ def get_datafield_hash_data_values(dev, getter_func_name, multiple_values_aggreg
                 field_short_name = field['gen']['short_name']
                 # log(log_level, LOG_LEVEL_DEBUG, field)
                 value = getter_func(field)
+                if max_value != None and isinstance(value, numbers.Number) and value > max_value:
+                    print_error_log(log_level, LOG_LEVEL_ALWAYS, f"{dev}: field: {field_short_name} {getter_func_name} value too high: {value}")
 
                 # field['gen']['value'] = value
                 if 'func' not in field['gen']:
@@ -1999,7 +2007,7 @@ def get_datafield_hash_data_values(dev, getter_func_name, multiple_values_aggreg
     return result
 
 def get_datafield_hash_data_font_values(dev, getter_func_name, getter_func, max_delta = 0, log_level = LOG_LEVEL):
-    gen = get_datafield_hash_data_values(dev, getter_func_name, 'min', getter_func, max_delta, log_level)
+    gen = get_datafield_hash_data_values(dev, getter_func_name, 'min', getter_func, max_delta, log_level = log_level)
     gen['orig_most_frequent_value'] = gen['most_frequent_value']
     gen['most_frequent_value'] = font2mc_font(get_first_most_frequent_value(gen), dev)
     for hash in gen['hash_map']:
@@ -2009,7 +2017,7 @@ def get_datafield_hash_data_font_values(dev, getter_func_name, getter_func, max_
     return gen
 
 def get_datafield_hash_data_justification_values(dev, getter_func_name, getter_func, max_delta = 0, log_level = LOG_LEVEL):
-    gen = get_datafield_hash_data_values(dev, getter_func_name, 'min', getter_func, max_delta, log_level)
+    gen = get_datafield_hash_data_values(dev, getter_func_name, 'min', getter_func, max_delta, log_level = log_level)
     gen['orig_most_frequent_value'] = gen['most_frequent_value']
     gen['most_frequent_value'] = justification2mc(get_first_most_frequent_value(gen))
     for hash in gen['hash_map']:
