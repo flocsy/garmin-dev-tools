@@ -77,7 +77,6 @@ def parse_garmin_device_xml(xml_file, manifest_app_id = None, format = None):
     # print('AppId,StoreId,FileName,AppName,Version,AppType')
     for app in apps:
         if manifest_app_id is None or app.find('iq:AppId', NS).text == manifest_app_id:
-            # print(f'{app.find('iq:AppId', NS).text},{app.find('iq:StoreId', NS).text},{app.find('iq:FileName', NS).text},{app.find('iq:AppName', NS).text},{app.find('iq:Version', NS).text},{app.find('iq:AppType', NS).text}')
             line = ''
             for tag in tags:
                 if line:
