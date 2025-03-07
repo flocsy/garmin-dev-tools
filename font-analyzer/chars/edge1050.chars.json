@@ -126,11 +126,11 @@
         "ind": "ww",
         "zsm": "ww",
         "vie": "ww",
-        "zhs": "ww",
-        "zht": "ww",
-        "jpn": "ww",
-        "kor": "ww",
-        "tha": "ww"
+        "zhs": "apac_zh",
+        "zht": "apac_zh",
+        "jpn": "apac_jpn",
+        "kor": "apac_kor",
+        "tha": "apac_tha"
       }
     }
   }
