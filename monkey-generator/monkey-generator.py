@@ -69,7 +69,7 @@ MONKEY_GENERATOR_CONF = {}
 
 MANIFEST='manifest.xml'
 
-GENERATROR_SIGNATURE=f"https://github.com/flocsy/garmin-dev-tools/tree/main/monkey-generator/ ©2022-{datetime.date.today().year} by flocsy"
+GENERATROR_SIGNATURE=f"https://github.com/flocsy/garmin-dev-tools/tree/main/monkey-generator/ © by flocsy"
 COLOR_RED = '\033[91m'
 COLOR_YELLOW = '\033[93m'
 COLOR_RESET = '\033[00m'
@@ -2236,8 +2236,8 @@ def get_value_by_json_path(dev, feature, attr, json_path_str):
         if key not in obj:
             obj = False
             # has_feature = False
-            if op != False:
-                print_error_log(LOG_LEVEL, LOG_LEVEL_ALWAYS, f"{dev}: {feature}: {attr}: {json_path_str} => no key: {key} (from {json_path_str})")
+            # if op != False:
+            #     print_error_log(LOG_LEVEL, LOG_LEVEL_ALWAYS, f"{dev}: {feature}: {attr}: {json_path_str} => no key: {key} (from {json_path_str})")
             break
         obj = obj[key]
         if idx >= 0:
@@ -2483,14 +2483,14 @@ def key_location(dev):
         return ['', '', '']
 
     conf_base_dir = get_base_dir()
-    if not conf_base_dir:
+    if conf_base_dir:
         device = DEVICES[dev]
         display_loc = device['simulator']['display']['location']
         try:
             control_bar_height = device['simulator']['layouts'][0]['controlBar']['height']
         except:
             control_bar_height = 0
-        device_dir = f"{GENERATED_DEVICES_DIR}/{dev}"
+        device_dir = f"{conf_base_dir}{GENERATED_DEVICES_DIR}/{dev}"
         device_file = f"{device_dir}/key_location.mc"
         os.makedirs(device_dir, 0o755, True)
         with open(device_file, 'w') as output:
