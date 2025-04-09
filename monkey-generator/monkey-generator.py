@@ -2352,6 +2352,10 @@ def has_feature_by_constraints(dev, constraints, feature = None):
     return has_constraints
 
 def features(dev):
+    source_path_arr = []
+    resource_path_arr = []
+    exclude_annotations_arr = []
+    langs = {}
     for conf_base_dir in get_base_dirs():
         if dev == 'base':
             return [has_directory(f'{conf_base_dir}features/base/source'), has_directory(f'{conf_base_dir}features/base/resources'), 'base']
@@ -2359,10 +2363,6 @@ def features(dev):
         if APP_TYPE not in device['memory']:
             return [has_directory(f'{conf_base_dir}features/base/source'), has_directory(f'{conf_base_dir}features/base/resources'), 'base']
         memory_limit = device['memory'][APP_TYPE]
-        source_path_arr = []
-        resource_path_arr = []
-        exclude_annotations_arr = []
-        langs = {}
         features = []
         # log(LOG_LEVEL, LOG_LEVEL_BASIC, f"{dev}: features: memory_limit: {memory_limit}: {get_features_by_memory(memory_limit)}")
         features_by_memory = get_features_by_memory(memory_limit)
