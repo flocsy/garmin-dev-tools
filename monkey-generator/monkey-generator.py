@@ -2212,7 +2212,12 @@ def add_sets(dev, features_dir, base_dir, features):
 def has_method(dev, method):
     found = False
     # debug_files = [file for file in os.listdir(f"{SDK_DEVICES_DIR}/{dev}") if file.endswith('.debug.xml')]
-    found = open(f"{SDK_DEVICES_DIR}/{dev}/{dev}.api.debug.xml", 'r').read().find(f'"{method}"') != -1
+    if '.' in method:
+        (clazz, func) = method.split('.', 2)
+        searchFor = f'name="{func}" parent="{clazz}"'
+    else:
+        searchFor = f'symbol="{method}"'
+    found = open(f"{SDK_DEVICES_DIR}/{dev}/{dev}.api.debug.xml", 'r').read().find(searchFor) != -1
     # log(LOG_LEVEL, LOG_LEVEL_BASIC, f"{dev}: has_method: {method}: {found}")
     return found
 
