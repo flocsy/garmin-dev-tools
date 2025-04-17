@@ -47,13 +47,12 @@ base.sourcePath = source
 # You can define features based on data in compiler.json, simulator.json and <device>.api.debug.xml, the manifest.
 # The generated monkey.jungle will set the sourcePath, resourcePath and excludeAnnotations for each device in your active manifest.
 
-# For annotations I technically use the excludeAnnotations but with a "positive" (aka include) meaning:
 # monkey-generator generates pairs of excludeAnnotations: foo, no_foo. For each feature there will be exactly one of them added to each device. 
 # When it determines that a device has the feature `foo` it'll have the opposite excludeAnnotation:
 #   fr965.excludeAnnotations=...;no_foo;...
 # and if a device doesn't have feature `bar` then it'll have:
 #   fr230.excludeAnnotations=...;bar;...
-# So in the code you can use the "positive' or "include" annotation:
+# So in the code you can use the annotations:
 # (:no_foo) const HAS_FOO = false;
 # (:foo) const HAS_FOO = true;
 # (:no_foo) function func1() {do whatever you need to for devices without foo}
@@ -123,7 +122,7 @@ monkey_generator_filter_device_has = getBodyBatteryHistory
 monkey_generator_feature_alert_view_min_ciq = 3.2.0
 # Though it's probably better to use the `has` keyword to check if the device has the method:
 monkey_generator_feature_alert_view_has = showAlert
-# No matter how you define it, your code, resources from the relevant features/[no_]alert_view/ folder will be included and the "include" annotations set.
+# No matter how you define it, your code, resources from the relevant features/[no_]alert_view/ folder will be included and the proper annotations set.
 
 
 # KEYWORDS:
@@ -317,7 +316,7 @@ monkey_generator_register = ...;memory_annotations;...
 # `menu2`
 # Based on: the smallest CIQ vewrsion in SDK/Devices/<device>/compiler.json: /partNumbers/connectIQVersion
 # This is a shortcut for defining menu2 feature.
-# Will include annotations menu2, no_menu2 and files from features/menu2, features/no_menu2
+# Will add annotations menu2, no_menu2 and include files from features/menu2, features/no_menu2
 monkey_generator_register = ...;menu2;...
 
 
