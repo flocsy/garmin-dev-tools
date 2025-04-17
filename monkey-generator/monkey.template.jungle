@@ -47,10 +47,9 @@ base.sourcePath = source
 # You can define features based on data in compiler.json, simulator.json and <device>.api.debug.xml, the manifest.
 # The generated monkey.jungle will set the sourcePath, resourcePath and excludeAnnotations for each device in your active manifest.
 
-# I find the excludeAnnotations to be counter-intuitive, so I use them more like "includeAnnotations":
 # For annotations I technically use the excludeAnnotations but with a "positive" (aka include) meaning:
-# monkey-generator generates the excludeAnnotations based on the assumption, that they will be used as include annotation,
-# so when it determines that a device has the feature `foo` it'll have the opposite excludeAnnotation:
+# monkey-generator generates pairs of excludeAnnotations: foo, no_foo. For each feature there will be exactly one of them added to each device. 
+# When it determines that a device has the feature `foo` it'll have the opposite excludeAnnotation:
 #   fr965.excludeAnnotations=...;no_foo;...
 # and if a device doesn't have feature `bar` then it'll have:
 #   fr230.excludeAnnotations=...;bar;...
