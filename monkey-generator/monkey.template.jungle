@@ -169,7 +169,7 @@ monkey_generator_feature_activity_monitor_has = ActivityMonitor # checks for sym
 
 
 # `min_memory`
-# Based on: manifest: iq:application.type and SDK/Devices/<device>/compiler.json: /appTypes/memoryLimit
+# Based on: manifest.xml: iq:application.type and SDK/Devices/<device>/compiler.json: /appTypes/memoryLimit
 # manifest-prod.xml: <iq:application type="datafield" ...>
 monkey_generator_filter_device_min_memory = 32768
 monkey_generator_feature_kpay_min_memory = 65536
@@ -229,9 +229,156 @@ monkey_generator_used_ciq_versions = 2.4.0;3.3.1
 # Includes source files from features/color_palette/{amoled|lcd|mip}-{2colors|8colors|14colorsA|14colorsB|64colors|1bpp|4bpp|8bpp|16bpp}/
 
 
+# `const_font`
+# Based on: SDK/Devices/<device>/simulator.json
+# Generates gen/devices/<device>/const_font.mc files
+# The following:
+monkey_generator_const_font_BASE_FONT = simulator.layouts[0].datafields.datafields[0].fields[0].label.font
+# generates, depending on the values in the simulator.json for each device something like:
+# const BASE_FONT = Graphics.FONT_XTINY;
 
 
-# TODO:
-# const_font, datafield_detector, datafield_layout, features, key_location,
-# lang2, lang3, languages, memory_annotations, menu2, number_font, resources, [settings,] shape, smart_datafield, source.
+# `datafield_detector`
+# Based on: SDK/Devices/<device>/simulator.json: /layouts[]/datafields[]/fields[]
+# Generates gen/devices/<device>/datafield_detector.mc files
+# The following:
+monkey_generator_register = ...;datafield_detector;...
+# generates constants, that are then usable to try to determine in which datafield field position in which layout the datafield runs.
+# See: https://github.com/flocsy/DFDetector
+
+
+# `datafield_layout`
+# Based on: SDK/Devices/<device>/simulator.json: /layouts[]/datafields[]/fields[]
+# Generates gen/devices/<device>/datafield_layout.mc files
+# Can be used with gen/features/datafield_layout/datafield_layout.mc to draw datafields using DataField
+# that look as similar as possible to SimpleDataField and the native data fields.
+monkey_generator_register = ...;datafield_layout;...
+# Then use the functions to get positions, fonts to use:
+# function onUpdate(dc as Dc) as Void {
+#     var width = dc.getWidth();
+#     var height = dc.getHeight();
+#     var obscurityFlags = DataField.getObscurityFlags();
+#     var hash = datafield_hash(width, height, obscurityFlags);
+#     dc.drawText(datafield_label_x(hash), datafield_label_y(hash), datafield_label_font(hash), "label text", datafield_label_justification(hash));
+
+
+# `features`
+# Based on: features/<feature...>/ files in your project
+# Generates all the necessary sourcePath, resourcePath, excludeAnnotations for each device in monkey.jungle
+monkey_generator_register = ...;features;...
+
+
+# `key_location`
+# Based on: SDK/Devices/<device>/simulator.json: /display/location/, /layouts[0]/controlBar/height, /display/shape, /keys[]/location/{x,y,width,height}
+# Generates gen/devices/<device>/key_location.mc files
+# Can be used to display key hints similar to the personalities but from onUpdate() using the functions in gen/features/key_hint.mc
+# Currently it only displays a general hint (an arc next to the key on round devices or a line segment on rectangle devices).
+# Maybe in the future will enhance to be able to display icons given by the developer.
+# draw_key_hints(dc, (KEY_HINT_ENTER | KEY_HINT_ESC | KEY_HINT_MENU) as KeyHint);
+# drw_key_hint_onback(dc);
+monkey_generator_register = ...;key_location;...
+ 
+
+# `lang2`, `lang3`
+# Based on: manifest.xml: /iq:application/iq:languages[]
+# Generates strings, constantc in 2 or 3 letter language directories gen/features/lang/lang-<ln> or lang-<lan> (i.e: lang-en or lang-eng for English)
+# gen/features/lang/lang-eng/strings-lang-eng.xml with: <string id="lang3">eng</string>
+# gen/features/lang/get_system_lang.mc
+# and include them in monkey.jungle
+# Can be used to get the current system language code (2 or 3 letters) even the old devices (<CIQ 3.1.0) that don't support yet DeviceSettings.systemLanguage
+# var langCode = get_system_lang3();
+monkey_generator_register = ...;lang3;...
+
+
+# `languages`
+# Based on: SDK/Devices/<device>/compiler.json: /partNumbers[]/languages[]/code and manifest.xml: /iq:application/iq:languages[]
+# Generates annotations related to language features.
+# Currently only supports: :hebrew, :no_hebrew based on whether the device supports Hebrew.
+# Can be used for example to display different text based on the device's capabilities:
+# (:no_hebrew) const HEB = "no Hebrew";
+# (:hebrew) const HEB = "עברית";
+monkey_generator_register = ...;languages;...
+
+
+# `memory_annotations`
+# Based on: manifest.xml: iq:application.type and SDK/Devices/<device>/compiler.json: /appTypes/memoryLimit
+# Generates lots of annotations based on all the memory sizes of all the devices in the project.
+# <device>.excludeAnnotations=$(<device>.excludeAnnotations);...;memory16K;memory32Kminus;memory64Klmemory64Kplus;memory128K;memory128Kplus;...
+# it is meant to be used with annotations on code that you want to be used depending whether a device has less, equal or more memory:
+# (:memory<AMOUNT>K) => will be used only on devices with exactly AMOUNT memory for the app type
+# (:memory<AMOUNT>Kminus) => will be used on devices with less than AMOUNT memory for the app type
+# (:memory<AMOUNT>Kplus) => will be used on devices with at least AMOUNT memory for the app type
+# in other words if a device has 32K memory and all the devices in the manifest have either 16K or 32K or 64K memory, then:
+# these will not be used: (:memory16K, :memory32Kminus, :memory64K, :memory64Kplus)
+# these will be used: (:memory16Kplus, :memory32K, :memory32Kplus, :memory64Kminus)
+monkey_generator_register = ...;memory_annotations;...
+
+
+# `menu2`
+# Based on: the smallest CIQ vewrsion in SDK/Devices/<device>/compiler.json: /partNumbers/connectIQVersion
+# This is a shortcut for defining menu2 feature.
+# Will include annotations menu2, no_menu2 and files from features/menu2, features/no_menu2
+monkey_generator_register = ...;menu2;...
+
+
+# `number_font`
+# Based on: ../font-analyzer/chars/<device>.chars.json
+# Automatically registered by `smart_datafield`, but also can be registered "manually"
+# Generates gen/features/number_font/is_numeric.mc with function is_numeric(str as String) as Boolean, based on the device's capabilities.
+# Can be used to decide whether a string can be displayed using Graphics.FONT_NUMBER_* or only with the non-numeric fonts.
+monkey_generator_register = ...;number_font;...
+
+
+# `resources`, `source`
+# Based on: SDK/Devices/<device>/compiler.json: /deviceFamily and monkey-generator.conf and resources/, resources-<deviceFamily>/,
+# source/, source-<deviceFamily> folders in your project.
+# Generates all the necessary resourcePath, sourcePath for each device in monkey.jungle
+# It is to be used with complex projects, that can't use the built-in features of the compiler, because the resources folders are not in the directory where the
+# manifest and monkey.jungle files. For example there can be the resources/, resources-round-390x390/, source/, source-round-390x390, ... folders in the root directory,
+# and there can be 2 or more sub-directories with different apps that should use these folders. But each app: AppA/, AppB/ have their own manifest and monkey.jungle,
+# and you don't want to copy the resources, source folders into both app's directories.
+# in AppA/monkey.generator.conf:
+# base_dir=../
+# monkey_jungle_template=../monkey.template.jungle
+monkey_generator_register = ...;resources;source;...
+# Now running monkey-generator.py in AppA/ will generate all the resourcePath, sourcePath based on the devices capabilities and the existing resources folders.
+
+
+# `shape`
+# Based on: SDK/Devices/<device>/simulator.json: /display/shape
+# Generates annotations: [no_]rectangle, [no_]round, [no_]semi_octagon, [no_]semi_round
+
+
+# `smart_datafield`
+# TODO
+
+
+
+# SETTINGS
+
+# Based on: features/<feature>/settings/<number>/settings.xml
+# Generates the resourcePath in the order based on the numbers in the directories.
+# This enables the developer to be in control of the order the different features' settings in the settings page.
+# fetures/a/settings/20/settings-a.xml
+# fetures/no_a/settings/20/settings-no-a.xml
+# fetures/b/settings/10/settings-b.xml
+# fetures/no_b/settings/10/settings-no-b.xml
+# The above directory structure will make sure that the user will see the settings of feature b above the settings of feature a.
+# This will be automatically enforced when using `features`:
+monkey_generator_register = ...;features;...
+
+
+
+# MULTI-DIMENSIONAL FEATURES
+
+# Let's say you have 2 (or more) features. On that depend on whether the device has menu2 and one that depends on the amount of memory.
+# And you want to be able to have souurce, resources, settings, annotations based on these 2 "dimensions" of features.
+# You can do it by joining the features names with "_AND_". Note: the order of the feature_names should be sorted alphabetically.
+monkey_generator_feature_menu2_has = Menu2
+monkey_generator_feature_pro_min_memory = 32768
+# You can have the following folders:
+# features/menu2_AND_no_pro/...
+# features/menu2_AND_pro/...
+# features/no_menu2_AND_no_pro/...
+# features/no_menu2_AND_pro/...
 
