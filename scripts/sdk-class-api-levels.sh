@@ -4,7 +4,8 @@
 echo "$0"
 
 OUTPUT_ALL=${1:-sdk-class-all-api-levels.csv}
-OUTPUT_MIN=${1:-sdk-class-min-api-levels.csv}
+OUTPUT_CLASS_MIN=${2:-sdk-class-min-api-levels.csv}
+OUTPUT_MIN_CLASS=${3:-min-api-level2class.csv}
 
 DIR=$(dirname "$(readlink -f "$0")")
 . "${DIR}/_sdk.sh"
@@ -17,4 +18,6 @@ while read F; do
     grep "API Level" "$F" | sed -e 's#.*API Level \([0-9]*\.[0-9]\.[0-9]*\).*#\1#' | sort | uniq | xargs| sed -e 's# #,#g' | sed -e 's#$#*#'
 done | sed -e 's#^\./##' -e 's#.html$#:#' | tr / . | tr -d '\n' | tr '*' '\n' | sort > "${OUTPUT_ALL}"
 
-sed -e 's#,.*##g' "${OUTPUT_ALL}" > "${OUTPUT_MIN}"
+sed -e 's#,.*##g' "${OUTPUT_ALL}" > "${OUTPUT_CLASS_MIN}"
+
+sed -e 's#\([^:]*\):\(.*\)#\2:\1#' sdk-class-min-api-levels.csv | sort > "${OUTPUT_MIN_CLASS}"
