@@ -22,7 +22,7 @@ You need to set the environment variable CIQ_SDK_HOME to point to the directory 
 
 In the SDK Manager make sure you have the latest versions of all the devices you're interested in.
 
-You can either run a specific script or `run-all.sh`.
+You can either run a specific script or `update-devices.sh` and `update-sdks.sh`.
 
 Each script has the possible parameters in the 1st lines and an example output line where you can see the format.
 

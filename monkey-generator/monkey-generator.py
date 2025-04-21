@@ -2612,7 +2612,7 @@ def const_font(dev):
         device = DEVICES[dev]
         device_dir = f"{GENERATED_DEVICES_DIR}/{dev}"
         device_file = f"{device_dir}/const_font.mc"
-        if not device_file:
+        if not os.path.exists(device_file):
             os.makedirs(device_dir, 0o755, True)
             with open(device_file, 'w') as output:
                 # output.write(f"// GENERATED for {dev} by {GENERATROR_SIGNATURE}\n\n");
