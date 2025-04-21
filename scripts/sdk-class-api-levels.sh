@@ -14,7 +14,7 @@ DOC_DIR="${SDK_DIR}/doc/Toybox"
 find "${DOC_DIR}" -type f -exec echo "{}" \; | \
 while read F; do
     echo "$F" | sed -e "s#${DOC_DIR}/##"
-    grep "API Level" "$F" | sed -e 's#API Level ##' | sort | uniq | xargs| sed -e 's# #,#g' | sed -e 's#$#*#'
-done | sed -e 's#^\./##' -e 's#.html$#:#' | tr / . | tr -d '\n' | tr '*' '\n' > "${OUTPUT_ALL}"
+    grep "API Level" "$F" | sed -e 's#.*API Level \([0-9]*\.[0-9]\.[0-9]*\).*#\1#' | sort | uniq | xargs| sed -e 's# #,#g' | sed -e 's#$#*#'
+done | sed -e 's#^\./##' -e 's#.html$#:#' | tr / . | tr -d '\n' | tr '*' '\n' | sort > "${OUTPUT_ALL}"
 
 sed -e 's#,.*##g' "${OUTPUT_ALL}" > "${OUTPUT_MIN}"
