@@ -9,7 +9,7 @@ if [[ -z "${CIQ_SDK_HOME}" ]]; then
     if [[ ! -d "${CIQ_SDK_HOME}" ]]; then
         # windows (WSL)
         if ( command -v wslpath 2>&1 >/dev/null && command -v wslvar 2>&1 >/dev/null ); then
-            CIQ_SDK_HOME="$(wslpath "$(wslvar APPDATA)"'\Garmin\ConnectIQ')"
+            CIQ_SDK_HOME="$(wslpath "$(wslvar APPDATA)"'\Garmin\ConnectIQ')" || true
         fi
     fi
     if [[ ! -d "${CIQ_SDK_HOME}" ]]; then
