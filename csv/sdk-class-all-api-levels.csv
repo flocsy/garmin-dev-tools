@@ -204,11 +204,11 @@ PersistedLocations:1.0.2
 Position.Info:1.0.0
 Position.Location:1.0.0,3.0.0
 Position:1.0.0,3.0.3,3.2.0,3.3.6
-Sensor.AccelerometerData:2.3.0
-Sensor.GyroscopeData:3.3.0
+Sensor.AccelerometerData:2.3.0,5.1.1
+Sensor.GyroscopeData:3.3.0,5.1.1
 Sensor.HeartRateData:3.0.0
 Sensor.Info:1.0.0,1.2.0,3.2.0
-Sensor.MagnetometerData:3.3.0
+Sensor.MagnetometerData:3.3.0,5.1.1
 Sensor.SensorData:2.3.0,3.0.0,3.3.0
 Sensor.SensorDelegate:5.1.0
 Sensor.SensorInfo:3.2.0
