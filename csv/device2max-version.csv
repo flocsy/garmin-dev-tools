@@ -21,7 +21,7 @@ descentmk343mm:5.0.0
 descentmk351mm:5.0.0
 edge1030:3.3.1
 edge1030bontrager:3.3.1
-edge1030plus:3.3.1
+edge1030plus:3.3.6
 edge1040:5.1.0
 edge1050:5.1.0
 edge130:3.1.8
@@ -30,12 +30,13 @@ edge520plus:3.1.3
 edge530:3.3.6
 edge540:5.1.0
 edge820:3.1.3
-edge830:3.3.1
+edge830:3.3.6
 edge840:5.1.0
 edge_1000:2.4.2
 edge_520:2.4.4
 edgeexplore:3.1.3
 edgeexplore2:5.1.0
+edgemtb:5.1.1
 enduro:3.4.2
 enduro3:5.1.0
 epix:1.2.1
@@ -140,6 +141,7 @@ venusq:3.3.6
 venusq2:5.0.0
 venusq2m:5.0.0
 venusqm:3.3.6
+venux1:5.1.1
 vivoactive:1.4.2
 vivoactive3:3.1.9
 vivoactive3d:3.0.0

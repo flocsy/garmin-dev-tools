@@ -36,6 +36,7 @@ edge_1000:1048576
 edge_520:262144
 edgeexplore:1048576
 edgeexplore2:1048576
+edgemtb:1048576
 enduro:131072
 enduro3:786432
 epix:1048576
@@ -140,6 +141,7 @@ venusq:131072
 venusq2:786432
 venusq2m:786432
 venusqm:1048576
+venux1:786432
 vivoactive:65536
 vivoactive3:131072
 vivoactive3d:131072

@@ -1,0 +1,63 @@
+{
+  "fonts": {
+    "FNT_006B406100_GARMIN_ROBOTO_BOLD_27": " !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~ ¡¢£¤¥¦§¨©ª«¬­®¯°±³´µ¶·¸¹º»¼½¾¿ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõö÷øùúûüýþÿĀāĂăĄąĆćĈĉĊċČčĎďĐđĒēĔĕĖėĘęĚěĜĝĞğĠġĢģĤĥĦħĨĩĪīĬĭĮįİıĲĳĴĵĶķĸĹĺĻļĽľĿŀŁłŃńŅņŇňŉŊŋŌōŎŏŐőŒœŔŕŖŗŘřŚśŜŝŞşŠšŢţŤťŦŧŨũŪūŬŭŮůŰűŲųŴŵŶŷŸŹźŻżŽžſƒǺǻǼǽǾǿ΄΅Ά·ΈΉΊΌΎΏΐΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩΪΫάέήίΰαβγδεζηθικλμνξοπρςστυφχψωϊϋόύώЁЂЃЄЅІЇЈЉЊЋЌЎЏАБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдежзийклмнопрстуфхцчшщъыьэюяёђѓєѕіїјљњћќўџҐґẀẁẂẃẄẅỲỳ–—―‗‘’‚‛“”„†‡•…′″‹›‼⁄ⁿ₣₤₧€™",
+    "FNT_006B406100_ROBOTO_MEDIUM_14": " !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~ ¡¢£¤¥¦§¨©ª«¬­®¯°±³´µ¶·¸¹º»¼½¾¿ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõö÷øùúûüýþÿĀāĂăĄąĆćĈĉĊċČčĎďĐđĒēĔĕĖėĘęĚěĜĝĞğĠġĢģĤĥĦħĨĩĪīĬĭĮįİıĲĳĴĵĶķĸĹĺĻļĽľĿŀŁłŃńŅņŇňŉŊŋŌōŎŏŐőŒœŔŕŖŗŘřŚśŜŝŞşŠšŢţŤťŦŧŨũŪūŬŭŮůŰűŲųŴŵŶŷŸŹźŻżŽžſƒǺǻǼǽǾǿ΄΅Ά·ΈΉΊΌΎΏΐΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩΪΫάέήίΰαβγδεζηθικλμνξοπρςστυφχψωϊϋόύώЁЂЃЄЅІЇЈЉЊЋЌЎЏАБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдежзийклмнопрстуфхцчшщъыьэюяёђѓєѕіїјљњћќўџҐґẀẁẂẃẄẅỲỳ–—―‗‘’‚‛“”„†‡•…′″‹›‼⁄ⁿ₣₤₧€™"
+  },
+  "devices": {
+    "edgemtb": {
+      "fontSets": {
+        "ww": {
+          "FONT_XTINY": "DejaVuSans_Cd_SemiBold_WGL4",
+          "FONT_TINY": "DejaVuSans_Cd_SemiBold_WGL4",
+          "FONT_SMALL": "DejaVuSans_Cd_SemiBold_WGL4",
+          "FONT_MEDIUM": "DejaVuSans_Cd_SemiBold_WGL4",
+          "FONT_LARGE": "DejaVuSans_Cd_SemiBold_WGL4",
+          "FONT_NUMBER_MILD": "Garmin_Roboto_Bold",
+          "FONT_NUMBER_MEDIUM": "Garmin_Roboto_Bold",
+          "FONT_NUMBER_HOT": "Garmin_Roboto_Bold",
+          "FONT_NUMBER_THAI_HOT": "Garmin_Roboto_Bold",
+          "FONT_GLANCE_FONT": "Roboto-Medium",
+          "FONT_GLANCE_NUMBER_FONT": "Roboto-Medium",
+          "FONT_SIM_EXT_NUMBER1": "FNT_006B406100_GARMIN_ROBOTO_BOLD_27",
+          "FONT_SIM_EXT_NUMBER2": "Garmin_Roboto_Bold",
+          "FONT_SIM_EXT_NUMBER3": "Garmin_Roboto_Bold",
+          "FONT_SIM_EXT_NUMBER4": "FNT_006B406100_ROBOTO_MEDIUM_14",
+          "FONT_SIM_EXT_NUMBER5": "Roboto-Medium",
+          "FONT_SIM_EXT_NUMBER6": "Garmin_Roboto_Bold",
+          "FONT_SIM_EXT_NUMBER7": "Garmin_Roboto_Bold",
+          "FONT_SIM_EXT_NUMBER8": "Garmin_Roboto_Bold"
+        }
+      },
+      "langMap": {
+        "hrv": "ww",
+        "ces": "ww",
+        "dan": "ww",
+        "dut": "ww",
+        "eng": "ww",
+        "fin": "ww",
+        "fre": "ww",
+        "deu": "ww",
+        "gre": "ww",
+        "heb": "ww",
+        "hun": "ww",
+        "ita": "ww",
+        "nob": "ww",
+        "pol": "ww",
+        "por": "ww",
+        "rus": "ww",
+        "slo": "ww",
+        "slv": "ww",
+        "spa": "ww",
+        "swe": "ww",
+        "ind": "ww",
+        "zsm": "ww",
+        "vie": "ww",
+        "zhs": "ww",
+        "zht": "ww",
+        "jpn": "ww",
+        "kor": "ww",
+        "tha": "ww"
+      }
+    }
+  }
+}

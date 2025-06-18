@@ -36,6 +36,7 @@ edge_1000:
 edge_520:
 edgeexplore:
 edgeexplore2:65536
+edgemtb:65536
 enduro:32768
 enduro3:65536
 epix:
@@ -140,6 +141,7 @@ venusq:
 venusq2:65536
 venusq2m:65536
 venusqm:
+venux1:65536
 vivoactive:
 vivoactive3:
 vivoactive3d:

@@ -36,6 +36,7 @@ edge_1000:32768
 edge_520:32768
 edgeexplore:32768
 edgeexplore2:32768
+edgemtb:32768
 enduro:32768
 enduro3:65536
 epix:
@@ -140,6 +141,7 @@ venusq:32768
 venusq2:65536
 venusq2m:65536
 venusqm:65536
+venux1:65536
 vivoactive:
 vivoactive3:32768
 vivoactive3d:32768
