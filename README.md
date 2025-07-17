@@ -31,6 +31,7 @@ The last (optional) parameter is always the output file name, by default the out
 Some scripts need the app-type as the 1st parameter.
 
 ## Monkey Generator
+<a href="monkey-generator">monkey-generator</a>
 <a href="monkey-generator/monkey.template.jungle">monkey.template.jungle</a>
 
 ## Changelog
