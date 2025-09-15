@@ -1,0 +1,54 @@
+{
+  "fonts": {},
+  "devices": {
+    "gpsmaph1": {
+      "fontSets": {
+        "ww": {
+          "FONT_XTINY": "RobotoCondensed-Bold",
+          "FONT_TINY": "RobotoCondensed-Bold",
+          "FONT_SMALL": "RobotoCondensed-Bold",
+          "FONT_MEDIUM": "RobotoCondensed-Bold",
+          "FONT_LARGE": "RobotoCondensed-Bold",
+          "FONT_NUMBER_MILD": "DejaVuGarmin_Rec_with_bionic_numbers",
+          "FONT_NUMBER_MEDIUM": "DejaVuGarmin_Rec_with_bionic_numbers",
+          "FONT_NUMBER_HOT": "DejaVuGarmin_Rec_with_bionic_numbers",
+          "FONT_NUMBER_THAI_HOT": "DejaVuGarmin_Rec_with_bionic_numbers",
+          "FONT_GLANCE_FONT": "RobotoCondensed-Bold",
+          "FONT_GLANCE_NUMBER_FONT": "RobotoCondensed-Bold",
+          "FONT_ROBOTO_CONDENSED-BOLD": "RobotoCondensed-Bold",
+          "FONT_DEJA_VU_GARMIN_REC_WITH_BIONIC_NUMBERS": "DejaVuGarmin_Rec_with_bionic_numbers"
+        }
+      },
+      "langMap": {
+        "hrv": "ww",
+        "ces": "ww",
+        "dan": "ww",
+        "dut": "ww",
+        "eng": "ww",
+        "fin": "ww",
+        "fre": "ww",
+        "deu": "ww",
+        "gre": "ww",
+        "heb": "ww",
+        "hun": "ww",
+        "ita": "ww",
+        "nob": "ww",
+        "pol": "ww",
+        "por": "ww",
+        "rus": "ww",
+        "slo": "ww",
+        "slv": "ww",
+        "spa": "ww",
+        "swe": "ww",
+        "ind": "ww",
+        "zsm": "ww",
+        "vie": "ww",
+        "zhs": "ww",
+        "zht": "ww",
+        "jpn": "ww",
+        "kor": "ww",
+        "tha": "ww"
+      }
+    }
+  }
+}

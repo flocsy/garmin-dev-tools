@@ -4,7 +4,7 @@
     "FNT_006B444000_NUMBER_THAI_HOT": "\u0000\u0002 !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~"
   },
   "devices": {
-    "edge1050": {
+    "edge550": {
       "fontSets": {
         "ww": {
           "FONT_XTINY": "DejaVuSans_Cd_SemiBold_WGL4",
@@ -20,12 +20,22 @@
           "FONT_GLANCE_NUMBER_FONT": "Roboto-Medium",
           "FONT_SIM_EXT_NUMBER1": "Roboto-Medium",
           "FONT_SIM_EXT_NUMBER2": "Roboto-Medium",
-          "FONT_SIM_EXT_NUMBER3": "Garmin_Roboto_Bold",
-          "FONT_SIM_EXT_NUMBER4": "Garmin_Roboto_Bold",
+          "FONT_SIM_EXT_NUMBER3": "Roboto-Medium",
+          "FONT_SIM_EXT_NUMBER4": "Roboto-Medium",
           "FONT_SIM_EXT_NUMBER5": "Roboto-Medium",
-          "FONT_SIM_EXT_NUMBER6": "Roboto-Medium",
+          "FONT_SIM_EXT_NUMBER6": "Garmin_Roboto_Bold",
           "FONT_SIM_EXT_NUMBER7": "Garmin_Roboto_Bold",
-          "FONT_SIM_EXT_NUMBER8": "Garmin_Roboto_Bold"
+          "FONT_SIM_AUTO_FONT1": "Roboto-Medium",
+          "FONT_SIM_AUTO_FONT2": "Roboto-Medium",
+          "FONT_SIM_AUTO_FONT3": "Roboto-Medium",
+          "FONT_SIM_AUTO_FONT4": "Roboto-Medium",
+          "FONT_SIM_AUTO_FONT5": "Roboto-Medium",
+          "FONT_SIM_AUTO_FONT6": "Roboto-Medium",
+          "FONT_SIM_AUTO_FONT7": "Roboto-Medium",
+          "FONT_SIM_AUTO_FONT8": "Roboto-Medium",
+          "FONT_SIM_AUTO_FONT9": "Roboto-Medium",
+          "FONT_SIM_AUTO_FONT10": "Roboto-Medium",
+          "FONT_SIM_AUTO_FONT11": "Roboto-Medium"
         },
         "apac_zh": {
           "FONT_XTINY": "NotoSansSC-Medium-Edge",
@@ -41,12 +51,22 @@
           "FONT_GLANCE_NUMBER_FONT": "Roboto-Medium",
           "FONT_SIM_EXT_NUMBER1": "Roboto-Medium",
           "FONT_SIM_EXT_NUMBER2": "Roboto-Medium",
-          "FONT_SIM_EXT_NUMBER3": "Garmin_Roboto_Bold",
-          "FONT_SIM_EXT_NUMBER4": "Garmin_Roboto_Bold",
+          "FONT_SIM_EXT_NUMBER3": "Roboto-Medium",
+          "FONT_SIM_EXT_NUMBER4": "Roboto-Medium",
           "FONT_SIM_EXT_NUMBER5": "Roboto-Medium",
-          "FONT_SIM_EXT_NUMBER6": "Roboto-Medium",
+          "FONT_SIM_EXT_NUMBER6": "Garmin_Roboto_Bold",
           "FONT_SIM_EXT_NUMBER7": "Garmin_Roboto_Bold",
-          "FONT_SIM_EXT_NUMBER8": "Garmin_Roboto_Bold"
+          "FONT_SIM_AUTO_FONT1": "Roboto-Medium",
+          "FONT_SIM_AUTO_FONT2": "Roboto-Medium",
+          "FONT_SIM_AUTO_FONT3": "Roboto-Medium",
+          "FONT_SIM_AUTO_FONT4": "Roboto-Medium",
+          "FONT_SIM_AUTO_FONT5": "Roboto-Medium",
+          "FONT_SIM_AUTO_FONT6": "Roboto-Medium",
+          "FONT_SIM_AUTO_FONT7": "Roboto-Medium",
+          "FONT_SIM_AUTO_FONT8": "Roboto-Medium",
+          "FONT_SIM_AUTO_FONT9": "Roboto-Medium",
+          "FONT_SIM_AUTO_FONT10": "Roboto-Medium",
+          "FONT_SIM_AUTO_FONT11": "Roboto-Medium"
         },
         "apac_jpn": {
           "FONT_XTINY": "Kosugi-Regular-Edge",
@@ -62,12 +82,22 @@
           "FONT_GLANCE_NUMBER_FONT": "Roboto-Medium",
           "FONT_SIM_EXT_NUMBER1": "Roboto-Medium",
           "FONT_SIM_EXT_NUMBER2": "Roboto-Medium",
-          "FONT_SIM_EXT_NUMBER3": "Garmin_Roboto_Bold",
-          "FONT_SIM_EXT_NUMBER4": "Garmin_Roboto_Bold",
+          "FONT_SIM_EXT_NUMBER3": "Roboto-Medium",
+          "FONT_SIM_EXT_NUMBER4": "Roboto-Medium",
           "FONT_SIM_EXT_NUMBER5": "Roboto-Medium",
-          "FONT_SIM_EXT_NUMBER6": "Roboto-Medium",
+          "FONT_SIM_EXT_NUMBER6": "Garmin_Roboto_Bold",
           "FONT_SIM_EXT_NUMBER7": "Garmin_Roboto_Bold",
-          "FONT_SIM_EXT_NUMBER8": "Garmin_Roboto_Bold"
+          "FONT_SIM_AUTO_FONT1": "Roboto-Medium",
+          "FONT_SIM_AUTO_FONT2": "Roboto-Medium",
+          "FONT_SIM_AUTO_FONT3": "Roboto-Medium",
+          "FONT_SIM_AUTO_FONT4": "Roboto-Medium",
+          "FONT_SIM_AUTO_FONT5": "Roboto-Medium",
+          "FONT_SIM_AUTO_FONT6": "Roboto-Medium",
+          "FONT_SIM_AUTO_FONT7": "Roboto-Medium",
+          "FONT_SIM_AUTO_FONT8": "Roboto-Medium",
+          "FONT_SIM_AUTO_FONT9": "Roboto-Medium",
+          "FONT_SIM_AUTO_FONT10": "Roboto-Medium",
+          "FONT_SIM_AUTO_FONT11": "Roboto-Medium"
         },
         "apac_kor": {
           "FONT_XTINY": "NanumGothic-ExtraBold-Edge",
@@ -83,12 +113,22 @@
           "FONT_GLANCE_NUMBER_FONT": "Roboto-Medium",
           "FONT_SIM_EXT_NUMBER1": "Roboto-Medium",
           "FONT_SIM_EXT_NUMBER2": "Roboto-Medium",
-          "FONT_SIM_EXT_NUMBER3": "Garmin_Roboto_Bold",
-          "FONT_SIM_EXT_NUMBER4": "Garmin_Roboto_Bold",
+          "FONT_SIM_EXT_NUMBER3": "Roboto-Medium",
+          "FONT_SIM_EXT_NUMBER4": "Roboto-Medium",
           "FONT_SIM_EXT_NUMBER5": "Roboto-Medium",
-          "FONT_SIM_EXT_NUMBER6": "Roboto-Medium",
+          "FONT_SIM_EXT_NUMBER6": "Garmin_Roboto_Bold",
           "FONT_SIM_EXT_NUMBER7": "Garmin_Roboto_Bold",
-          "FONT_SIM_EXT_NUMBER8": "Garmin_Roboto_Bold"
+          "FONT_SIM_AUTO_FONT1": "Roboto-Medium",
+          "FONT_SIM_AUTO_FONT2": "Roboto-Medium",
+          "FONT_SIM_AUTO_FONT3": "Roboto-Medium",
+          "FONT_SIM_AUTO_FONT4": "Roboto-Medium",
+          "FONT_SIM_AUTO_FONT5": "Roboto-Medium",
+          "FONT_SIM_AUTO_FONT6": "Roboto-Medium",
+          "FONT_SIM_AUTO_FONT7": "Roboto-Medium",
+          "FONT_SIM_AUTO_FONT8": "Roboto-Medium",
+          "FONT_SIM_AUTO_FONT9": "Roboto-Medium",
+          "FONT_SIM_AUTO_FONT10": "Roboto-Medium",
+          "FONT_SIM_AUTO_FONT11": "Roboto-Medium"
         },
         "apac_tha": {
           "FONT_XTINY": "Pridi-Regular",
@@ -104,12 +144,22 @@
           "FONT_GLANCE_NUMBER_FONT": "Roboto-Medium",
           "FONT_SIM_EXT_NUMBER1": "Roboto-Medium",
           "FONT_SIM_EXT_NUMBER2": "Roboto-Medium",
-          "FONT_SIM_EXT_NUMBER3": "Garmin_Roboto_Bold",
-          "FONT_SIM_EXT_NUMBER4": "Garmin_Roboto_Bold",
+          "FONT_SIM_EXT_NUMBER3": "Roboto-Medium",
+          "FONT_SIM_EXT_NUMBER4": "Roboto-Medium",
           "FONT_SIM_EXT_NUMBER5": "Roboto-Medium",
-          "FONT_SIM_EXT_NUMBER6": "Roboto-Medium",
+          "FONT_SIM_EXT_NUMBER6": "Garmin_Roboto_Bold",
           "FONT_SIM_EXT_NUMBER7": "Garmin_Roboto_Bold",
-          "FONT_SIM_EXT_NUMBER8": "Garmin_Roboto_Bold"
+          "FONT_SIM_AUTO_FONT1": "Roboto-Medium",
+          "FONT_SIM_AUTO_FONT2": "Roboto-Medium",
+          "FONT_SIM_AUTO_FONT3": "Roboto-Medium",
+          "FONT_SIM_AUTO_FONT4": "Roboto-Medium",
+          "FONT_SIM_AUTO_FONT5": "Roboto-Medium",
+          "FONT_SIM_AUTO_FONT6": "Roboto-Medium",
+          "FONT_SIM_AUTO_FONT7": "Roboto-Medium",
+          "FONT_SIM_AUTO_FONT8": "Roboto-Medium",
+          "FONT_SIM_AUTO_FONT9": "Roboto-Medium",
+          "FONT_SIM_AUTO_FONT10": "Roboto-Medium",
+          "FONT_SIM_AUTO_FONT11": "Roboto-Medium"
         }
       },
       "langMap": {

@@ -29,9 +29,11 @@ edge130plus:3.2.0
 edge520plus:3.1.3
 edge530:3.2.5
 edge540:4.2.0
+edge550:5.1.1
 edge820:2.4.1
 edge830:3.2.5
 edge840:4.2.0
+edge850:5.1.1
 edge_1000:2.4.1
 edge_520:2.4.1
 edgeexplore:3.1.3
@@ -67,6 +69,7 @@ fenix7xpro:4.2.2
 fenix7xpronowifi:4.2.2
 fenix843mm:5.0.1
 fenix847mm:5.0.0
+fenix8pro47mm:5.1.0
 fenix8solar47mm:5.0.1
 fenix8solar51mm:5.0.1
 fenixchronos:3.1.6
@@ -103,6 +106,7 @@ garminswim2:1.4.5
 gpsmap66:3.0.8
 gpsmap67:3.2.0
 gpsmap86:3.0.8
+gpsmaph1:5.0.0
 instinct2:3.2.7
 instinct2s:3.2.7
 instinct2x:3.4.0

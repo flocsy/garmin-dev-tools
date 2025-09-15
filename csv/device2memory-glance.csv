@@ -29,9 +29,11 @@ edge130plus:
 edge520plus:
 edge530:
 edge540:65536
+edge550:65536
 edge820:
 edge830:
 edge840:65536
+edge850:65536
 edge_1000:
 edge_520:
 edgeexplore:
@@ -67,6 +69,7 @@ fenix7xpro:65536
 fenix7xpronowifi:65536
 fenix843mm:65536
 fenix847mm:65536
+fenix8pro47mm:65536
 fenix8solar47mm:65536
 fenix8solar51mm:65536
 fenixchronos:
@@ -103,6 +106,7 @@ garminswim2:
 gpsmap66:
 gpsmap67:
 gpsmap86:
+gpsmaph1:
 instinct2:32768
 instinct2s:32768
 instinct2x:32768

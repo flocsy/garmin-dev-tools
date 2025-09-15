@@ -29,9 +29,11 @@ edge130plus:32768
 edge520plus:32768
 edge530:32768
 edge540:32768
+edge550:32768
 edge820:32768
 edge830:32768
 edge840:32768
+edge850:32768
 edge_1000:32768
 edge_520:32768
 edgeexplore:32768
@@ -67,6 +69,7 @@ fenix7xpro:65536
 fenix7xpronowifi:65536
 fenix843mm:65536
 fenix847mm:65536
+fenix8pro47mm:65536
 fenix8solar47mm:65536
 fenix8solar51mm:65536
 fenixchronos:32768
@@ -103,6 +106,7 @@ garminswim2:
 gpsmap66:32768
 gpsmap67:32768
 gpsmap86:32768
+gpsmaph1:32768
 instinct2:32768
 instinct2s:32768
 instinct2x:32768
