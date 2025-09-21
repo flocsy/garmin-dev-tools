@@ -114,6 +114,7 @@ instinct3amoled45mm:131072
 instinct3amoled50mm:131072
 instinct3solar45mm:65536
 instinctcrossover:65536
+instinctcrossoveramoled:131072
 instincte40mm:65536
 instincte45mm:65536
 legacyherocaptainmarvel:524288
@@ -140,6 +141,8 @@ venu2plus:131072
 venu2s:131072
 venu3:131072
 venu3s:131072
+venu441mm:131072
+venu445mm:131072
 venud:524288
 venusq:98304
 venusq2:131072
