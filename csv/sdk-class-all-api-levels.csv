@@ -314,7 +314,7 @@ WatchUi.ViewLoopFactory:3.4.0
 WatchUi.WatchFace:1.0.0,2.3.0
 WatchUi.WatchFaceDelegate:2.3.0,4.2.0,5.1.0
 WatchUi.WatchFacePowerInfo:2.3.0
-WatchUi:1.0.0,1.1.2,1.2.0,3.0.0,3.1.0,3.1.7,3.2.7,3.3.0,3.4.0,3.4.2,4.1.2,4.1.8,5.1.0,5.1.1
+WatchUi:1.0.0,1.1.2,1.2.0,3.0.0,3.1.0,3.1.7,3.2.7,3.3.0,3.4.0,3.4.2,4.1.2,4.1.8,5.1.0,5.1.1,5.2.0
 Weather.CurrentConditions:3.2.0,5.1.0
 Weather.DailyForecast:3.2.0
 Weather.HourlyForecast:3.2.0,5.1.0
