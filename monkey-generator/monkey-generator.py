@@ -1925,7 +1925,7 @@ def get_datafield_hash_data_values(dev, getter_func_name, multiple_values_aggreg
     for value in device_value_counter:
         count = device_value_counter[value]
         if (count == device_most_frequent_value_count):
-            values.append(value)
+            values.append(f'"{value}"' if isinstance(value, str) else value)
     values.sort()
     if device_number_of_None_values == device_most_frequent_value_count:
         values.append(None)
