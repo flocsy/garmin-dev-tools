@@ -12,6 +12,7 @@ d2delta:1310720
 d2deltapx:1310720
 d2deltas:1310720
 d2mach1:786432
+d2mach2:786432
 descentg1:98304
 descentg2:786432
 descentmk1:1310720
@@ -46,6 +47,7 @@ epix2:786432
 epix2pro42mm:786432
 epix2pro47mm:786432
 epix2pro51mm:786432
+etrextouch:2359296
 fenix3:65536
 fenix3_hr:65536
 fenix5:131072

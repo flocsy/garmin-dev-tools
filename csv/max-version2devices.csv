@@ -23,10 +23,12 @@
 3.3.3:fenix5plus,fenix5splus,fenix5xplus
 3.3.6:edge1030plus,edge530,edge830,fr245,fr245m,fr745,fr945,legacyherocaptainmarvel,legacyherofirstavenger,legacysagadarthvader,legacysagarey,venu,venud,venusq,venusqm,vivoactive4,vivoactive4s
 3.4.0:descentg1
-3.4.2:enduro,fr55,instinct2,instinct2s,instinctcrossover
+3.4.2:enduro,instinct2,instinct2s,instinctcrossover
 3.4.3:fr945lte,instinct2x
 3.4.4:descentmk2,descentmk2s
 3.4.5:fenix6,fenix6pro,fenix6s,fenix6spro,fenix6xpro,marqadventurer,marqathlete,marqaviator,marqcaptain,marqcommander,marqdriver,marqexpedition,marqgolfer
+3.4.6:fr55
 5.0.0:d2airx10,gpsmaph1,venu2,venu2plus,venu2s,venusq2,venusq2m
 5.1.0:approachs50,approachs7042mm,approachs7047mm,descentg2,descentmk343mm,descentmk351mm,edgeexplore2,instinct3amoled45mm,instinct3amoled50mm,instinct3solar45mm,instinctcrossoveramoled,instincte40mm,instincte45mm,system8preview
-5.2.0:d2mach1,edge1040,edge1050,edge540,edge550,edge840,edge850,edgemtb,enduro3,epix2,epix2pro42mm,epix2pro47mm,epix2pro51mm,fenix7,fenix7pro,fenix7pronowifi,fenix7s,fenix7spro,fenix7x,fenix7xpro,fenix7xpronowifi,fenix843mm,fenix847mm,fenix8pro47mm,fenix8solar47mm,fenix8solar51mm,fenixe,fr165,fr165m,fr255,fr255m,fr255s,fr255sm,fr265,fr265s,fr57042mm,fr57047mm,fr955,fr965,fr970,marq2,marq2aviator,venu3,venu3s,venu441mm,venu445mm,venux1,vivoactive5,vivoactive6
+5.1.1:etrextouch
+5.2.0:d2mach1,d2mach2,edge1040,edge1050,edge540,edge550,edge840,edge850,edgemtb,enduro3,epix2,epix2pro42mm,epix2pro47mm,epix2pro51mm,fenix7,fenix7pro,fenix7pronowifi,fenix7s,fenix7spro,fenix7x,fenix7xpro,fenix7xpronowifi,fenix843mm,fenix847mm,fenix8pro47mm,fenix8solar47mm,fenix8solar51mm,fenixe,fr165,fr165m,fr255,fr255m,fr255s,fr255sm,fr265,fr265s,fr57042mm,fr57047mm,fr955,fr965,fr970,marq2,marq2aviator,venu3,venu3s,venu441mm,venu445mm,venux1,vivoactive5,vivoactive6

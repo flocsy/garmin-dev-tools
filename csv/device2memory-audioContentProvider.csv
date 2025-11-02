@@ -12,6 +12,7 @@ d2delta:524288
 d2deltapx:524288
 d2deltas:524288
 d2mach1:524288
+d2mach2:524288
 descentg1:
 descentg2:
 descentmk1:
@@ -46,6 +47,7 @@ epix2:524288
 epix2pro42mm:524288
 epix2pro47mm:524288
 epix2pro51mm:524288
+etrextouch:
 fenix3:
 fenix3_hr:
 fenix5:
