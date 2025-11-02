@@ -12,6 +12,7 @@ d2delta:3.1.8
 d2deltapx:3.1.8
 d2deltas:3.1.8
 d2mach1:5.2.0
+d2mach2:5.2.0
 descentg1:3.4.0
 descentg2:5.1.0
 descentmk1:3.1.9
@@ -46,6 +47,7 @@ epix2:5.2.0
 epix2pro42mm:5.2.0
 epix2pro47mm:5.2.0
 epix2pro51mm:5.2.0
+etrextouch:5.1.1
 fenix3:1.4.4
 fenix3_hr:1.4.4
 fenix5:3.1.6
@@ -87,7 +89,7 @@ fr255sm:5.2.0
 fr265:5.2.0
 fr265s:5.2.0
 fr45:1.4.5
-fr55:3.4.2
+fr55:3.4.6
 fr57042mm:5.2.0
 fr57047mm:5.2.0
 fr630:1.4.4
