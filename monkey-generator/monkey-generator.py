@@ -99,7 +99,7 @@ LANG_CODE3_2_LANG_CODE2 = {"ara":"ar", "bul":"bg", "ces":"cs", "dan":"da", "deu"
 MEMORY_2_K = {}
 MEMORY_ORDER = []
 FEATURES_BY_MEMORY = {}
-FEATURE_ATTRIBUTES = ['min_ciq', 'max_ciq', 'min_color_depth', 'is_beta', 'is', 'has', 'min_memory', 'json', 'key_behavior', 'key_id']
+FEATURE_ATTRIBUTES = ['min_ciq', 'max_ciq', 'min_color_depth', 'is_beta', 'is', 'has', 'min_memory', 'min_background_memory', 'json', 'key_behavior', 'key_id']
 FEATURE_CONSTRAINS = {'beta': {'is_beta': True}}
 FILTER_CONSTRAINS = {}
 USED_CIQ_VERSIONS = []
@@ -862,7 +862,6 @@ def number_font(dev):
         #     print(f"chars: {to_c-from_c+1}:[{from_c} {chr(from_c)}, {to_c} {chr(to_c)}]")
         common_chars = ''.join(common_chars)
         # print(f"{dev}: common_chars: {common_chars}")
-        device = DEVICES[dev]
         memory_limit = device['memory'][APP_TYPE]
         if (memory_limit / len(common_chars) < 372): # 16K / 44 = 372
             if dev == 'fr920xt':
@@ -1110,13 +1109,15 @@ FONT_TO_MC_FONT = {#'-': '',
         'glanceNumberFont': 'GLANCE_NUMBER',
         'auxiliaryFont1': 'AUX1', 'auxiliaryFont2': 'AUX2', 'auxiliaryFont3': 'AUX3', 'auxiliaryFont4': 'AUX4', 'auxiliaryFont5': 'AUX5',
         'auxiliaryFont6': 'AUX6', 'auxiliaryFont7': 'AUX7', 'auxiliaryFont8': 'AUX8', 'auxiliaryFont9': 'AUX9',
-        'simExtNumber1': {'edge1050': 'LARGE', 'edgeexplore2': 'MEDIUM', 'fenix843mm': 'XTINY', 'fenix847mm': 'XTINY', 'fenixe': 'XTINY', 'fr265': 'XTINY',
-                'instinct3amoled45mm': 'XTINY', 'instinct3amoled50mm': 'XTINY', 'system8preview': 'XTINY', 'venusq2': 'XTINY', 'venusq2m': 'XTINY'},
-        'simExtNumber2': {'fenix8solar47mm': 'XTINY', 'fr965': 'XTINY', 'legacyherocaptainmarvel': 'TINY', 'legacyherofirstavenger': 'TINY', 'legacysagadarthvader': 'TINY', 'legacysagarey': 'TINY', 'system8preview': 'NUMBER_MILD',
+        'simExtNumber1': {'d2mach2': 'XTINY', 'edge1050': 'LARGE', 'edge550': 'TINY', 'edge850': 'TINY', 'edgeexplore2': 'MEDIUM', 'fenix843mm': 'XTINY', 'fenix847mm': 'XTINY', 'fenix8pro47mm': 'XTINY', 'fenixe': 'XTINY',
+                'fr265': 'XTINY', 'fr57042mm': 'XTINY', 'fr57047mm': 'XTINY', 'fr970': 'XTINY',
+                'instinct3amoled45mm': 'XTINY', 'instinct3amoled50mm': 'XTINY', 'instinctcrossoveramoled': 'XTINY', 'system8preview': 'XTINY', 'venusq2': 'XTINY', 'venusq2m': 'XTINY'},
+        'simExtNumber2': {'edge550': 'SMALL', 'edge850': 'SMALL', 'fenix8solar47mm': 'XTINY', 'fr965': 'XTINY', 'legacyherocaptainmarvel': 'TINY', 'legacyherofirstavenger': 'TINY', 'legacysagadarthvader': 'TINY', 'legacysagarey': 'TINY', 'system8preview': 'NUMBER_MILD',
                 'vivoactive4': 'TINY', 'vivoactive4s': 'TINY'},
-        'simExtNumber4': {'system8preview': 'LARGE'},
-        'simExtNumber5': {'edge540': 'MEDIUM', 'edge840': 'MEDIUM', 'edge1050': 'MEDIUM', 'system8preview': 'NUMBER_MEDIUM'},
-        'simExtNumber6': {'approachs62': 'XTINY', 'edge540': 'SMALL', 'edge840': 'SMALL'}
+        'simExtNumber3': {'edge550': 'TINY', 'edge850': 'TINY', 'venux1': 'XTINY'},
+        'simExtNumber4': {'edge850': 'LARGE', 'system8preview': 'LARGE'},
+        'simExtNumber5': {'edge540': 'MEDIUM', 'edge840': 'MEDIUM', 'edge850': 'NUMBER_MILD', 'edge1040': 'LARGE', 'edge1050': 'MEDIUM', 'edgemtb': 'LARGE', 'system8preview': 'NUMBER_MEDIUM'},
+        'simExtNumber6': {'approachs62': 'XTINY', 'edge1040': 'NUMBER_MEDIUM', 'edge540': 'SMALL', 'edge840': 'SMALL'}
 }
 def font2mc_font(font, dev):
     # return f"Graphics.FONT_{font.upper()}" if font not in FONT_TO_MC_FONT else\
@@ -1133,7 +1134,7 @@ def font2mc_font(font, dev):
         elif type(FONT_TO_MC_FONT[font]) == dict and dev in FONT_TO_MC_FONT[font]:
             return f"Graphics.FONT_{FONT_TO_MC_FONT[font][dev]}"
         else:
-            print_error(f"missing font: {font} for {dev}")
+            print_error(f"unknown font: {font} for {dev}")
             # raise ValueError(f"1 missing font: {font} for {dev}")
             return f"Graphics.FONT_{font.upper()}"
     else:
@@ -1657,7 +1658,7 @@ def read_datafield_hash_data(dev):
 
     device = DEVICES[dev]
     if 'layouts' not in device['simulator']:
-        print_error(f"read_device_hash_data: {dev}: no layouts")
+        print_error(f"read_datafield_hash_data: {dev}: no layouts")
         return
 
     hash2hash_key = {}
@@ -2297,6 +2298,9 @@ def has_feature_by_constraints(dev, constraints, feature = None):
             elif attr == 'has' and not has_method(dev, val):
                 has_feature = False
             elif attr == 'min_memory' and (APP_TYPE not in device['memory'] or device['memory'][APP_TYPE] < int(val)):
+                has_feature = False
+                # log(LOG_LEVEL, LOG_LEVEL_BASIC, f"{dev}: {feature}: {attr}: {val} => {has_feature}")
+            elif attr == 'min_background_memory' and ('background' not in device['memory'] or device['memory']['background'] < int(val)):
                 has_feature = False
                 # log(LOG_LEVEL, LOG_LEVEL_BASIC, f"{dev}: {feature}: {attr}: {val} => {has_feature}")
             elif attr == 'json':
