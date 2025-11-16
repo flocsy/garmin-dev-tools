@@ -11,7 +11,7 @@ function is_numeric(str as String) as Boolean {
 (:ciq_1_3_0, :check_numeric, :inline)
 function is_numeric(str as String) as Boolean {
     var result = true;
-    if (!NUMERIC_CHARS_UNKNOWN) {
+    if (!NUMBER_FONT_IS_TTF && !NUMERIC_CHARS_UNKNOWN) {
         var chars = str.toCharArray(); // api 1.3.0
         for (var i = chars.size() - 1; i >= 0; i--) {
             // var char = chars[i];

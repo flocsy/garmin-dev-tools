@@ -795,6 +795,21 @@ FONTS_JSON_DIR = os.path.dirname(os.path.dirname(os.path.realpath(__file__))) + 
 def number_font(dev):
     if dev == 'base':
         return ['', '', '']
+    device = DEVICES[dev]
+    is_ttf = True
+    number_is_ttf = True
+    for fontSet in device['simulator']['fonts']:
+        # fontSetName = fontSet['fontSet']
+        for font in fontSet['fonts']:
+            if 'type' not in font or font['type'] != 'ttf':
+                if font['name'].startswith('number'):
+                    number_is_ttf = False
+                else:
+                    is_ttf = False
+    if is_ttf:
+        log(LOG_LEVEL, LOG_LEVEL_INPUT, f"{dev}: all non-number fonts are ttf")
+    if number_is_ttf:
+        log(LOG_LEVEL, LOG_LEVEL_INPUT, f"{dev}: all number fonts are ttf")
     common_chars = None
     with open(f"{FONTS_JSON_DIR}/{dev}.chars.json") as chars_json_file:
         chars_json = json.load(chars_json_file)
@@ -818,7 +833,8 @@ def number_font(dev):
             for mc_font in chars_json['devices'][dev]['fontSets'][fontSetArea]:
                 font = chars_json['devices'][dev]['fontSets'][fontSetArea][mc_font]
                 if font not in chars_json['fonts']:
-                    print_error_log(LOG_LEVEL, LOG_LEVEL_DEBUG, f"{dev}: missing font chars for fontSet: {fontSetArea}: {mc_font}: {font}")
+                    if not is_ttf:
+                        print_error_log(LOG_LEVEL, LOG_LEVEL_DEBUG, f"{dev}: missing font chars for fontSet: {fontSetArea}: {mc_font}: {font}")
                     # print_error_log(LOG_LEVEL, LOG_LEVEL_ALWAYS, f"{dev}: missing: devices.{dev}.fontSets.{fontSetArea}.{mc_font}: \"{font}\"")
                     missing_from_fontset[mc_font] = font
                     is_missing = True
@@ -827,7 +843,7 @@ def number_font(dev):
                         missing_number_mc_fonts.add(mc_font)
                 else:
                     log(LOG_LEVEL, LOG_LEVEL_DEBUG, f"{dev}: found font chars for fontSet: {fontSetArea}: {mc_font}: {font}")
-            if missing_from_fontset:
+            if missing_from_fontset and not is_ttf:
                 # print_error_log(LOG_LEVEL, LOG_LEVEL_ALWAYS, f"{dev}: missing: devices.{dev}.fontSets.{fontSetArea}: {missing_from_fontset}")
                 print_error_log(LOG_LEVEL, LOG_LEVEL_DEBUG, f"{dev}: {fontSetArea}: {missing_from_fontset} MISSING")
         if is_missing:
@@ -894,6 +910,7 @@ def number_font(dev):
         output.write(f"const NUMBER_FONT_HAS_SPACE = {'true' if has_space else 'false'};\n")
         output.write(f"const NUMBER_FONT_HAS_LOWER_CASE_ABC = {'true' if has_lower_case_abc else 'false'};\n")
         output.write(f"const NUMBER_FONT_HAS_UPPER_CASE_ABC = {'true' if has_upper_case_abc else 'false'};\n")
+        output.write(f"const NUMBER_FONT_IS_TTF = {'true' if number_is_ttf else 'false'};\n")
         output.write(f"const NUMERIC_CHARS = \"{escape_mc_string(common_chars)}\"; // [{len(common_chars)}]\n")
         output.write(f"const NUMERIC_CHARS_UNKNOWN = {'true' if len(common_chars) == 0 else 'false'};\n")
 
@@ -1102,6 +1119,7 @@ def destring_arr_dict_values(arr):
     # else:
     #     return arr
 
+USE_TTF_FONTS = False
 FONT_TO_MC_FONT = {#'-': '',
         'xtiny': 'XTINY', 'tiny': 'TINY', 'small': 'SMALL', 'medium': 'MEDIUM', 'large': 'LARGE',
         'numberMild': 'NUMBER_MILD', 'numberMedium': 'NUMBER_MEDIUM', 'numberHot': 'NUMBER_HOT', 'numberThaiHot': 'NUMBER_THAI_HOT',
@@ -1138,9 +1156,19 @@ def font2mc_font(font, dev):
             # raise ValueError(f"1 missing font: {font} for {dev}")
             return f"Graphics.FONT_{font.upper()}"
     else:
-        print_error(f"missing font: {font} for {dev}")
-        # raise ValueError(f"2 missing font: {font} for {dev}")
-        return f"Graphics.FONT_{font.upper()}"
+            device = DEVICES[dev]
+            fonts = device['simulator']['fonts'][0]['fonts']
+            font_definition = next(f for f in fonts if f['name'] == font)
+            if USE_TTF_FONTS and 'type' in font_definition and font_definition['type'] == 'ttf':
+                if 'ttf_fonts' not in device['simulator']:
+                    device['simulator']['ttf_fonts'] = {}
+                if font not in device['simulator']['ttf_fonts']:
+                    device['simulator']['ttf_fonts'][font] = {'name': font, 'face': font_definition['filename'].replace('-', ''), 'size': font_definition['size']}
+                return f":{font}"
+            else:
+                print_error(f"missing font: {font} for {dev}")
+                # raise ValueError(f"2 missing font: {font} for {dev}")
+                return f"Graphics.FONT_{font.upper()}"
     # return if font in FONT_TO_MC_FONT and FONT_TO_MC_FONT[font] != ''
     # return 'Graphics.FONT_' + (FONT_TO_MC_FONT[font] if font in FONT_TO_MC_FONT else font.upper())
 
@@ -1596,7 +1624,7 @@ pre_register(datafield_detector)
 COMMON_TYPE = ' or Null'
 COMMON_LABEL_TYPE = ' or Null or Boolean'
 DICTIONARY_VALUE_TYPE = {
-    'label_font': 'Graphics.FontDefinition' + COMMON_LABEL_TYPE,
+    'label_font': 'Graphics.FontDefinition or Symbol' + COMMON_LABEL_TYPE,
     'label_x': 'Number' + COMMON_LABEL_TYPE,
     'label_y': 'Number' + COMMON_LABEL_TYPE,
     'label_justification': 'Number' + COMMON_LABEL_TYPE,
@@ -1626,6 +1654,13 @@ def generate_datafield_file(dev, filename, result, prefix = '', postfix = ''):
             output.write("\tmodule DataFieldLayout {\n\n")
 
         output.write(prefix)
+
+        device = DEVICES[dev]
+        if 'ttf_fonts' in device['simulator'] and device['simulator']['ttf_fonts']:
+            output.write(f"(:datafield, :datafield_hash, :datafield_ttf) const TTF_FONTS = {{\n")
+            for i, (font_name, font) in enumerate(device['simulator']['ttf_fonts'].items()):
+                output.write(f'\t:{font_name} => {{:face => "{font['face']}", :size => {font['size']}}},\n')
+            output.write(f"}} as Dictionary<Symbol, VectorFontOptions>;\n")
 
         for key in result:
             gen = result[key]

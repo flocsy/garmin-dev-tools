@@ -22,14 +22,24 @@ function datafield_label_font(hash as Number) as Graphics.FontDefinition? {
   var dict = DATAFIELD_HASH_2_LABEL_FONT;
   return dict.hasKey(hash) ? dict[hash] as Graphics.FontDefinition? : DEFAULT_LABEL_FONT;
 }
-(:ciq_3_1_0, :datafield, :datafield_hash, :datafield_label_font, :hebrew, :inline)
+(:ciq_3_1_0, :datafield, :datafield_hash, :datafield_label_font, :no_ttf_font, :hebrew, :inline)
 function datafield_label_font(hash as Number) as Graphics.FontDefinition? {
   var dict = DATAFIELD_HASH_2_LABEL_FONT;
-  var font = dict[hash];
   var increment = INCREASE_HEBREW_LABEL_FONT_SIZE && System.getDeviceSettings().systemLanguage /*api 3.1.0*/ == System.LANGUAGE_HEB ? 1 : 0;
-  // return (dict.hasKey(hash) ? font == null ? null : font + increment : DEFAULT_LABEL_FONT + increment) as Graphics.FontDefinition?;
-  font = dict.hasKey(hash) ? font : DEFAULT_LABEL_FONT + increment;
+  var font = dict.hasKey(hash) ? dict[hash] : DEFAULT_LABEL_FONT;
   return (font == null || font instanceof Lang.Boolean ? null : font as Number + increment) as Graphics.FontDefinition?;
+}
+(:ciq_3_1_0, :datafield, :datafield_hash, :datafield_label_font, :ttf_font, :hebrew, :inline)
+function datafield_label_font(hash as Number) as Graphics.FontType? {
+  var dict = DATAFIELD_HASH_2_LABEL_FONT;
+  var font = dict.hasKey(hash) ? dict[hash] : DEFAULT_LABEL_FONT;
+  if (font instanceof Lang.Symbol) {
+    font = Graphics.getVectorFont(TTF_FONTS[font] as VectorFontOptions);
+  } else {
+    var increment = INCREASE_HEBREW_LABEL_FONT_SIZE && System.getDeviceSettings().systemLanguage /*api 3.1.0*/ == System.LANGUAGE_HEB ? 1 : 0;
+    font = (font == null || font instanceof Lang.Boolean ? null : font as Number + increment) as Graphics.FontDefinition?;
+  }
+  return font;
 }
 
 (:datafield, :datafield_hash, :datafield_label_x, :inline)
