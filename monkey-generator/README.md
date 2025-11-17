@@ -1,0 +1,269 @@
+# monkey-generator reads the required `monkey.template.jungle`, the optional `monkey-generator.conf`
+# and generates the `monkey.jungle` file, and based on the configuration also folders and files under gen/ directory.
+
+# The directory structue of an app could look like:
+# monkey.template.jungle
+# manifest.xml
+# manifest-prod.xml
+# source/
+# resources/
+# features/foo/source
+# features/foo/resources
+# features/foo/settings
+# features/no_foo/source
+# features/no_foo/resources
+# features/no_foo/settings
+
+
+# You can have 2 manifests in your project:
+# - manifest-prod.xml for production release that includes all the devices you support.
+# - manifest.xml for development and building for uploading to the store as a beta app
+#    that only includes the devices you own and one device from each relevant device family.
+#    What device family means depends on your project. It can be different display shapes and sizes,
+#    or the amount of memory or the CIQ version or the existance of some method in the SDK.
+#    Or the combination of all the above and more.
+#    I keep here the devices that I frequently test with in the simulator.
+# After you change which manifest to use you have to recreate monkey.jungle by running monkey-generator.py
+
+# project.manifest = manifest-prod.xml # production
+project.manifest = manifest.xml # beta
+
+
+# Lines that are comments will be copied to the generated monkey.jungle file
+
+
+# "Regular" lines are copied to monkey.jungle:
+
+project.typecheck = 3
+project.optimization = 3z
+
+
+# it is important to only include the source/ folder for every device, because other folders have source code that will be only included based on the configuration further down
+
+base.sourcePath = source
+
+
+# You'll define the set of features relevant to your app. There are some hard-coded features, but most of them will be defined by your business logic by you.
+# You can define features based on data in compiler.json, simulator.json and <device>.api.debug.xml, the manifest.
+# The generated monkey.jungle will set the sourcePath, resourcePath and excludeAnnotations for each device in your active manifest.
+
+# I find the excludeAnnotations to be counter-intuitive, so I use them more like "includeAnnotations":
+# For annotations I technically use the excludeAnnotations but with a "positive" (aka include) meaning:
+# monkey-generator generates the excludeAnnotations based on the assumption, that they will be used as include annotation,
+# so when it determines that a device has the feature `foo` it'll have the opposite excludeAnnotation:
+#   fr965.excludeAnnotations=...;no_foo;...
+# and if a device doesn't have feature `bar` then it'll have:
+#   fr230.excludeAnnotations=...;bar;...
+# So in the code you can use the "positive' or "include" annotation:
+# (:no_foo) const HAS_FOO = false;
+# (:foo) const HAS_FOO = true;
+# (:no_foo) function func1() {do whatever you need to for devices without foo}
+# (:foo) function func1() {do whatever you need to for devices with foo}
+
+# When a device has the "foo" feature then it'll be included like:
+# - if there's a directory features/foo/source/, then it'll be included in sourcePath:
+#   fr965.sourcePath=$(fr965.sourcePath)...;features/foo/source
+#
+# - if there's a directory features/foo/resources/, then it'll be included in resourcePath:
+#   fr965.resourcePath=$(fr965.resourcePath)...;features/foo/resources
+#
+# - I find the excludeAnnotations to be counter-intuitive, so I use them more like "includeAnnotations":
+#   fr965.excludeAnnotations=...;no_foo;...
+
+# When a device doesn't have the "foo" feature, then it'll be included like:
+# - if there's a directory features/no_foo/source/, then it'll be included in sourcePath:
+#   fenix3.sourcePath=$(fenix3.sourcePath)...;features/no_foo/source
+#
+# - if there's a directory features/no_foo/resources/, then it'll be included in resourcePath:
+#   fenix3.resourcePath=$(fenix3.resourcePath)...;features/no_foo/resources
+#
+#   fenix3.excludeAnnotations=...;foo;...
+
+# Hard-coded features are:
+# `beta` - is determined automatically based on the manifest's filename. If it contains '-prod', then it's not beta, otherwise it is beta.
+#     A common way to use this is to remove the AppName from the main resources/strings.xml and move it to features:
+#     - features/no_beta/lang-eng/strings.xml: <string id="AppName">Production app name</string>
+#     - features/beta/lang-eng/strings.xml: <string id="AppName">Production BETA app name</string>
+#     This way you'll see your beta app has BETA in it's name that will make it easier to differentiate between them on a real device.
+
+
+# I usually list here the annotations that are common for all the devices:
+
+base.excludeAnnotations = base;exclude;no_datafield_hash;no_check_numeric;no_stats;testing
+
+
+# FEATURES, KEYWORDS
+
+# For defining most of the other things you'll use lines that look like:
+# monkey_generator_<command>_<keyword> = <value>
+# monkey_generator_<command>_<feature_name>_<keyword> = <value>
+# i.e:
+# monkey_generator_filter_device_min_memory = 65536 # command: filter_device, keyword: min_memory, value: 65536
+# monkey_generator_feature_alert_view_has = showAlert # command: feature, feature_name: alert_view, keyword: has, value: showAlert
+
+# these are the supported keywords: 'min_ciq', 'max_ciq', 'min_color_depth', 'is_beta', 'is', 'has', 'min_memory', 'json', 'key_behavior', 'key_id'
+
+# monkey-generator not only generates monkey.jungle but also checks a few things. One of them is that you haven't forgot to add a new device to the manifest.
+# The assumption is that you always download and update the device files in SDK manager. monkey-generator checks that all the existing devices that are supported
+# are included in the manifest. You'll see a warning if there are devices that would be supported but are missing from the manifest.
+# It searches for the SDK in the default folders (currently for Mac, if your OS has another default folder where the SDK is installed, then let me know)
+# or you can set CIQ_SDK_HOME environment variable to point to the root of the SDK folder.
+# To tell monkey-generator what devices (including future devices) you support you can filter them using monkey_generator_filter_device:
+# monkey_generator_filter_device_<keyword> = <value>
+monkey_generator_filter_device_min_memory = 65536
+monkey_generator_filter_device_min_color_depth = 4
+monkey_generator_filter_device_min_ciq = 3.3.1
+monkey_generator_filter_device_has = getBodyBatteryHistory
+
+
+
+# To define a feature you include one or more line with the feature:
+# monkey_generator_feature_<feature_name>_<keyword> = <value>
+# Feature names can use alphanumeric characters and underscore: '_'
+# If your app has a feature "alert_view" that is only available on devices with minimum CIQ 3.2.0 then you can define it using the `min_ciq` keyword:
+monkey_generator_feature_alert_view_min_ciq = 3.2.0
+# Though it's probably better to use the `has` keyword to check if the device has the method:
+monkey_generator_feature_alert_view_has = showAlert
+# No matter how you define it, your code, resources from the relevant features/[no_]alert_view/ folder will be included and the "include" annotations set.
+
+
+# KEYWORDS:
+
+# `min_ciq`, `max_ciq`
+# Based on: the smallest CIQ vewrsion in SDK/Devices/<device>/compiler.json: /partNumbers/connectIQVersion
+# Can be used to differentiate between devices based on their minimum CIQ version.
+# So if a device has a ww and an apac partNumber, then the smallest connectIQVersion between them will be used.
+monkey_generator_feature_cool_stuff_min_ciq = 3.2.0
+monkey_generator_feature_legacy_thing_max_ciq = 4.0.0
+
+
+# `min_color_depth`
+# Based on: SDK/Devices/<device>/compiler.json: /bitsPerPixel
+# Can be used to differentiate between devices with different color displays.
+# Most useful for monochrome vs color, but can also be used to exclude devices that only have 8 colors.
+monkey_generator_feature_color_min_color_depth = 4
+
+
+# `is_beta`
+# Based on: whether the active manifest's filename contains '-prod'
+monkey_generator_feature_just_for_me_is_beta = 1 # defines (:just_for_me) annotation when we're building a beta app
+
+
+# `is`
+# Based on: monkey-generator.conf variables with "boolean" values: 0 or 1
+# Sometimes there are multiple apps that use a commen code-base. In this case there can be a sub-directory for each app
+# and in monkey-generator.conf you can define variables that are used in the common monkey.template.jungle:
+# AppA/monkey-generator.conf
+# AppB/monkey-generator.conf
+# monkey-generator.conf
+#
+# monkey-generator.conf:
+# IS_FOO=1
+monkey_generator_feature_foo_is = {IS_FOO}
+
+
+# `has`
+# Based on: SDK/Devices/<device>/<device>.api.debug.xml
+# Checks for a symbol or a method
+monkey_generator_feature_str_compare_to_has = String.compareTo # checks for method if the value contains a '.'
+monkey_generator_feature_activity_monitor_has = ActivityMonitor # checks for symbol if it doesn't contain '.'
+
+
+# `min_memory`
+# Based on: manifest: iq:application.type and SDK/Devices/<device>/compiler.json: /appTypes/memoryLimit
+# manifest-prod.xml: <iq:application type="datafield" ...>
+monkey_generator_filter_device_min_memory = 32768
+monkey_generator_feature_kpay_min_memory = 65536
+
+
+# `json`
+# Based on: any value in SDK/Devices/<device>/compiler.json or SDK/Devices/<device>/simulator.json
+# value format:
+# [!]{simulator|compiler}.path1[.path2[...]]
+# Checks a "boolean" value:
+monkey_generator_feature_touch_screen_json = simulator.display.isTouch
+# or existance of a json object:
+monkey_generator_feature_subscreen_json = simulator.subscreen
+# '!' at the beginning of the value can be used to negate a "boolean" value:
+monkey_generator_filter_device_json = !simulator.subscreen
+
+
+# `key_behavior`
+# Based on: SDK/Devices/<device>/simulator.json /keys/[]/behavior
+# Checks whether the device has a key with the specified behavior:
+monkey_generator_feature_key_behavior_previouspage_key_behavior = previousPage
+
+
+# `key_id`
+# Based on: SDK/Devices/<device>/simulator.json /keys/[]/id
+# Checks whether the device has a key with the specified id:
+monkey_generator_feature_dedicated_lap_key_key_id = lap
+
+
+
+# BUILT-IN FEATURES:
+# There are some built-in features you can use. These will either generate annotations or include source and/or resources.
+# Built-in features: ciq_api, color, color_depth, color_palette, const_font, datafield_detector, datafield_layout, features, key_location,
+# lang2, lang3, languages, memory_annotations, menu2, number_font, resources, [settings,] shape, smart_datafield, source.
+# To use them you need to register for them:
+monkey_generator_register = languages;number_font;color;color_palette;datafield_layout;memory_annotations;ciq_api;features
+
+
+# `ciq_api`
+# You can generate annotations indicating whether the device has at least a given CIQ version by listing them in monkey_generator_used_ciq_versions.
+# This will generate: no_ciq_2_4_0, ciq_2_4_0, no_ciq_3_3_1, ciq_3_3_1 annotations:
+monkey_generator_used_ciq_versions = 2.4.0;3.3.1
+
+
+# `color`
+# Based on: SDK/Devices/<device>/compiler.json: /bitsPerPixel
+# Checks whether the device is color or monochrome
+
+
+# `color_depth`
+# Based on: SDK/Devices/<device>/compiler.json: /bitsPerPixel
+# Includes source-features/color_depth/{colorDepth}bpp
+
+
+# `color_palette`
+# Based on: size of SDK/Devices/<device>/compiler.json: /palette/colors[]
+# Includes source files from features/color_palette/{amoled|lcd|mip}-{2colors|8colors|14colorsA|14colorsB|64colors|1bpp|4bpp|8bpp|16bpp}/
+
+
+
+
+# TODO:
+# const_font, datafield_detector, datafield_layout, features, key_location,
+# lang2, lang3, languages, memory_annotations, menu2, number_font, resources, [settings,] shape, smart_datafield, source.
+
+
+# monkey_generator_features = base;no_array_settings;array_settings;datafield;simpledatafield;fit_hrv;high_hr_alert;low_hr_alert;zones;no_user_zones;user_zones;gauge;trial;stats;kpay
+monkey_generator_features_memoryCommon = base;beta;no_array_settings;fit;no_battery_text;no_ant_pages;no_trial;no_stats;no_kpay;mock
+monkey_generator_features_memory16K = no_color;no_datafield;no_high_hr_alert;no_low_hr_alert;no_alert_view;zones;no_fit_zone;no_user_zones;no_zone_color;no_gauge;record_all_fit_fields;no_three_users;no_ant_battery;no_hrv;no_fit_hrv;no_search_anim
+monkey_generator_features_memory32K = color;datafield;high_hr_alert;low_hr_alert;alert_view;zones;fit_zone;user_zones;zone_color;gauge;record_all_fit_fields;no_three_users;ant_battery;no_hrv;no_fit_hrv;search_anim
+monkey_generator_features_memory64K = color;datafield;high_hr_alert;low_hr_alert;alert_view;zones;fit_zone;user_zones;zone_color;gauge;no_record_all_fit_fields;three_users;ant_battery;no_hrv;no_fit_hrv;search_anim
+# monkey_generator_features_memory64K = base;no_array_settings;datafield;no_fit_hrv;high_hr_alert;low_hr_alert;zones;no_user_zones;user_zones;gauge;no_trial;no_stats;no_kpay
+# monkey_generator_features_memory128K = base;no_array_settings;datafield;no_fit_hrv;high_hr_alert;low_hr_alert;zones;no_user_zones;user_zones;gauge;no_trial;no_stats;no_kpay
+
+
+
+
+
+# settings chunks in order:
+#
+# base/settings/00/00-settings-base-i.xml
+# base/settings/01/01-settings-base-n.xml
+# base/settings/10/10-settings-base-u1-tni.xml
+# zones/settings/11/11-settings-zones-u1z.xml
+# low_hr_alert/settings/12/12-settings-low_hr_alert-u1a.xml
+# high_hr_alert/settings/13/13-settings-high_hr_alert-u1A.xml
+# base/settings/20/20-settings-base-u2-tni.xml
+# zones/settings/21/21-settings-zones-u2z.xml
+# low_hr_alert/settings/22/22-settings-low_hr_alert-u2a.xml
+# high_hr_alert/settings/23/23-settings-high_hr_alert-u2A.xml
+# base/settings/30/30-settings-base-separator.xml
+# no_datafield/settings/40/40-settings-no_datafield-D.xml
+# datafield/settings/40/40-settings-datafield-Dd.xml
+# low_hr_alert/settings/41/41-settings-low_hr_alert-t.xml
+# gauge/settings/50/50-settings-zones-color-gauge-g.xml
+# color_AND_zones/settings/51/51-settings-zones-color-c.xml
