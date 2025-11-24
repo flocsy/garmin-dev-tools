@@ -99,7 +99,7 @@ LANG_CODE3_2_LANG_CODE2 = {"ara":"ar", "bul":"bg", "ces":"cs", "dan":"da", "deu"
 MEMORY_2_K = {}
 MEMORY_ORDER = []
 FEATURES_BY_MEMORY = {}
-FEATURE_ATTRIBUTES = ['min_ciq', 'max_ciq', 'min_color_depth', 'is_beta', 'is', 'has', 'min_memory', 'min_background_memory', 'json', 'key_behavior', 'key_id']
+FEATURE_ATTRIBUTES = ['min_ciq', 'max_ciq', 'min_color_depth', 'is_beta', 'is', 'has', 'min_memory', 'min_background_memory', 'json', 'key_behavior', 'key_id', 'for_devices']
 FEATURE_CONSTRAINS = {'beta': {'is_beta': True}}
 FILTER_CONSTRAINS = {}
 USED_CIQ_VERSIONS = []
@@ -2384,6 +2384,9 @@ def has_feature_by_constraints(dev, constraints, feature = None):
                     if not has_key_id:
                         has_feature = False
                         no_feature_reason += (';' if no_feature_reason else '') + f'{key_id}'
+            elif attr == 'for_devices' and (dev not in val.split(',')):
+                has_feature = False
+                # log(LOG_LEVEL, LOG_LEVEL_BASIC, f"{dev}: {feature}: {attr}: {val} => {has_feature}")
             # if feature != attr:
             #     print_error_log(LOG_LEVEL, LOG_LEVEL_ALWAYS, f"{dev}: has_feature_by_constraints: feature: {feature} != attr: {attr}")
             # has_constraints[has_feature].append(f"{feature}:{attr + ':' if feature != attr else ''}{val}:{no_feature_reason}")
