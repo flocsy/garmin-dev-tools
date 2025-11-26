@@ -798,14 +798,22 @@ def number_font(dev):
     device = DEVICES[dev]
     is_ttf = True
     number_is_ttf = True
+    ttf_fonts = set()
     for fontSet in device['simulator']['fonts']:
         # fontSetName = fontSet['fontSet']
+        duplicate_fonts = set()
         for font in fontSet['fonts']:
-            if 'type' not in font or font['type'] != 'ttf':
-                if font['name'].startswith('number'):
-                    number_is_ttf = False
+            if f'{font['filename']}:{font['name']}' in duplicate_fonts:
+                print_warn_log(LOG_LEVEL, LOG_LEVEL_DEBUG, f"{dev}: duplicate font: fontSet: {fontSet['fontSet']}, filename: {font['filename']}, name: {font['name']}")
+            else:
+                duplicate_fonts.add(f'{font['filename']}:{font['name']}')
+                if 'type' in font and (font['type'] == 'ttf' or font['type'] == 'system_ttf'):
+                    ttf_fonts.add(font['filename'])
                 else:
-                    is_ttf = False
+                    if font['name'].startswith('number'):
+                        number_is_ttf = False
+                    else:
+                        is_ttf = False
     if is_ttf:
         log(LOG_LEVEL, LOG_LEVEL_INPUT, f"{dev}: all non-number fonts are ttf")
     if number_is_ttf:
@@ -823,34 +831,42 @@ def number_font(dev):
                     common_chars = set(chars)
                 else:
                     common_chars = common_chars.intersection(chars)
-        else:
+        elif not is_ttf:
             print_error_log(LOG_LEVEL, LOG_LEVEL_ALWAYS, f"{dev}: empty \"fonts\" in {chars_json_file.name}")
         is_missing = False
-        missing_mc_fonts = set()
-        missing_number_mc_fonts = set()
+        missing_mc_fonts = {}
+        missing_number_mc_fonts = {}
         for fontSetArea in chars_json['devices'][dev]['fontSets']:
             missing_from_fontset = {}
             for mc_font in chars_json['devices'][dev]['fontSets'][fontSetArea]:
                 font = chars_json['devices'][dev]['fontSets'][fontSetArea][mc_font]
-                if font not in chars_json['fonts']:
+                if font not in chars_json['fonts'] and font not in ttf_fonts:
                     if not is_ttf:
                         print_error_log(LOG_LEVEL, LOG_LEVEL_DEBUG, f"{dev}: missing font chars for fontSet: {fontSetArea}: {mc_font}: {font}")
                     # print_error_log(LOG_LEVEL, LOG_LEVEL_ALWAYS, f"{dev}: missing: devices.{dev}.fontSets.{fontSetArea}.{mc_font}: \"{font}\"")
-                    missing_from_fontset[mc_font] = font
+                    missing_from_fontset[f'{mc_font}'] = font
                     is_missing = True
-                    missing_mc_fonts.add(mc_font)
+                    if fontSetArea not in missing_mc_fonts:
+                        missing_mc_fonts[fontSetArea] = set()
+                    missing_mc_fonts[fontSetArea].add(mc_font)
                     if 'NUMBER' in mc_font:
-                        missing_number_mc_fonts.add(mc_font)
+                        if fontSetArea not in missing_number_mc_fonts:
+                            missing_number_mc_fonts[fontSetArea] = set()
+                        missing_number_mc_fonts[fontSetArea].add(mc_font)
                 else:
-                    log(LOG_LEVEL, LOG_LEVEL_DEBUG, f"{dev}: found font chars for fontSet: {fontSetArea}: {mc_font}: {font}")
+                    log(LOG_LEVEL, LOG_LEVEL_DEBUG, f"{dev}: found font chars for fontSet: {fontSetArea}: {mc_font}: {font} {' (ttf)' if font in ttf_fonts else ''}")
             if missing_from_fontset and not is_ttf:
                 # print_error_log(LOG_LEVEL, LOG_LEVEL_ALWAYS, f"{dev}: missing: devices.{dev}.fontSets.{fontSetArea}: {missing_from_fontset}")
-                print_error_log(LOG_LEVEL, LOG_LEVEL_DEBUG, f"{dev}: {fontSetArea}: {missing_from_fontset} MISSING")
-        if is_missing:
-            if missing_number_mc_fonts:
-                print_warn_log(LOG_LEVEL, LOG_LEVEL_ALWAYS, f"{dev}: some number font chars are missing: {missing_number_mc_fonts}")
-            print_error_log(LOG_LEVEL, LOG_LEVEL_DEBUG, f"{dev}: some font chars are missing: {missing_mc_fonts}")
-        else:
+                if fontSetArea == 'apac_tha' or dev == 'fr920xt':
+                    print_warn_log(LOG_LEVEL, LOG_LEVEL_DEBUG, f"{dev}: missing fonts: {fontSetArea}: {missing_from_fontset}")
+                else:
+                    print_error_log(LOG_LEVEL, LOG_LEVEL_ALWAYS, f"{dev}: missing fonts: {fontSetArea}: {missing_from_fontset}")
+        # if is_missing:
+        #     if missing_number_mc_fonts:
+        #         print_warn_log(LOG_LEVEL, LOG_LEVEL_ALWAYS, f"{dev}: some number font chars are missing: {missing_number_mc_fonts}")
+        #     print_error_log(LOG_LEVEL, LOG_LEVEL_DEBUG, f"{dev}: some font chars are missing: {missing_mc_fonts}")
+        # else:
+        if not is_missing:
             print_warn_log(LOG_LEVEL, LOG_LEVEL_DEBUG, f"{dev}: no font chars are missing")
     if common_chars:
         # print_error_log(LOG_LEVEL, LOG_LEVEL_ALWAYS, f"{dev}: {common_chars}")
@@ -879,21 +895,31 @@ def number_font(dev):
         common_chars = ''.join(common_chars)
         # print(f"{dev}: common_chars: {common_chars}")
         memory_limit = device['memory'][APP_TYPE]
-        if (memory_limit / len(common_chars) < 372): # 16K / 44 = 372
+        # if (memory_limit / len(common_chars) < 372): # 16K / 44 = 372
+        if (memory_limit - len(common_chars) < 16300): # 16K / 44 = 372
             if dev == 'fr920xt':
                 orig_len = len(common_chars)
                 common_chars = " !\"#$%&'()*+,-./0123456789:;"
-                print_warn_log(LOG_LEVEL, LOG_LEVEL_ALWAYS, f"{dev}[{memory_limit}]: common_chars[{orig_len} => {len(common_chars)}]: replaced with: \"{common_chars}\"")
+                log(LOG_LEVEL, LOG_LEVEL_ALWAYS, f"{dev}[{memory_limit}]: common_chars[{orig_len} => {len(common_chars)}]: replaced with: \"{common_chars}\"")
             else:
                 print_error_log(LOG_LEVEL, LOG_LEVEL_ALWAYS, f"{dev}[{memory_limit}]: common_chars[{len(common_chars)}]: \"{common_chars}\"")
         else:
             log(LOG_LEVEL, LOG_LEVEL_INPUT, f"{dev}: common_chars[{len(common_chars)}]: \"{common_chars}\"")
+        has_space = common_chars and ' ' in common_chars
+        has_lower_case_abc = 'abcdefghijklmnopqrstuvwxyz' in common_chars
+        has_upper_case_abc = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' in common_chars
+    elif number_is_ttf:
+        common_chars = ''
+        has_space = True
+        has_lower_case_abc = True
+        has_upper_case_abc = True
+        log(LOG_LEVEL, LOG_LEVEL_DEBUG, f"{dev}: ttf, no common_chars")
     else:
         common_chars = ''
+        has_space = False
+        has_lower_case_abc = False
+        has_upper_case_abc = False
         print_error_log(LOG_LEVEL, LOG_LEVEL_ALWAYS, f"{dev}: no common_chars")
-    has_space = common_chars and ' ' in common_chars
-    has_lower_case_abc = 'abcdefghijklmnopqrstuvwxyz' in common_chars
-    has_upper_case_abc = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' in common_chars
 
     device_dir = f"{GENERATED_DEVICES_DIR}/{dev}"
     device_file = f"{device_dir}/chars.mc"
