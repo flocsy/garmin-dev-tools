@@ -297,7 +297,7 @@ def splitAndAppendIfNotContains(array, csv, separator):
             array.append(item)
 
 def usage():
-    print("Usage: monkey-generator.py [-h | --help] [-j <monkey.jungle> | --jungle=<monkey.jungle>] [-t <template> | --template=<template>] [-c | --clean] [-a | --all-devices]")
+    print("Usage: monkey-generator.py [-h | --help] [-j <monkey.jungle> | --jungle=<monkey.jungle>] [-t <template> | --template=<template>] [-c | --clean] [-a | --all-devices] [-d <debug-level> | --debug=<debug-level> | -v | --verbose]")
 
 def parse_memory_sizes():
     global MEMORY_2_K, MEMORY_ORDER
@@ -497,7 +497,6 @@ def main(argv):
                         MANIFEST = line.split('=', 2)[1].strip().split(' ', 1)[0]
                     write_line = True
                     log(LOG_LEVEL, LOG_LEVEL_BASIC, "MANIFEST: " + MANIFEST)
-                    parse_manifest(MANIFEST)
                 elif line.startswith('base.'):
                     base_key, val = line.split('=', 2)
                     base_key = base_key.strip()
@@ -609,6 +608,8 @@ def main(argv):
                 if not write_line:
                     line = '# ' + line
                 output.write(f"{line}\n")
+
+        parse_manifest(MANIFEST)
 
         log(LOG_LEVEL, LOG_LEVEL_BASIC, f"FEATURES_BY_MEMORY: {FEATURES_BY_MEMORY}")
         log(LOG_LEVEL, LOG_LEVEL_BASIC, f"FEATURE_CONSTRAINS: {FEATURE_CONSTRAINS}")
@@ -1145,58 +1146,75 @@ def destring_arr_dict_values(arr):
     # else:
     #     return arr
 
-USE_TTF_FONTS = False
+USE_TTF_FONTS = True
+TTF_PPI_DIVISOR = 60
 FONT_TO_MC_FONT = {#'-': '',
         'xtiny': 'XTINY', 'tiny': 'TINY', 'small': 'SMALL', 'medium': 'MEDIUM', 'large': 'LARGE',
         'numberMild': 'NUMBER_MILD', 'numberMedium': 'NUMBER_MEDIUM', 'numberHot': 'NUMBER_HOT', 'numberThaiHot': 'NUMBER_THAI_HOT',
+        'systemXtiny': 'SYSTEM_XTINY', 'systemTiny': 'SYSTEM_TINY', 'systemSmall': 'SYSTEM_SMALL', 'systemMedium': 'SYSTEM_MEDIUM', 'systemLarge': 'SYSTEM_LARGE',
+        'systemNumberMild': 'SYSTEM_NUMBER_MILD', 'systemNumberMedium': 'SYSTEM_NUMBER_MEDIUM', 'systemNumberHot': 'SYSTEM_NUMBER_HOT', 'systemNumberThaiHot': 'SYSTEM_NUMBER_THAI_HOT',
         'glanceFont': 'GLANCE',
         'glanceNumberFont': 'GLANCE_NUMBER',
         'auxiliaryFont1': 'AUX1', 'auxiliaryFont2': 'AUX2', 'auxiliaryFont3': 'AUX3', 'auxiliaryFont4': 'AUX4', 'auxiliaryFont5': 'AUX5',
-        'auxiliaryFont6': 'AUX6', 'auxiliaryFont7': 'AUX7', 'auxiliaryFont8': 'AUX8', 'auxiliaryFont9': 'AUX9',
-        'simExtNumber1': {'d2mach2': 'XTINY', 'edge1050': 'LARGE', 'edge550': 'TINY', 'edge850': 'TINY', 'edgeexplore2': 'MEDIUM', 'fenix843mm': 'XTINY', 'fenix847mm': 'XTINY', 'fenix8pro47mm': 'XTINY', 'fenixe': 'XTINY',
-                'fr265': 'XTINY', 'fr57042mm': 'XTINY', 'fr57047mm': 'XTINY', 'fr970': 'XTINY',
-                'instinct3amoled45mm': 'XTINY', 'instinct3amoled50mm': 'XTINY', 'instinctcrossoveramoled': 'XTINY', 'system8preview': 'XTINY', 'venusq2': 'XTINY', 'venusq2m': 'XTINY'},
-        'simExtNumber2': {'edge550': 'SMALL', 'edge850': 'SMALL', 'fenix8solar47mm': 'XTINY', 'fr965': 'XTINY', 'legacyherocaptainmarvel': 'TINY', 'legacyherofirstavenger': 'TINY', 'legacysagadarthvader': 'TINY', 'legacysagarey': 'TINY', 'system8preview': 'NUMBER_MILD',
-                'vivoactive4': 'TINY', 'vivoactive4s': 'TINY'},
-        'simExtNumber3': {'edge550': 'TINY', 'edge850': 'TINY', 'venux1': 'XTINY'},
-        'simExtNumber4': {'edge850': 'LARGE', 'system8preview': 'LARGE'},
-        'simExtNumber5': {'edge540': 'MEDIUM', 'edge840': 'MEDIUM', 'edge850': 'NUMBER_MILD', 'edge1040': 'LARGE', 'edge1050': 'MEDIUM', 'edgemtb': 'LARGE', 'system8preview': 'NUMBER_MEDIUM'},
+        'auxiliaryFont6': 'AUX6', 'auxiliaryFont7': 'AUX7', 'auxiliaryFont8': 'AUX8', 'auxiliaryFont9': 'AUX9'
+}
+SIM_FONT_TO_MC_FONT = {
+        'simExtNumber1': {'edge1050': 'LARGE', 'edgeexplore2': 'MEDIUM', 'edgemtb': 'LARGE', 'instinct3amoled45mm': 'XTINY', 'instinct3amoled50mm': 'XTINY', 'instinctcrossoveramoled': 'XTINY', 'venusq2': 'XTINY', 'venusq2m': 'XTINY'},
+        'simExtNumber2': {'legacyherocaptainmarvel': 'TINY', 'legacyherofirstavenger': 'TINY', 'legacysagadarthvader': 'TINY', 'legacysagarey': 'TINY', 'vivoactive4': 'TINY', 'vivoactive4s': 'TINY'},
+        'simExtNumber3': {'edge550': 'TINY', 'edge850': 'TINY'},
+        'simExtNumber4': {'edge850': 'LARGE', 'edgemtb': 'TINY'},
+        'simExtNumber5': {'edge850': 'NUMBER_MILD', 'edge1040': 'LARGE', 'edge1050': 'MEDIUM', 'edgemtb': 'LARGE'},
         'simExtNumber6': {'approachs62': 'XTINY', 'edge1040': 'NUMBER_MEDIUM', 'edge540': 'SMALL', 'edge840': 'SMALL'}
 }
-def font2mc_font(font, dev):
+FONT_TO_MC_FONT_CACHE = {}
+def font2mc_font(font, dev, font_set = '?'):
+    cache_key = f'{dev}:{font_set}:{font}'
+    if cache_key in FONT_TO_MC_FONT_CACHE:
+        return FONT_TO_MC_FONT_CACHE[cache_key]
     # return f"Graphics.FONT_{font.upper()}" if font not in FONT_TO_MC_FONT else\
     #     (f"Graphics.FONT_{FONT_TO_MC_FONT[font]}" if FONT_TO_MC_FONT[font] != '' else 'null')
     # log(LOG_LEVEL, LOG_LEVEL_BASIC, "{dev}: font: {font}")
     if font is False or font is None:
-        return to_mc_value(font)
+        mc_font = to_mc_value(font)
     elif font in FONT_TO_MC_FONT:
         if type(FONT_TO_MC_FONT[font]) == str:
             if FONT_TO_MC_FONT[font] == '':
-                return to_mc_value(None)
+                mc_font = to_mc_value(None)
             else:
-                return f"Graphics.FONT_{FONT_TO_MC_FONT[font]}"
+                mc_font = f"Graphics.FONT_{FONT_TO_MC_FONT[font]}"
         elif type(FONT_TO_MC_FONT[font]) == dict and dev in FONT_TO_MC_FONT[font]:
-            return f"Graphics.FONT_{FONT_TO_MC_FONT[font][dev]}"
+            mc_font = f"Graphics.FONT_{FONT_TO_MC_FONT[font][dev]}"
         else:
-            print_error(f"unknown font: {font} for {dev}")
+            print_error(f"{dev}: unknown graphics font: {font_set}:{font}")
             # raise ValueError(f"1 missing font: {font} for {dev}")
-            return f"Graphics.FONT_{font.upper()}"
+            mc_font = f"Graphics.FONT_{font.upper()}"
     else:
             device = DEVICES[dev]
-            fonts = device['simulator']['fonts'][0]['fonts']
+            fonts = device['simulator']['fonts'][0]['fonts'] # TODO: this only checks ww fonts
             font_definition = next(f for f in fonts if f['name'] == font)
-            if USE_TTF_FONTS and 'type' in font_definition and font_definition['type'] == 'ttf':
+            if USE_TTF_FONTS and 'type' in font_definition and font_definition['type'] == 'ttf' and has_method(dev, 'Graphics.getVectorFont'):
                 if 'ttf_fonts' not in device['simulator']:
                     device['simulator']['ttf_fonts'] = {}
                 if font not in device['simulator']['ttf_fonts']:
                     device['simulator']['ttf_fonts'][font] = {'name': font, 'face': font_definition['filename'].replace('-', ''), 'size': font_definition['size']}
-                return f":{font}"
+                mc_font = f":{font}"
+            # elif 'type' not in font_definition or font_definition['type'] != 'ttf':
+            #     if 'ttf_fonts' not in device['simulator']:
+            #         device['simulator']['ttf_fonts'] = {}
+            #     if font not in device['simulator']['ttf_fonts']:
+            #         device['simulator']['ttf_fonts'][font] = {'name': font, 'filename': font_definition['filename']}
+            #     mc_font = f":{font}"
+            elif font in SIM_FONT_TO_MC_FONT and dev in SIM_FONT_TO_MC_FONT[font]:
+                mc_font = f"Graphics.FONT_{SIM_FONT_TO_MC_FONT[font][dev]}"
             else:
-                print_error(f"missing font: {font} for {dev}")
+                print_error(f"{dev}: missing sim font: {font_set}:{font}")
                 # raise ValueError(f"2 missing font: {font} for {dev}")
-                return f"Graphics.FONT_{font.upper()}"
+                mc_font = f"Graphics.FONT_{font.upper()}"
     # return if font in FONT_TO_MC_FONT and FONT_TO_MC_FONT[font] != ''
     # return 'Graphics.FONT_' + (FONT_TO_MC_FONT[font] if font in FONT_TO_MC_FONT else font.upper())
+    FONT_TO_MC_FONT_CACHE[cache_key] = mc_font
+    log(LOG_LEVEL, LOG_LEVEL_DEBUG, f"{dev}: font: {font_set}:{font} => {mc_font}")
+    return mc_font
 
 def get_most_frequent_value_and_occurrences(dict):
     usages = {}
@@ -1551,7 +1569,7 @@ def datafield_layout(dev):
                 lang = lng[0]
                 fontSet = lang['fontSet']
                 # default_label_font_font = next(font for font in next(fonts for fonts in device['simulator']['fonts'] if fonts['fontSet'] == fontSet)['fonts'] if font['name'] == default_label_font)
-                default_label_font_font = next(font for font in next(fonts for fonts in device['simulator']['fonts'] if fonts['fontSet'] == fontSet)['fonts'] if font2mc_font(font['name'], dev) == result['label_font']['most_frequent_value'])
+                default_label_font_font = next(font for font in next(fonts for fonts in device['simulator']['fonts'] if fonts['fontSet'] == fontSet)['fonts'] if font2mc_font(font['name'], dev, fontSet) == result['label_font']['most_frequent_value'])
                 increase_hebrew_label_font = '_CDPG_ROBOTO_13B' in default_label_font_font['filename']
         # log(LOG_LEVEL, LOG_LEVEL_BASIC, f"{dev}: {default_label_font_font['filename']}, increase_hebrew_label_font: {increase_hebrew_label_font}")
 
@@ -1682,16 +1700,12 @@ def generate_datafield_file(dev, filename, result, prefix = '', postfix = ''):
         output.write(prefix)
 
         device = DEVICES[dev]
-        if 'ttf_fonts' in device['simulator'] and device['simulator']['ttf_fonts']:
-            output.write(f"(:datafield, :datafield_hash, :datafield_ttf) const TTF_FONTS = {{\n")
-            for i, (font_name, font) in enumerate(device['simulator']['ttf_fonts'].items()):
-                output.write(f'\t:{font_name} => {{:face => "{font['face']}", :size => {font['size']}}},\n')
-            output.write(f"}} as Dictionary<Symbol, VectorFontOptions>;\n")
-
+        used_ttf_fonts = set()
         for key in result:
             gen = result[key]
             KEY = key.upper()
             default_value = to_mc_value(get_first_most_frequent_value(gen))
+            used_ttf_fonts.add(default_value)
             output.write(f"(:datafield, :datafield_hash, :datafield_{key}) const DEFAULT_{KEY} = {default_value}; // {destring_arr_values(to_mc_value(gen['most_frequent_value'])) + ' ' if isinstance(gen['most_frequent_value'], list) else ''}x{gen['most_frequent_value_count']}\n")
             # if key.endswith('_justification'):
             #     output.write(f"(:datafield, :datafield_hash, :datafield_{key}) const HAS_DATAFIELD_HASH_2_{KEY} = {'false' if gen['default_value'] is not None else 'true'};\n")
@@ -1699,11 +1713,23 @@ def generate_datafield_file(dev, filename, result, prefix = '', postfix = ''):
             for hash in gen['hash_map']:
                 hash_obj = gen['hash_map'][hash]
                 value = to_mc_value(hash_obj['value'])
+                used_ttf_fonts.add(value)
                 if value != default_value:
                     output.write(f"\t{hash} /*{hash_obj['hash_key']}*/ => {value}, // {destring_arr_dict_values(hash_obj['field_values'])}\n")
                 else:
                     output.write(f"\t// {hash} /*{hash_obj['hash_key']}*/ => {value} /*default*/, // {destring_arr_dict_values(hash_obj['field_values'])}\n")
             output.write(f"}} as Dictionary<Number, {DICTIONARY_VALUE_TYPE[key]}>;\n\n")
+
+        if 'ttf_fonts' in device['simulator'] and device['simulator']['ttf_fonts']:
+            # output.write(f"(:datafield, :datafield_hash, :datafield_ttf) const SCREEN_PPI = {device['simulator']['ppi']};\n")
+            output.write(f"(:datafield, :datafield_hash, :datafield_ttf) const TTF_FONTS = {{ /* :size: size * ppi / {TTF_PPI_DIVISOR} */\n")
+            for i, (font_name, font) in enumerate(device['simulator']['ttf_fonts'].items()):
+                if ':' + font_name in used_ttf_fonts:
+                    # if 'size' in font:
+                        output.write(f'\t:{font_name} => {{:face => "{font['face']}", :size => {font['size'] * device['simulator']['ppi'] / TTF_PPI_DIVISOR} /* {font['size']} * {device['simulator']['ppi']} / {TTF_PPI_DIVISOR} */}},\n')
+                    # elif 'filename' in font:
+                    #     output.write(f'\t:{font_name} => {{:font => "{font['filename']}"}},\n')
+            output.write(f"}} as Dictionary<Symbol, VectorFontOptions>;\n")
 
         output.write(postfix)
 
@@ -2326,7 +2352,8 @@ def get_bool_value_by_json_path(dev, feature, attr, json_path_str):
     if json_path_str[0] == '!':
         op = False
         json_path_str = json_path_str[1:]
-    return get_value_by_json_path(dev, feature, attr, json_path_str) == op
+    val = get_value_by_json_path(dev, feature, attr, json_path_str)
+    return (op == True and val is not None and val != False) or (op == False and (val is None or val == False))
 
 
 def has_feature_by_constraints(dev, constraints, feature = None):
@@ -2376,40 +2403,40 @@ def has_feature_by_constraints(dev, constraints, feature = None):
                     has_feature = False
                 # print(f"{dev}: key: {key}, obj: {obj}, has_feature2: {has_feature}")
             elif attr == 'key_behavior':
-                if 'keys' not in device['simulator']:
+                if 'keys' in device['simulator']:
+                    behaviors = val.split(';')
+                    for behavior in behaviors:
+                        # if not next((key for key in device['simulator']['keys'] if 'behavior' in key and key['behavior'] == behavior), None):
+                        #     has_feature = False
+                        has_behavior = False
+                        for key in device['simulator']['keys']:
+                            if 'behavior' in key and key['behavior'] == behavior:
+                                has_behavior = True
+                                # no_feature_reason += (',' if no_feature_reason else '') + f'no_key_{key["id"]}'
+                        if not has_behavior:
+                            has_feature = False
+                            no_feature_reason += (';' if no_feature_reason else '') + f'{behavior}'
+                    # no_feature_reason = f"no_behavior:{no_feature_reason}"
+                else:
                     has_feature = False
                     no_feature_reason = 'no_keys'
-                    break
-                behaviors = val.split(';')
-                for behavior in behaviors:
-                    # if not next((key for key in device['simulator']['keys'] if 'behavior' in key and key['behavior'] == behavior), None):
-                    #     has_feature = False
-                    has_behavior = False
-                    for key in device['simulator']['keys']:
-                        if 'behavior' in key and key['behavior'] == behavior:
-                            has_behavior = True
-                            # no_feature_reason += (',' if no_feature_reason else '') + f'no_key_{key["id"]}'
-                    if not has_behavior:
-                        has_feature = False
-                        no_feature_reason += (';' if no_feature_reason else '') + f'{behavior}'
-                # no_feature_reason = f"no_behavior:{no_feature_reason}"
             elif attr == 'key_id':
-                if 'keys' not in device['simulator']:
+                if 'keys' in device['simulator']:
+                    key_ids = val.split(';')
+                    for key_id in key_ids:
+                        # if not next((key for key in device['simulator']['keys'] if 'behavior' in key and key['behavior'] == behavior), None):
+                        #     has_feature = False
+                        has_key_id = False
+                        for key in device['simulator']['keys']:
+                            if 'id' in key and key['id'] == key_id:
+                                has_key_id = True
+                                # no_feature_reason += (',' if no_feature_reason else '') + f'no_key_{key["id"]}'
+                        if not has_key_id:
+                            has_feature = False
+                            no_feature_reason += (';' if no_feature_reason else '') + f'{key_id}'
+                else:
                     has_feature = False
                     no_feature_reason = 'no_keys'
-                    break
-                key_ids = val.split(';')
-                for key_id in key_ids:
-                    # if not next((key for key in device['simulator']['keys'] if 'behavior' in key and key['behavior'] == behavior), None):
-                    #     has_feature = False
-                    has_key_id = False
-                    for key in device['simulator']['keys']:
-                        if 'id' in key and key['id'] == key_id:
-                            has_key_id = True
-                            # no_feature_reason += (',' if no_feature_reason else '') + f'no_key_{key["id"]}'
-                    if not has_key_id:
-                        has_feature = False
-                        no_feature_reason += (';' if no_feature_reason else '') + f'{key_id}'
             elif attr == 'for_devices' and (dev not in val.split(',')):
                 has_feature = False
                 # log(LOG_LEVEL, LOG_LEVEL_BASIC, f"{dev}: {feature}: {attr}: {val} => {has_feature}")
@@ -2555,6 +2582,7 @@ def key_location(dev):
     if dev == 'base':
         return ['', '', '']
 
+    annotations = []
     conf_base_dir = get_base_dir()
     if conf_base_dir:
         device = DEVICES[dev]
@@ -2575,14 +2603,15 @@ def key_location(dev):
                 output.write("module Flocsy {\n")
                 output.write("\tmodule KeyLocation {\n\n")
 
-            is_round = 'round' in device['simulator']['display']['shape']
-            is_rectangle = 'rectangle' in device['simulator']['display']['shape']
-            has_key_hint_on_the_left = False
-            has_key_hint_on_the_right = False
-            has_key_hint_on_the_bottom = False
-            output.write(f"(:key_location) const KEY_HINT_IS_ARC = {'true' if is_round else 'false'};\n")
-            output.write(f"(:key_location) const KEY_HINT_IS_BAR = {'true' if is_rectangle else 'false'};\n\n")
             if 'keys' in device['simulator']:
+                is_round = 'round' in device['simulator']['display']['shape']
+                is_rectangle = 'rectangle' in device['simulator']['display']['shape']
+                has_key_hint_on_the_left = False
+                has_key_hint_on_the_right = False
+                has_key_hint_on_the_bottom = False
+                output.write(f"(:key_location) const HAS_KEYS = true;\n")
+                output.write(f"(:key_location) const KEY_HINT_IS_ARC = {'true' if is_round else 'false'};\n")
+                output.write(f"(:key_location) const KEY_HINT_IS_BAR = {'true' if is_rectangle else 'false'};\n\n")
                 processed_keys = set()
                 for key in device['simulator']['keys']:
                     # invalid values but need the constants so the monkey compiler is happy
@@ -2660,15 +2689,63 @@ def key_location(dev):
                 output.write(f"(:key_location) const KEY_HINT_ON_THE_LEFT = {'true' if has_key_hint_on_the_left else 'false'};\n")
                 output.write(f"(:key_location) const KEY_HINT_ON_THE_RIGHT = {'true' if has_key_hint_on_the_right else 'false'};\n")
                 output.write(f"(:key_location) const KEY_HINT_ON_THE_BOTTOM = {'true' if has_key_hint_on_the_bottom else 'false'};\n")
+                annotations.append('keys')
             else:
-                print_error_log(LOG_LEVEL, LOG_LEVEL_ALWAYS, f"key_location: {dev}: no keys")
+                print_error_log(LOG_LEVEL, LOG_LEVEL_BASIC, f"key_location: {dev}: no keys")
+                output.write(f"(:key_location) const HAS_KEYS = false;\n")
+                output.write(f"(:key_location) const KEY_HINT_IS_ARC = false;\n")
+                output.write(f"(:key_location) const KEY_HINT_IS_BAR = false;\n\n")
+                output.write(f"(:key_location) const KEY_HINT_ON_THE_LEFT = false;\n")
+                output.write(f"(:key_location) const KEY_HINT_ON_THE_RIGHT = false;\n")
+                output.write(f"(:key_location) const KEY_HINT_ON_THE_BOTTOM = false;\n")
+                annotations.append('no_keys')
 
             if USE_MODULES:
                 output.write("\t}\n")
                 output.write("}\n")
     sourceDirs = list(filter(None, [has_directory(f"{conf_base_dir}{GENERATED_FEATURES_DIR}/key_location"), has_directory(f"{conf_base_dir}{GENERATED_DEVICES_DIR}/{dev}")]))
-    return [';'.join(sourceDirs), '', '']
+    return [';'.join(sourceDirs), '', ';'.join(annotations)]
 pre_register(key_location, 'key_location')
+
+
+def analog_hands(dev):
+    if dev == 'base':
+        return ['', '', '']
+
+    annotation = ''
+    conf_base_dir = get_base_dir()
+    if conf_base_dir:
+        device = DEVICES[dev]
+        device_dir = f"{conf_base_dir}{GENERATED_DEVICES_DIR}/{dev}"
+        device_file = f"{device_dir}/analog_hands.mc"
+        os.makedirs(device_dir, 0o755, True)
+        with open(device_file, 'w') as output:
+            # output.write(f"// GENERATED for {dev} by {GENERATROR_SIGNATURE}\n\n");
+            output.write(f"// GENERATED by {GENERATROR_SIGNATURE}\n\n")
+            output.write("import Toybox.Lang;\n\n")
+
+            if USE_MODULES:
+                output.write("module Flocsy {\n")
+                output.write("\tmodule AnalogHands {\n\n")
+
+            if 'analogHands' in device['simulator']:
+                analog_hands = device['simulator']['analogHands']
+                output.write(f"const HAS_ANALOG_HANDS = true;\n")
+                output.write(f"(:analog_hands) const ANALOG_HANDS_BASE_RADIUS = {analog_hands['baseRadius']};\n")
+                output.write(f"(:analog_hands) const ANALOG_HANDS_FOREGROUND_RADIUS = {analog_hands['foregroundRadius']};\n")
+                output.write(f"(:analog_hands) const ANALOG_HANDS_HAND_RADIUS = {analog_hands['handRadius']};\n")
+                annotation = 'no_analog_hands'
+            else:
+                print_error_log(LOG_LEVEL, LOG_LEVEL_DEBUG, f"analog_hands: {dev}: no analog hands")
+                output.write(f"const HAS_ANALOG_HANDS = false;\n")
+                annotation = 'analog_hands'
+
+            if USE_MODULES:
+                output.write("\t}\n")
+                output.write("}\n")
+    sourceDirs = list(filter(None, [has_directory(f"{conf_base_dir}{GENERATED_FEATURES_DIR}/analog_hands"), has_directory(f"{conf_base_dir}{GENERATED_DEVICES_DIR}/{dev}")]))
+    return [';'.join(sourceDirs), '', annotation]
+pre_register(analog_hands)
 
 
 def const_font(dev):
