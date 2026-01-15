@@ -2735,12 +2735,16 @@ def analog_hands(dev):
                 analog_hands = device['simulator']['analogHands']
                 output.write(f"const HAS_ANALOG_HANDS = true;\n")
                 output.write(f"(:analog_hands) const ANALOG_HANDS_BASE_RADIUS = {analog_hands['baseRadius']};\n")
-                output.write(f"(:analog_hands) const ANALOG_HANDS_FOREGROUND_RADIUS = {analog_hands['foregroundRadius']};\n")
-                output.write(f"(:analog_hands) const ANALOG_HANDS_HAND_RADIUS = {analog_hands['handRadius']};\n")
+
+                # not all devices have these:
+                # output.write(f"(:analog_hands) const ANALOG_HANDS_FOREGROUND_RADIUS = {analog_hands['foregroundRadius']};\n")
+                # output.write(f"(:analog_hands) const ANALOG_HANDS_HAND_RADIUS = {analog_hands['handRadius']};\n")
+
                 annotation = 'no_analog_hands'
             else:
                 print_error_log(LOG_LEVEL, LOG_LEVEL_DEBUG, f"analog_hands: {dev}: no analog hands")
                 output.write(f"const HAS_ANALOG_HANDS = false;\n")
+                output.write(f"(:no_analog_hands) const ANALOG_HANDS_BASE_RADIUS = 0;\n")
                 annotation = 'analog_hands'
 
             if USE_MODULES:
