@@ -191,11 +191,10 @@ def camel_case(s):
     s = re.sub(r"(_|-)+", " ", s).title().replace(" ", "")
     return ''.join([s[0].lower(), s[1:]])
 
-
 def device_has_app_type(device, app_type):
     dev = DEVICES[device]
     for app_type_obj in dev['compiler']['appTypes']:
-        if app_type_obj['type'] == app_type:
+        if app_type_obj['type'] == app_type or (app_type == 'widget' and app_type_obj['type'] == 'glance'):
             return True
     return False
 
@@ -304,8 +303,9 @@ def parse_memory_sizes():
     MEMORY_SIZES = set()
     for dev in DEVICES:
         device = DEVICES[dev]
-        if APP_TYPE in DEVICES[dev]['memory']:
-            limit = DEVICES[dev]['memory'][APP_TYPE]
+        app_type = 'glance' if APP_TYPE == 'widget' and 'glance' in device['memory'] else APP_TYPE
+        if app_type in DEVICES[dev]['memory']:
+            limit = DEVICES[dev]['memory'][app_type]
             MEMORY_SIZES.add(limit)
     MEMORY_SIZES = sorted(list(MEMORY_SIZES))
     for limit in MEMORY_SIZES:
@@ -895,7 +895,8 @@ def number_font(dev):
         #     print(f"chars: {to_c-from_c+1}:[{from_c} {chr(from_c)}, {to_c} {chr(to_c)}]")
         common_chars = ''.join(common_chars)
         # print(f"{dev}: common_chars: {common_chars}")
-        memory_limit = device['memory'][APP_TYPE]
+        app_type = 'glance' if APP_TYPE == 'widget' and 'glance' in device['memory'] else APP_TYPE
+        memory_limit = device['memory'][app_type]
         # if (memory_limit / len(common_chars) < 372): # 16K / 44 = 372
         if (memory_limit - len(common_chars) < 16300): # 16K / 44 = 372
             if dev == 'fr920xt':
@@ -937,7 +938,7 @@ def number_font(dev):
         output.write(f"const NUMBER_FONT_HAS_SPACE = {'true' if has_space else 'false'};\n")
         output.write(f"const NUMBER_FONT_HAS_LOWER_CASE_ABC = {'true' if has_lower_case_abc else 'false'};\n")
         output.write(f"const NUMBER_FONT_HAS_UPPER_CASE_ABC = {'true' if has_upper_case_abc else 'false'};\n")
-        output.write(f"const NUMBER_FONT_IS_TTF = {'true' if number_is_ttf else 'false'};\n")
+        output.write(f"(:glance) const NUMBER_FONT_IS_TTF = {'true' if number_is_ttf else 'false'};\n")
         output.write(f"const NUMERIC_CHARS = \"{escape_mc_string(common_chars)}\"; // [{len(common_chars)}]\n")
         output.write(f"const NUMERIC_CHARS_UNKNOWN = {'true' if len(common_chars) == 0 else 'false'};\n")
 
@@ -2133,12 +2134,13 @@ def memory_annotations(dev):
     source_path_arr = []
     resource_path_arr = []
     exclude_annotations_arr = []
-    if APP_TYPE not in device['memory']:
-        sys.exit(f"{dev}: no app-type: {APP_TYPE}")
-    memory_limit = device['memory'][APP_TYPE]
+    app_type = 'glance' if APP_TYPE == 'widget' and 'glance' in device['memory'] else APP_TYPE
+    if app_type not in device['memory']:
+        sys.exit(f"{dev}: no app-type: {APP_TYPE} {app_type}")
+    memory_limit = device['memory'][app_type]
     memory_k = MEMORY_2_K[memory_limit]
     if memory_k is None:
-        sys.exit(f"{dev}: Unknown memory limit: {APP_TYPE}: {memory_limit}")
+        sys.exit(f"{dev}: Unknown memory limit: {app_type}: {memory_limit}")
     for memory in MEMORY_ORDER:
         memory_k = MEMORY_2_K[memory]
         if memory < memory_limit:
@@ -2178,7 +2180,7 @@ def is_feature_by_memory(feature):
     return False
 
 def get_features_by_memory(memory_limit):
-    memory_idx = MEMORY_ORDER.index(memory_limit)
+    memory_idx = MEMORY_ORDER.index(memory_limit) if memory_limit in MEMORY_ORDER else None
     if memory_idx is None:
         sys.exit(f"Unknown memory limit: {memory_limit}")
     while memory_idx >= 0:
@@ -2460,9 +2462,10 @@ def features(dev):
         if dev == 'base':
             return [has_directory(f'{conf_base_dir}features/base/source'), has_directory(f'{conf_base_dir}features/base/resources'), 'base']
         device = DEVICES[dev]
-        if APP_TYPE not in device['memory']:
+        app_type = 'glance' if APP_TYPE == 'widget' and 'glance' in device['memory'] else APP_TYPE
+        if app_type not in device['memory']:
             return [has_directory(f'{conf_base_dir}features/base/source'), has_directory(f'{conf_base_dir}features/base/resources'), 'base']
-        memory_limit = device['memory'][APP_TYPE]
+        memory_limit = device['memory'][app_type]
         features = []
         # log(LOG_LEVEL, LOG_LEVEL_BASIC, f"{dev}: features: memory_limit: {memory_limit}: {get_features_by_memory(memory_limit)}")
         features_by_memory = get_features_by_memory(memory_limit)
