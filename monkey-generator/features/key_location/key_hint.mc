@@ -41,6 +41,9 @@ import Toybox.WatchUi;
 (:key_behavior_nextpage) const KEY_BEHAVIOR_NEXTPAGE = true;
 
 (:key_location, :key_hint)
+enum HintType {NONE = 0, SINGLE_CLICK = 1, DOUBLE_CLICK = 2, LONG_PRESS = 3}
+
+(:key_location, :key_hint)
 enum KeyHint {
     KEY_HINT_ENTER        = 1<<0,
     KEY_HINT_ESC          = 1<<1,
@@ -117,7 +120,7 @@ function draw_key_hint_enter(dc as Graphics.Dc) as Void {
 }
 (:key_location, :key_hint, :no_personality, :key_id_enter, :inline)
 function draw_key_hint_enter(dc as Graphics.Dc) as Void {
-    draw_key_hint(dc, KEY_ENTER_ARC_DEGREE, KEY_ENTER_BAR_X, KEY_ENTER_BAR_Y, KEY_ENTER_BAR_WIDTH, KEY_ENTER_BAR_HEIGHT);
+    draw_key_hint(dc, KEY_ENTER_ARC_DEGREE, KEY_ENTER_BAR_X, KEY_ENTER_BAR_Y, KEY_ENTER_BAR_WIDTH, KEY_ENTER_BAR_HEIGHT, SINGLE_CLICK);
 }
 
 (:key_location, :key_hint, :no_key_id_esc, :inline)
@@ -129,7 +132,7 @@ function draw_key_hint_esc(dc as Graphics.Dc) as Void {
 }
 (:key_location, :key_hint, :no_personality, :key_id_esc, :inline)
 function draw_key_hint_esc(dc as Graphics.Dc) as Void {
-    draw_key_hint(dc, KEY_ESC_ARC_DEGREE, KEY_ESC_BAR_X, KEY_ESC_BAR_Y, KEY_ESC_BAR_WIDTH, KEY_ESC_BAR_HEIGHT);
+    draw_key_hint(dc, KEY_ESC_ARC_DEGREE, KEY_ESC_BAR_X, KEY_ESC_BAR_Y, KEY_ESC_BAR_WIDTH, KEY_ESC_BAR_HEIGHT, SINGLE_CLICK);
 }
 
 (:key_location, :key_hint, :no_key_id_menu, :inline)
@@ -141,7 +144,7 @@ function draw_key_hint_menu(dc as Graphics.Dc) as Void {
 }
 (:key_location, :key_hint, :no_personality, :key_id_menu, :inline)
 function draw_key_hint_menu(dc as Graphics.Dc) as Void {
-    draw_key_hint(dc, KEY_MENU_ARC_DEGREE, KEY_MENU_BAR_X, KEY_MENU_BAR_Y, KEY_MENU_BAR_WIDTH, KEY_MENU_BAR_HEIGHT);
+    draw_key_hint(dc, KEY_MENU_ARC_DEGREE, KEY_MENU_BAR_X, KEY_MENU_BAR_Y, KEY_MENU_BAR_WIDTH, KEY_MENU_BAR_HEIGHT, LONG_PRESS);
 }
 
 (:key_location, :key_hint, :no_key_id_up, :inline)
@@ -153,7 +156,7 @@ function draw_key_hint_up(dc as Graphics.Dc) as Void {
 }
 (:key_location, :key_hint, :no_personality, :key_id_up, :inline)
 function draw_key_hint_up(dc as Graphics.Dc) as Void {
-    draw_key_hint(dc, KEY_UP_ARC_DEGREE, KEY_UP_BAR_X, KEY_UP_BAR_Y, KEY_UP_BAR_WIDTH, KEY_UP_BAR_HEIGHT);
+    draw_key_hint(dc, KEY_UP_ARC_DEGREE, KEY_UP_BAR_X, KEY_UP_BAR_Y, KEY_UP_BAR_WIDTH, KEY_UP_BAR_HEIGHT, SINGLE_CLICK);
 }
 
 (:key_location, :key_hint, :no_key_id_down, :inline)
@@ -165,7 +168,7 @@ function draw_key_hint_down(dc as Graphics.Dc) as Void {
 }
 (:key_location, :key_hint, :no_personality, :key_id_down, :inline)
 function draw_key_hint_down(dc as Graphics.Dc) as Void {
-    draw_key_hint(dc, KEY_DOWN_ARC_DEGREE, KEY_DOWN_BAR_X, KEY_DOWN_BAR_Y, KEY_DOWN_BAR_WIDTH, KEY_DOWN_BAR_HEIGHT);
+    draw_key_hint(dc, KEY_DOWN_ARC_DEGREE, KEY_DOWN_BAR_X, KEY_DOWN_BAR_Y, KEY_DOWN_BAR_WIDTH, KEY_DOWN_BAR_HEIGHT, SINGLE_CLICK);
 }
 
 (:key_location, :key_hint, :no_key_id_lap, :inline)
@@ -177,7 +180,7 @@ function draw_key_hint_lap(dc as Graphics.Dc) as Void {
 }
 (:key_location, :key_hint, :no_personality, :key_id_lap, :inline)
 function draw_key_hint_lap(dc as Graphics.Dc) as Void {
-    draw_key_hint(dc, KEY_LAP_ARC_DEGREE, KEY_LAP_BAR_X, KEY_LAP_BAR_Y, KEY_LAP_BAR_WIDTH, KEY_LAP_BAR_HEIGHT);
+    draw_key_hint(dc, KEY_LAP_ARC_DEGREE, KEY_LAP_BAR_X, KEY_LAP_BAR_Y, KEY_LAP_BAR_WIDTH, KEY_LAP_BAR_HEIGHT, SINGLE_CLICK);
 }
 
 (:key_location, :key_hint, :no_key_id_start, :inline)
@@ -189,7 +192,7 @@ function draw_key_hint_start(dc as Graphics.Dc) as Void {
 }
 (:key_location, :key_hint, :no_personality, :key_id_start, :inline)
 function draw_key_hint_start(dc as Graphics.Dc) as Void {
-    draw_key_hint(dc, KEY_START_ARC_DEGREE, KEY_START_BAR_X, KEY_START_BAR_Y, KEY_START_BAR_WIDTH, KEY_START_BAR_HEIGHT);
+    draw_key_hint(dc, KEY_START_ARC_DEGREE, KEY_START_BAR_X, KEY_START_BAR_Y, KEY_START_BAR_WIDTH, KEY_START_BAR_HEIGHT, SINGLE_CLICK);
 }
 
 (:key_location, :key_hint, :no_key_id_clock, :inline)
@@ -201,7 +204,7 @@ function draw_key_hint_clock(dc as Graphics.Dc) as Void {
 }
 (:key_location, :key_hint, :no_personality, :key_id_clock, :inline)
 function draw_key_hint_clock(dc as Graphics.Dc) as Void {
-    draw_key_hint(dc, KEY_CLOCK_ARC_DEGREE, KEY_CLOCK_BAR_X, KEY_CLOCK_BAR_Y, KEY_CLOCK_BAR_WIDTH, KEY_CLOCK_BAR_HEIGHT);
+    draw_key_hint(dc, KEY_CLOCK_ARC_DEGREE, KEY_CLOCK_BAR_X, KEY_CLOCK_BAR_Y, KEY_CLOCK_BAR_WIDTH, KEY_CLOCK_BAR_HEIGHT, LONG_PRESS);
 }
 
 
@@ -214,7 +217,7 @@ function draw_key_hint_onselect(dc as Graphics.Dc) as Void {
 }
 (:key_location, :key_hint, :no_personality, :key_behavior_onselect, :inline)
 function draw_key_hint_onselect(dc as Graphics.Dc) as Void {
-    draw_key_hint(dc, KEY_ONSELECT_ARC_DEGREE, KEY_ONSELECT_BAR_X, KEY_ONSELECT_BAR_Y, KEY_ONSELECT_BAR_WIDTH, KEY_ONSELECT_BAR_HEIGHT);
+    draw_key_hint(dc, KEY_ONSELECT_ARC_DEGREE, KEY_ONSELECT_BAR_X, KEY_ONSELECT_BAR_Y, KEY_ONSELECT_BAR_WIDTH, KEY_ONSELECT_BAR_HEIGHT, SINGLE_CLICK);
 }
 
 (:key_location, :key_hint, :no_key_behavior_onback, :inline)
@@ -226,7 +229,7 @@ function draw_key_hint_onback(dc as Graphics.Dc) as Void {
 }
 (:key_location, :key_hint, :no_personality, :key_behavior_onback, :inline)
 function draw_key_hint_onback(dc as Graphics.Dc) as Void {
-    draw_key_hint(dc, KEY_ONBACK_ARC_DEGREE, KEY_ONBACK_BAR_X, KEY_ONBACK_BAR_Y, KEY_ONBACK_BAR_WIDTH, KEY_ONBACK_BAR_HEIGHT);
+    draw_key_hint(dc, KEY_ONBACK_ARC_DEGREE, KEY_ONBACK_BAR_X, KEY_ONBACK_BAR_Y, KEY_ONBACK_BAR_WIDTH, KEY_ONBACK_BAR_HEIGHT, SINGLE_CLICK);
 }
 
 (:key_location, :key_hint, :no_key_behavior_onmenu, :inline)
@@ -238,7 +241,7 @@ function draw_key_hint_onmenu(dc as Graphics.Dc) as Void {
 }
 (:key_location, :key_hint, :no_personality, :key_behavior_onmenu, :inline)
 function draw_key_hint_onmenu(dc as Graphics.Dc) as Void {
-    draw_key_hint(dc, KEY_ONMENU_ARC_DEGREE, KEY_ONMENU_BAR_X, KEY_ONMENU_BAR_Y, KEY_ONMENU_BAR_WIDTH, KEY_ONMENU_BAR_HEIGHT);
+    draw_key_hint(dc, KEY_ONMENU_ARC_DEGREE, KEY_ONMENU_BAR_X, KEY_ONMENU_BAR_Y, KEY_ONMENU_BAR_WIDTH, KEY_ONMENU_BAR_HEIGHT, LONG_PRESS);
 }
 
 (:key_location, :key_hint, :no_key_behavior_previouspage, :inline)
@@ -250,7 +253,7 @@ function draw_key_hint_previouspage(dc as Graphics.Dc) as Void {
 }
 (:key_location, :key_hint, :no_personality, :key_behavior_previouspage, :inline)
 function draw_key_hint_previouspage(dc as Graphics.Dc) as Void {
-    draw_key_hint(dc, KEY_PREVIOUSPAGE_ARC_DEGREE, KEY_PREVIOUSPAGE_BAR_X, KEY_PREVIOUSPAGE_BAR_Y, KEY_PREVIOUSPAGE_BAR_WIDTH, KEY_PREVIOUSPAGE_BAR_HEIGHT);
+    draw_key_hint(dc, KEY_PREVIOUSPAGE_ARC_DEGREE, KEY_PREVIOUSPAGE_BAR_X, KEY_PREVIOUSPAGE_BAR_Y, KEY_PREVIOUSPAGE_BAR_WIDTH, KEY_PREVIOUSPAGE_BAR_HEIGHT, SINGLE_CLICK);
 }
 
 (:key_location, :key_hint, :no_key_behavior_nextpage, :inline)
@@ -262,7 +265,7 @@ function draw_key_hint_nextpage(dc as Graphics.Dc) as Void {
 }
 (:key_location, :key_hint, :no_personality, :key_behavior_nextpage, :inline)
 function draw_key_hint_nextpage(dc as Graphics.Dc) as Void {
-    draw_key_hint(dc, KEY_NEXTPAGE_ARC_DEGREE, KEY_NEXTPAGE_BAR_X, KEY_NEXTPAGE_BAR_Y, KEY_NEXTPAGE_BAR_WIDTH, KEY_NEXTPAGE_BAR_HEIGHT);
+    draw_key_hint(dc, KEY_NEXTPAGE_ARC_DEGREE, KEY_NEXTPAGE_BAR_X, KEY_NEXTPAGE_BAR_Y, KEY_NEXTPAGE_BAR_WIDTH, KEY_NEXTPAGE_BAR_HEIGHT, SINGLE_CLICK);
 }
 
 (:key_location, :key_hint, :personality)
@@ -307,7 +310,8 @@ function draw_key_hint(dc as Graphics.Dc, degree as Float, barX as Number, barY 
     }
 }
 (:key_location, :key_hint, :no_personality)
-function draw_key_hint(dc as Graphics.Dc, degree as Float, barX as Number, barY as Number, barW as Number, barH as Number) as Void {
+function draw_key_hint(dc as Graphics.Dc, degree as Float, barX as Number, barY as Number, barW as Number, barH as Number, hintType as HintType) as Void {
+    var additionalHintWidth = hintType == LONG_PRESS ? 2 : 0;
     if (DEBUG_LAYOUT) {
     // var x0 = x + width / 2;
     // var y0 = y + height / 2;
@@ -323,12 +327,12 @@ function draw_key_hint(dc as Graphics.Dc, degree as Float, barX as Number, barY 
         if (DEBUG_LAYOUT) {
             dc.setColor(Graphics.COLOR_GREEN, Graphics.COLOR_TRANSPARENT);
         }
-        dc.setPenWidth(KEY_HINT_ARC_WIDTH);
+        dc.setPenWidth(KEY_HINT_ARC_WIDTH + additionalHintWidth);
         var halfWidth = dc.getWidth() / 2;
         dc.drawArc(halfWidth, dc.getHeight() / 2, halfWidth /*- (KEY_HINT_ARC_WIDTH - 1) / 2*/, Graphics.ARC_COUNTER_CLOCKWISE, degree - 8, degree + 8);
     }
     if (KEY_HINT_IS_BAR || (KEY_HINT_IS_ARC && barW > 0)) {
-        dc.setPenWidth(KEY_HINT_BAR_WIDTH);
+        dc.setPenWidth(KEY_HINT_BAR_WIDTH + additionalHintWidth);
         dc.drawRectangle(barX, barY, barW, barH);
         // log("draw_key_hint: barX: " + barX + ", barY: " + barY + ", barW:" + barW + ", barH:" + barH);
     }
