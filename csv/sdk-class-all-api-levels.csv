@@ -10,6 +10,9 @@ ActivityMonitor.HeartRateSample:1.2.2
 ActivityMonitor.History:1.0.0,2.1.0,4.2.3
 ActivityMonitor.Info:1.0.0,2.1.0,3.3.0,4.2.3,5.0.0
 ActivityMonitor:1.0.0,1.2.1,1.2.2
+ActivityPrompts.ActivityPrompt:5.2.0
+ActivityPrompts.ActivityPromptDelegate:5.2.0
+ActivityPrompts:5.2.0
 ActivityRecording.Session:1.0.0,1.3.0,3.0.10
 ActivityRecording:1.0.0,3.0.10
 Ant.BurstListener:2.2.0
@@ -267,7 +270,7 @@ WatchUi.Confirmation:1.0.0
 WatchUi.ConfirmationDelegate:1.0.0
 WatchUi.CustomMenu:3.0.0,5.0.1
 WatchUi.CustomMenuItem:3.0.0,5.0.1
-WatchUi.DataField:1.0.0,1.2.0,1.3.0,3.0.0,3.2.0
+WatchUi.DataField:1.0.0,1.2.0,1.3.0,3.0.0,3.2.0,5.2.0
 WatchUi.DataFieldAlert:3.2.0
 WatchUi.DragEvent:3.3.0
 WatchUi.Drawable:1.0.0,3.3.0

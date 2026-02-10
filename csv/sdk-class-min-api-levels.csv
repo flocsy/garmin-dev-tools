@@ -10,6 +10,9 @@ ActivityMonitor.HeartRateSample:1.2.2
 ActivityMonitor.History:1.0.0
 ActivityMonitor.Info:1.0.0
 ActivityMonitor:1.0.0
+ActivityPrompts.ActivityPrompt:5.2.0
+ActivityPrompts.ActivityPromptDelegate:5.2.0
+ActivityPrompts:5.2.0
 ActivityRecording.Session:1.0.0
 ActivityRecording:1.0.0
 Ant.BurstListener:2.2.0

@@ -319,3 +319,6 @@
 5.1.0:Notifications.NotificationMessage
 5.1.0:Sensor.SensorDelegate
 5.1.0:WatchUi.ComplicationDrawableRef
+5.2.0:ActivityPrompts
+5.2.0:ActivityPrompts.ActivityPrompt
+5.2.0:ActivityPrompts.ActivityPromptDelegate
