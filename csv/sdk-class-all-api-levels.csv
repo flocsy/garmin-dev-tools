@@ -1,5 +1,6 @@
 Activity.Info:1.0.0,1.2.0,1.2.2,2.1.0,2.4.0,3.2.0
 Activity.ProfileInfo:3.2.0
+Activity.SplitInfo:5.2.2
 Activity.WorkoutIntervalStep:3.2.0
 Activity.WorkoutStep:3.2.0
 Activity.WorkoutStepInfo:3.2.0
@@ -117,7 +118,7 @@ Communications.Message:1.3.0
 Communications.OAuthMessage:1.3.0
 Communications.PhoneAppMessage:1.4.0
 Communications.SyncDelegate:3.1.0
-Communications:1.0.0,1.1.2,1.2.0,1.3.0,1.4.0,2.2.0,2.3.0,2.4.1,2.4.2,3.0.0,3.0.10,3.0.2,3.0.3,3.1.0,3.2.0,3.3.0,4.0.4,4.2.0
+Communications:1.0.0,1.1.2,1.2.0,1.3.0,1.4.0,2.2.0,2.3.0,2.4.1,2.4.2,3.0.0,3.0.10,3.0.2,3.0.3,3.1.0,3.2.0,3.3.0,4.0.4,4.2.0,6.0.0
 Complications.Complication:4.2.0
 Complications.ComplicationNotFoundException:4.2.0
 Complications.Id:4.2.0
@@ -207,6 +208,7 @@ PersistedLocations:1.0.2
 Position.Info:1.0.0
 Position.Location:1.0.0,3.0.0
 Position:1.0.0,3.0.3,3.2.0,3.3.6
+ScanCode:6.0.0
 Sensor.AccelerometerData:2.3.0,5.1.1
 Sensor.GyroscopeData:3.3.0,5.1.1
 Sensor.HeartRateData:3.0.0
@@ -248,10 +250,10 @@ Time.RealTimeClockNotValidException:3.0.11
 Time:1.0.0,3.0.10
 Timer.Timer:1.0.0
 Timer:1.0.0
-UserProfile.Profile:1.0.0,3.2.0,3.3.0
+UserProfile.Profile:1.0.0,3.2.0,3.3.0,6.0.0
 UserProfile.UserActivity:3.3.0
 UserProfile.UserActivityHistoryIterator:3.3.0
-UserProfile:1.0.0,1.2.6,3.3.0,4.2.3
+UserProfile:1.0.0,1.2.6,3.3.0,4.2.3,5.2.2
 WatchUi.ActionMenu:3.4.0
 WatchUi.ActionMenuDelegate:3.4.0
 WatchUi.ActionMenuItem:3.4.0,3.4.2
@@ -270,7 +272,7 @@ WatchUi.Confirmation:1.0.0
 WatchUi.ConfirmationDelegate:1.0.0
 WatchUi.CustomMenu:3.0.0,5.0.1
 WatchUi.CustomMenuItem:3.0.0,5.0.1
-WatchUi.DataField:1.0.0,1.2.0,1.3.0,3.0.0,3.2.0,5.2.0
+WatchUi.DataField:1.0.0,1.2.0,1.3.0,3.0.0,3.2.0,5.2.0,5.2.2
 WatchUi.DataFieldAlert:3.2.0
 WatchUi.DragEvent:3.3.0
 WatchUi.Drawable:1.0.0,3.3.0
@@ -310,6 +312,7 @@ WatchUi.TextArea:3.1.0
 WatchUi.TextPicker:1.1.0
 WatchUi.TextPickerDelegate:1.1.0
 WatchUi.ToggleMenuItem:3.0.0
+WatchUi.TransparentProgressBar:3.0.3
 WatchUi.View:1.0.0,2.1.0,3.1.0,3.3.0,4.1.2,5.1.1
 WatchUi.ViewLoop:3.4.0
 WatchUi.ViewLoopDelegate:3.4.0

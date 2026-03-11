@@ -1,5 +1,6 @@
 Activity.Info:1.0.0
 Activity.ProfileInfo:3.2.0
+Activity.SplitInfo:5.2.2
 Activity.WorkoutIntervalStep:3.2.0
 Activity.WorkoutStep:3.2.0
 Activity.WorkoutStepInfo:3.2.0
@@ -207,6 +208,7 @@ PersistedLocations:1.0.2
 Position.Info:1.0.0
 Position.Location:1.0.0
 Position:1.0.0
+ScanCode:6.0.0
 Sensor.AccelerometerData:2.3.0
 Sensor.GyroscopeData:3.3.0
 Sensor.HeartRateData:3.0.0
@@ -310,6 +312,7 @@ WatchUi.TextArea:3.1.0
 WatchUi.TextPicker:1.1.0
 WatchUi.TextPickerDelegate:1.1.0
 WatchUi.ToggleMenuItem:3.0.0
+WatchUi.TransparentProgressBar:3.0.3
 WatchUi.View:1.0.0
 WatchUi.ViewLoop:3.4.0
 WatchUi.ViewLoopDelegate:3.4.0

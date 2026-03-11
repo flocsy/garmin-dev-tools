@@ -239,6 +239,7 @@
 3.0.3:Media.CustomButton
 3.0.3:Media.PlayerColors
 3.0.3:Media.SystemButton
+3.0.3:WatchUi.TransparentProgressBar
 3.1.0:AntPlus.AntPlusNotAllowedException
 3.1.0:AntPlus.DerailleurStatus
 3.1.0:AntPlus.Shifting
@@ -322,3 +323,5 @@
 5.2.0:ActivityPrompts
 5.2.0:ActivityPrompts.ActivityPrompt
 5.2.0:ActivityPrompts.ActivityPromptDelegate
+5.2.2:Activity.SplitInfo
+6.0.0:ScanCode
