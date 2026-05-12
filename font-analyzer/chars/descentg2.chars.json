@@ -68,18 +68,7 @@
           "FONT_SIM_EXT_NUMBER2": "FNT_006B431200_BIONIC_SEMI_BOLD_NUMBER_89",
           "FONT_SIM_EXT_NUMBER3": "FNT_006B431200_BIONIC_COND_SEMI_BOLD_NUMBER_46",
           "FONT_SIM_EXT_NUMBER4": "FNT_006B431200_BIONIC_COND_SEMI_BOLD_NUMBER_36",
-          "FONT_SIM_EXT_NUMBER5": "FNT_006B458800_CDPG_ROBOTO_25",
-          "FONT_BIONIC_BOLD": "Bionic_Bold_Number_Only",
-          "FONT_ROBOTO_CONDENSED_BOLD": "RobotoCondensed-Bold",
-          "FONT_ROBOTO_CONDENSED_REGULAR": "RobotoCondensed-Regular",
-          "FONT_NOTO_SANS_SCMEDIUM": "NotoSansSC-Medium-3",
-          "FONT_KOSUGI_REGULAR": "Kosugi-Regular-3",
-          "FONT_NANUM_GOTHIC_REGULAR": "NanumGothic-Regular",
-          "FONT_PRIDI_REGULAR_GARMIN": "Pridi-Regular_Garmin",
-          "FONT_SAKKAL_MAJALLA_BOLD": "sakkal_majalla_bold",
-          "FONT_SAKKAL_MAJALLA_ROMAN": "sakkal_majalla_roman",
-          "FONT_SWISS721BOLD": "swiss_721_bd",
-          "FONT_SWISS721REGULAR": "swiss_721_reg"
+          "FONT_SIM_EXT_NUMBER5": "FNT_006B458800_CDPG_ROBOTO_25"
         },
         "apac_twcn": {
           "FONT_XTINY": "FNT_006B410500_NOTO_SANS_SC_MEDIUM-94_24",
@@ -92,18 +81,7 @@
           "FONT_NUMBER_HOT": "FNT_006B410500_BIONIC_SEMI_BOLD_NUMBER_69",
           "FONT_NUMBER_THAI_HOT": "FNT_006B410500_BIONIC_SEMI_BOLD_NUMBER_80",
           "FONT_GLANCE_FONT": "FNT_006B410500_NOTO_SANS_SC_MEDIUM-94_28",
-          "FONT_GLANCE_NUMBER_FONT": "FNT_006B410500_BIONIC_SEMI_BOLD_NUMBER_28",
-          "FONT_BIONIC_BOLD": "Bionic_Bold_Number_Only",
-          "FONT_ROBOTO_CONDENSED_BOLD": "RobotoCondensed-Bold",
-          "FONT_ROBOTO_CONDENSED_REGULAR": "RobotoCondensed-Regular",
-          "FONT_NOTO_SANS_SCMEDIUM": "NotoSansSC-Medium-3",
-          "FONT_KOSUGI_REGULAR": "Kosugi-Regular-3",
-          "FONT_NANUM_GOTHIC_REGULAR": "NanumGothic-Regular",
-          "FONT_PRIDI_REGULAR_GARMIN": "Pridi-Regular_Garmin",
-          "FONT_SAKKAL_MAJALLA_BOLD": "sakkal_majalla_bold",
-          "FONT_SAKKAL_MAJALLA_ROMAN": "sakkal_majalla_roman",
-          "FONT_SWISS721BOLD": "swiss_721_bd",
-          "FONT_SWISS721REGULAR": "swiss_721_reg"
+          "FONT_GLANCE_NUMBER_FONT": "FNT_006B410500_BIONIC_SEMI_BOLD_NUMBER_28"
         },
         "apac_jpn": {
           "FONT_XTINY": "FNT_006B410500_KOSUGI-REGULAR-94_24",
@@ -116,18 +94,7 @@
           "FONT_NUMBER_HOT": "FNT_006B410500_BIONIC_SEMI_BOLD_NUMBER_69",
           "FONT_NUMBER_THAI_HOT": "FNT_006B410500_BIONIC_SEMI_BOLD_NUMBER_80",
           "FONT_GLANCE_FONT": "FNT_006B410500_KOSUGI-REGULAR-94_28",
-          "FONT_GLANCE_NUMBER_FONT": "FNT_006B410500_BIONIC_SEMI_BOLD_NUMBER_28",
-          "FONT_BIONIC_BOLD": "Bionic_Bold_Number_Only",
-          "FONT_ROBOTO_CONDENSED_BOLD": "RobotoCondensed-Bold",
-          "FONT_ROBOTO_CONDENSED_REGULAR": "RobotoCondensed-Regular",
-          "FONT_NOTO_SANS_SCMEDIUM": "NotoSansSC-Medium-3",
-          "FONT_KOSUGI_REGULAR": "Kosugi-Regular-3",
-          "FONT_NANUM_GOTHIC_REGULAR": "NanumGothic-Regular",
-          "FONT_PRIDI_REGULAR_GARMIN": "Pridi-Regular_Garmin",
-          "FONT_SAKKAL_MAJALLA_BOLD": "sakkal_majalla_bold",
-          "FONT_SAKKAL_MAJALLA_ROMAN": "sakkal_majalla_roman",
-          "FONT_SWISS721BOLD": "swiss_721_bd",
-          "FONT_SWISS721REGULAR": "swiss_721_reg"
+          "FONT_GLANCE_NUMBER_FONT": "FNT_006B410500_BIONIC_SEMI_BOLD_NUMBER_28"
         },
         "apac_kor": {
           "FONT_XTINY": "FNT_006B410500_NANUM_GOTHIC_BOLD-94_24",
@@ -140,18 +107,7 @@
           "FONT_NUMBER_HOT": "FNT_006B410500_BIONIC_SEMI_BOLD_NUMBER_69",
           "FONT_NUMBER_THAI_HOT": "FNT_006B410500_BIONIC_SEMI_BOLD_NUMBER_80",
           "FONT_GLANCE_FONT": "FNT_006B410500_NANUM_GOTHIC_BOLD-94_28",
-          "FONT_GLANCE_NUMBER_FONT": "FNT_006B410500_BIONIC_SEMI_BOLD_NUMBER_28",
-          "FONT_BIONIC_BOLD": "Bionic_Bold_Number_Only",
-          "FONT_ROBOTO_CONDENSED_BOLD": "RobotoCondensed-Bold",
-          "FONT_ROBOTO_CONDENSED_REGULAR": "RobotoCondensed-Regular",
-          "FONT_NOTO_SANS_SCMEDIUM": "NotoSansSC-Medium-3",
-          "FONT_KOSUGI_REGULAR": "Kosugi-Regular-3",
-          "FONT_NANUM_GOTHIC_REGULAR": "NanumGothic-Regular",
-          "FONT_PRIDI_REGULAR_GARMIN": "Pridi-Regular_Garmin",
-          "FONT_SAKKAL_MAJALLA_BOLD": "sakkal_majalla_bold",
-          "FONT_SAKKAL_MAJALLA_ROMAN": "sakkal_majalla_roman",
-          "FONT_SWISS721BOLD": "swiss_721_bd",
-          "FONT_SWISS721REGULAR": "swiss_721_reg"
+          "FONT_GLANCE_NUMBER_FONT": "FNT_006B410500_BIONIC_SEMI_BOLD_NUMBER_28"
         },
         "apac_tha": {
           "FONT_XTINY": "bitstreamVeraSans 16",
@@ -164,18 +120,7 @@
           "FONT_NUMBER_HOT": "FNT_006B410500_BIONIC_SEMI_BOLD_NUMBER_69",
           "FONT_NUMBER_THAI_HOT": "FNT_006B410500_BIONIC_SEMI_BOLD_NUMBER_80",
           "FONT_GLANCE_FONT": "bitstreamVeraSans 16",
-          "FONT_GLANCE_NUMBER_FONT": "FNT_006B410500_BIONIC_SEMI_BOLD_NUMBER_28",
-          "FONT_BIONIC_BOLD": "Bionic_Bold_Number_Only",
-          "FONT_ROBOTO_CONDENSED_BOLD": "RobotoCondensed-Bold",
-          "FONT_ROBOTO_CONDENSED_REGULAR": "RobotoCondensed-Regular",
-          "FONT_NOTO_SANS_SCMEDIUM": "NotoSansSC-Medium-3",
-          "FONT_KOSUGI_REGULAR": "Kosugi-Regular-3",
-          "FONT_NANUM_GOTHIC_REGULAR": "NanumGothic-Regular",
-          "FONT_PRIDI_REGULAR_GARMIN": "Pridi-Regular_Garmin",
-          "FONT_SAKKAL_MAJALLA_BOLD": "sakkal_majalla_bold",
-          "FONT_SAKKAL_MAJALLA_ROMAN": "sakkal_majalla_roman",
-          "FONT_SWISS721BOLD": "swiss_721_bd",
-          "FONT_SWISS721REGULAR": "swiss_721_reg"
+          "FONT_GLANCE_NUMBER_FONT": "FNT_006B410500_BIONIC_SEMI_BOLD_NUMBER_28"
         }
       },
       "langMap": {
