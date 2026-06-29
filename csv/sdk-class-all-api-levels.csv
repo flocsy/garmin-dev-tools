@@ -123,7 +123,7 @@ Complications.Complication:4.2.0
 Complications.ComplicationNotFoundException:4.2.0
 Complications.Id:4.2.0
 Complications.Iterator:4.2.0
-Complications:4.2.0,4.2.3,5.0.0
+Complications:4.2.0,4.2.3,5.0.0,6.0.2
 Cryptography.Cipher:3.0.0
 Cryptography.CipherBasedMessageAuthenticationCode:3.0.0
 Cryptography.Hash:3.0.0
