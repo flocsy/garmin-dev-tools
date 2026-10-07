@@ -3,6 +3,8 @@ approachs60:32768
 approachs62:65536
 approachs7042mm:65536
 approachs7047mm:65536
+approachs7243mm:65536
+approachs7247mm:65536
 d2air:65536
 d2airx10:65536
 d2bravo:
@@ -43,6 +45,7 @@ edgeexplore2:32768
 edgemtb:32768
 enduro:32768
 enduro3:65536
+enduro4:65536
 epix:
 epix2:65536
 epix2pro42mm:65536
