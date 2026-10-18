@@ -23,6 +23,8 @@ descentmk2:32768
 descentmk2s:32768
 descentmk343mm:65536
 descentmk351mm:65536
+edge_1000:
+edge_520:
 edge1030:
 edge1030bontrager:
 edge1030plus:
@@ -38,8 +40,6 @@ edge820:
 edge830:
 edge840:65536
 edge850:65536
-edge_1000:
-edge_520:
 edgeexplore:
 edgeexplore2:65536
 edgemtb:65536
@@ -139,6 +139,7 @@ legacysagadarthvader:
 legacysagarey:
 marq2:65536
 marq2aviator:65536
+marq3:65536
 marqadventurer:32768
 marqathlete:32768
 marqaviator:32768
@@ -166,6 +167,7 @@ venusq2m:65536
 venusqm:
 venux1:65536
 vivoactive:
+vivoactive_hr:
 vivoactive3:
 vivoactive3d:
 vivoactive3m:
@@ -174,5 +176,4 @@ vivoactive4:
 vivoactive4s:
 vivoactive5:65536
 vivoactive6:65536
-vivoactive_hr:
 vivolife:

@@ -7,8 +7,8 @@ approachs7243mm:6.0.3
 approachs7247mm:6.0.3
 d2air:3.2.1
 d2airx10:4.0.1
-d2bravo:1.3.1
 d2bravo_titanium:1.4.4
+d2bravo:1.3.1
 d2charlie:2.4.1
 d2delta:3.1.8
 d2deltapx:3.0.3
@@ -23,6 +23,8 @@ descentmk2:3.1.7
 descentmk2s:3.2.0
 descentmk343mm:4.2.3
 descentmk351mm:4.2.3
+edge_1000:2.4.1
+edge_520:2.4.1
 edge1030:3.2.5
 edge1030bontrager:3.3.1
 edge1030plus:3.2.5
@@ -38,8 +40,6 @@ edge820:2.4.1
 edge830:3.2.5
 edge840:4.2.0
 edge850:5.1.1
-edge_1000:2.4.1
-edge_520:2.4.1
 edgeexplore:3.1.3
 edgeexplore2:4.1.2
 edgemtb:5.1.1
@@ -52,8 +52,8 @@ epix2pro42mm:4.2.2
 epix2pro47mm:4.2.2
 epix2pro51mm:4.2.2
 etrextouch:5.1.1
-fenix3:1.3.1
 fenix3_hr:1.3.1
+fenix3:1.3.1
 fenix5:3.1.6
 fenix5plus:3.1.6
 fenix5s:3.1.6
@@ -139,6 +139,7 @@ legacysagadarthvader:3.2.6
 legacysagarey:3.2.6
 marq2:4.1.2
 marq2aviator:4.1.2
+marq3:6.0.3
 marqadventurer:3.2.6
 marqathlete:3.2.6
 marqaviator:3.2.6
@@ -165,6 +166,7 @@ venusq2:4.1.5
 venusq2m:4.1.5
 venusqm:3.2.5
 venux1:5.1.1
+vivoactive_hr:2.4.1
 vivoactive:1.4.2
 vivoactive3:3.0.3
 vivoactive3d:3.0.0
@@ -174,5 +176,4 @@ vivoactive4:3.2.6
 vivoactive4s:3.2.6
 vivoactive5:4.2.3
 vivoactive6:5.1.1
-vivoactive_hr:2.4.1
 vivolife:3.0.3
