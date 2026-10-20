@@ -325,3 +325,12 @@
 5.2.0:ActivityPrompts.ActivityPromptDelegate
 5.2.2:Activity.SplitInfo
 6.0.0:ScanCode
+6.0.3:Application.DynamicResource
+6.0.3:Audio
+6.0.3:Audio.AudioResource
+6.0.3:Audio.Capture
+6.0.3:Audio.Capture.InitializationFailedException
+6.0.3:Audio.Output
+6.0.3:Audio.Output.DynamicAudioSource
+6.0.3:Audio.Output.DynamicAudioSourceBuilder
+6.0.3:Audio.Output.StreamingAudioSource
